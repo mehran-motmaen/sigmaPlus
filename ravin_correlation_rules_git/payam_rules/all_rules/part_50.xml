@@ -1,0 +1,203 @@
+<rule id="3502" owner="system" enable="f" kbid="3502_1" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Botnet DNS query to DNS server detected" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>53</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Domain Request</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">DGA</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism_detail">Sinkhole</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Suspicious domain lookup responses from DNS server to client" occurrence="1" weight="10" timeout="1800">
+                <source>
+                    <ip location="ANY" />
+                    <port>53</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Suspicious Domain Lookup</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism_detail">Sinkhole</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Domain Request</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">DGA</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="Botnet DNS query to DNS server Detected" occurrence="10" weight="10" timeout="1800">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>53</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Domain Request</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">DGA</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism_detail">Sinkhole</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" name="Botnet DNS query to DNS server detected" occurrence="1000" weight="1" timeout="9600">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>53</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Domain Request</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">DGA</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism_detail">Sinkhole</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" name="Suspicious DNS responses to potentially malicious hosts detected" occurrence="100" weight="1" timeout="9600">
+                <source>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Suspicious Domain Lookup</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism_detail">Sinkhole</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Domain Request</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">DGA</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="Botnet">
+                <message>Malware related DNS query request/responses</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <ip reference_id="5" reference_type="target" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="2" reference_type="source" />
+                    <ip reference_id="3" reference_type="target" />
+                    <ip reference_id="4" reference_type="target" />
+                </target>
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="2" />
+                <additional_data meaning="MalwareName" reference_id="3" />
+                <additional_data meaning="MalwareName" reference_id="4" />
+                <additional_data meaning="MalwareName" reference_id="5" />
+                <additional_data meaning="URL" reference_id="1" />
+                <additional_data meaning="URL" reference_id="2" />
+                <additional_data meaning="URL" reference_id="3" />
+                <additional_data meaning="URL" reference_id="4" />
+                <additional_data meaning="URL" reference_id="5" />
+                <additional_data meaning="DomainName" reference_id="1" />
+                <additional_data meaning="DomainName" reference_id="2" />
+                <additional_data meaning="DomainName" reference_id="3" />
+                <additional_data meaning="DomainName" reference_id="4" />
+                <additional_data meaning="DomainName" reference_id="5" />
+            </alert>
+            <prerequisite>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="CnC-Server" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="3" />
+                </group>
+                <group>
+                    <filter id="4" />
+                    <filter id="5" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

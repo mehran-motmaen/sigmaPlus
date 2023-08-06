@@ -1,0 +1,82 @@
+<rule id="19001" owner="system" kbid="19001_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="port security violation on SRC_IP" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION" sensor_type="300" class_type="" />
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION_VLAN" sensor_type="300" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="2" name="port security violation on SRC_IP(3)" occurrence="3" weight="10" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION" sensor_type="300" class_type="" />
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION_VLAN" sensor_type="300" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="3" name="port security violation on SRC_IP(10)" occurrence="10" weight="10" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION" sensor_type="300" class_type="" />
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION_VLAN" sensor_type="300" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="4" name="port security violation on SRC_IP(25)" occurrence="25" weight="10" timeout="400">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION" sensor_type="300" class_type="" />
+                    <event event_type="PORT_SECURITY-2-PSECURE_VIOLATION_VLAN" sensor_type="300" class_type="" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="SecurityPolicyViolation">
+                <message>Possible network attack, port security violation on SRC_IP</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+                <filter id="4" />
+            </sequence>
+        </regulation>
+    </rule>
+    

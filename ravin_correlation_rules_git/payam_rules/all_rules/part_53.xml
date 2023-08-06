@@ -1,0 +1,163 @@
+<rule id="3505" owner="system" kbid="3505_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Worm attempts to scan/infect other hosts" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Worm attempts to scan/infect other hosts(1 to 5)" occurrence="5" weight="10" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="3" name="Worm attempts to scan/infect other hosts(1 to 20)" occurrence="20" weight="10" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="4" name="Worm scan for vulnerable hosts" occurrence="20" weight="5" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" name="Worm scan for vulnerable hosts" occurrence="400" weight="5" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="6" name="Worm scan/infect other hosts" occurrence="1000" weight="5" timeout="3600">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="Worm">
+                <message>WORM scan attempt</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="2" reference_type="target" />
+                    <ip reference_id="3" reference_type="target" />
+                    <ip reference_id="4" reference_type="target" />
+                    <ip reference_id="5" reference_type="target" />
+                    <ip reference_id="6" reference_type="target" />
+                </target>
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="2" />
+                <additional_data meaning="MalwareName" reference_id="3" />
+                <additional_data meaning="MalwareName" reference_id="4" />
+                <additional_data meaning="MalwareName" reference_id="5" />
+                <additional_data meaning="MalwareName" reference_id="6" />
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Service">
+                    <param reference_type="target.ip" />
+                    <param reference_type="target.port" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Infection-Malicious" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="4" />
+                </group>
+                <group>
+                    <filter id="3" />
+                    <filter id="5" />
+                </group>
+                <filter id="6" />
+            </sequence>
+        </regulation>
+    </rule>
+    

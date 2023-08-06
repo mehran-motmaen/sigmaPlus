@@ -1,0 +1,59 @@
+<rule id="6128" owner="system" kbid="6128_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Password Dictionary Attack Detection" weight="20">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">FTP</tag>
+                    </event>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">Web</tag>
+                    </event>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">RDP</tag>
+                    </event>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">SMB</tag>
+                    </event>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">SSH</tag>
+                    </event>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">Telnet</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="AttemptUser">
+                <message>Attempt to brouteForce attack to guess login password detected</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

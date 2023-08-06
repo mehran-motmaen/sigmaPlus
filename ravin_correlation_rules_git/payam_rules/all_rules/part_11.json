@@ -1,0 +1,71 @@
+{
+  "rule": {
+    "@enable": "t",
+    "@id": "12000",
+    "@owner": "system",
+    "@ver": "1",
+    "@kbid": "12000_1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Error in S7comm header",
+        "@weight": "5",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "450"
+          }
+        },
+        "additional_data_list": {
+          "additional_data": {
+            "@meaning": "Error Class",
+            "@operator": "NEQ",
+            "#text": "No error"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@category": "DataSecurityViolation",
+        "@priority": "medium",
+        "message": "Error in S7comm header",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": {
+          "@meaning": "Error Class",
+          "@reference_id": "1"
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

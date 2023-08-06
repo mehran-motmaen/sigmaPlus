@@ -1,0 +1,338 @@
+{
+  "rule": {
+    "@id": "3001",
+    "@owner": "system",
+    "@enable": "f",
+    "@kbid": "3001_1",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Trojan User Agent launch to DDOS from local network to external",
+          "@weight": "5",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$EXTERNAL_NET",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Distributed Overloading"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Trojan User Agent launch to DDOS from local network to external",
+          "@occurrence": "10",
+          "@weight": "9",
+          "@timeout": "60",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Distributed Overloading"
+                  }
+                ]
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Trojan User Agent launch to DDOS from local network to external",
+          "@occurrence": "160",
+          "@weight": "10",
+          "@timeout": "600",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Distributed Overloading"
+                  }
+                ]
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "Trojan User Agent launch to DDOS from local network to external",
+          "@occurrence": "1000",
+          "@weight": "10",
+          "@timeout": "3600",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Malware"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Distributed Overloading"
+                  }
+                ]
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "DDOS",
+        "message": "Multiple Internal BotSpot Agents launch DDoS attack",
+        "source": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "source"
+            }
+          ]
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "4"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Degrade-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

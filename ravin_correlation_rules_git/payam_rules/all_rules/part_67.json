@@ -1,0 +1,180 @@
+{
+  "rule": {
+    "@id": "4002",
+    "@owner": "system",
+    "@kbid": "4002_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Port Sweep",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Port Sweep"
+              }
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Port Sweep(30)",
+          "@occurrence": "30",
+          "@weight": "5",
+          "@timeout": "5",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Port Sweep"
+              }
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.port"
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Port Sweep(1500)",
+          "@occurrence": "100",
+          "@weight": "10",
+          "@timeout": "10",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Host Sweep"
+              }
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.port"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "PortScan",
+        "message": "Port Sweep Detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": {
+          "@type": "Recon-Host",
+          "param": [
+            {
+              "@reference_type": "source.ip"
+            },
+            {
+              "@reference_type": "target.ip"
+            }
+          ]
+        }
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Recon-Host",
+          "@timeout": "3600",
+          "param": [
+            {
+              "@reference_type": "source.ip"
+            },
+            {
+              "@reference_type": "target.ip"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          }
+        ]
+      }
+    }
+  }
+}

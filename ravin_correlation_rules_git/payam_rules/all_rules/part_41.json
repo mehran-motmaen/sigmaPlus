@@ -1,0 +1,127 @@
+{
+  "rule": {
+    "@id": "19005",
+    "@owner": "system",
+    "@kbid": "19005_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Connection from a Tor network exit node detected",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "1",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "BadIP Inbound Traffic"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Proxy"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Suspicious Activity"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Login authentication detected",
+          "@occurrence": "1",
+          "@weight": "10",
+          "@timeout": "300",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Authentication"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Standard Activity"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Login"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "Botnet",
+        "message": "Suspicious login attempt from Tor on SRC_IP",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": {
+          "@meaning": "Username",
+          "@reference_id": "2"
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

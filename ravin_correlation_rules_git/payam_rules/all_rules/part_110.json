@@ -1,0 +1,74 @@
+{
+  "rule": {
+    "@kbid": "7009_1",
+    "@id": "7009",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Fortigate, CPU Threshold Exceeded",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "360",
+              "@event_type": "40704"
+            },
+            {
+              "@sensor_type": "360",
+              "@event_type": "40705"
+            }
+          ]
+        },
+        "additional_data_list": {
+          "additional_data": {
+            "@meaning": "cpu",
+            "@operator": "GT",
+            "#text": "90"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "Fortigate, CPU Threshold Exceeded",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

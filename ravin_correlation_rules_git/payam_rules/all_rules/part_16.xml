@@ -1,0 +1,39 @@
+<rule enable="t" id="12006" owner="system" ver="1" kbid="12006_1" file_name="">
+        <filter_list>
+            <filter id="1" name="PLC DOWNLOAD command" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="450" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="Function" operator="REGX">Request download|Download (block|ended)
+                    </additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="AttemptUser" priority="medium">
+                <message>PLC DOWNLOAD command</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Function" reference_id="1" />
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

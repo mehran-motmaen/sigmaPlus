@@ -1,0 +1,238 @@
+{
+  "rule": {
+    "@id": "11007",
+    "@owner": "system",
+    "@kbid": "11007_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "ModeSecurity Access Denied",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "330",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "ModeSecurity Access Denied (more times)",
+          "@occurrence": "10",
+          "@weight": "1",
+          "@timeout": "900",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "330",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "ParsGate alert Drop due to port scan",
+          "@occurrence": "1",
+          "@weight": "5",
+          "@timeout": "900",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Port Scan"
+              }
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "ParsGate alert Drop due to port scan (more times)",
+          "@occurrence": "100",
+          "@weight": "10",
+          "@timeout": "3600",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Port Scan"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "PortScan",
+        "message": "Port Scan Attempt",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "3"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Network",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Recon-Service",
+          "@timeout": "3600",
+          "param": [
+            {
+              "@reference_type": "source.ip"
+            },
+            {
+              "@reference_type": "target.port"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "4"
+          }
+        ],
+        "group": {
+          "filter": [
+            {
+              "@id": "2"
+            },
+            {
+              "@id": "3"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

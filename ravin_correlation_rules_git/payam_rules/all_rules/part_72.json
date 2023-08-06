@@ -1,0 +1,97 @@
+{
+  "rule": {
+    "@id": "6100",
+    "@owner": "system",
+    "@kbid": "6100_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Traffic to Undefined Asset Detection",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "3",
+              "@event_type": "1023:1"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1024:1"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:10"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:16"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:38"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:39"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:40"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:41"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:42"
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Traffic to/from undefined asset detected (possible network enumuration or trojan backdoor)",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

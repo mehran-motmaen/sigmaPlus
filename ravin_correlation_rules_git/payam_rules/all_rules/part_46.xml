@@ -1,0 +1,177 @@
+<rule id="3401" owner="system" kbid="3401_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="DDOS" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                    </event>
+                    <event event_type="1:3001" sensor_type="2" class_type="" />
+                    <event event_type="1:3015" sensor_type="2" class_type="" />
+                    <event event_type="1:3014" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="2" name="DDOS" occurrence="2" weight="5" timeout="60">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                    </event>
+                    <event event_type="1:3001" sensor_type="2" class_type="" />
+                    <event event_type="1:3015" sensor_type="2" class_type="" />
+                    <event event_type="1:3014" sensor_type="2" class_type="" />
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="3" name="DDOS" occurrence="10" weight="10" timeout="2400">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                    </event>
+                    <event event_type="1:3001" sensor_type="2" class_type="" />
+                    <event event_type="1:3015" sensor_type="2" class_type="" />
+                    <event event_type="1:3014" sensor_type="2" class_type="" />
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="4" name="DDOS" occurrence="100" weight="5" timeout="3600">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                    </event>
+                    <event event_type="1:3001" sensor_type="2" class_type="" />
+                    <event event_type="1:3015" sensor_type="2" class_type="" />
+                    <event event_type="1:3014" sensor_type="2" class_type="" />
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="5" name="DDOS" occurrence="1000" weight="5" timeout="9200">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                    </event>
+                    <event event_type="1:3001" sensor_type="2" class_type="" />
+                    <event event_type="1:3015" sensor_type="2" class_type="" />
+                    <event event_type="1:3014" sensor_type="2" class_type="" />
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="DDOS">
+                <message>Attempt to launch a distributed Denial of service</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <ip reference_id="2" reference_type="source" />
+                    <ip reference_id="3" reference_type="source" />
+                    <ip reference_id="4" reference_type="source" />
+                    <ip reference_id="5" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Access-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Degrade-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Degrade-Service">
+                    <param reference_type="target.ip" />
+                    <param reference_type="target.port" />
+                </predicate>
+                <predicate type="Degrade-Network">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Degrade-Host" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+                <filter id="4" />
+                <filter id="5" />
+            </sequence>
+        </regulation>
+    </rule>
+    

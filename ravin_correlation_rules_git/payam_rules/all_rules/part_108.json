@@ -1,0 +1,78 @@
+{
+  "rule": {
+    "@kbid": "7007_1",
+    "@id": "7007",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Fortigate, Sent Byte Exceeded the Threshold",
+        "@weight": "5",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "360",
+              "@event_type": "20"
+            },
+            {
+              "@sensor_type": "360",
+              "@event_type": "13"
+            },
+            {
+              "@sensor_type": "360",
+              "@event_type": "14"
+            }
+          ]
+        },
+        "additional_data_list": {
+          "additional_data": {
+            "@meaning": "sentbyte",
+            "@operator": "GT",
+            "#text": "41000000000"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "Sent Traffic Volume Exceeded the Threshold",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

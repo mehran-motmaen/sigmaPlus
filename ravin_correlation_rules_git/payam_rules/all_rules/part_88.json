@@ -1,0 +1,72 @@
+{
+  "rule": {
+    "@id": "6116",
+    "@owner": "system",
+    "@kbid": "6116_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Port Scan Detection",
+        "@weight": "20",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "3",
+            "tag": [
+              {
+                "@meaning": "mechanism",
+                "#text": "Host Sweep"
+              },
+              {
+                "@meaning": "resource_detail",
+                "#text": "Port"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "PortScan",
+        "message": "Port scan detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

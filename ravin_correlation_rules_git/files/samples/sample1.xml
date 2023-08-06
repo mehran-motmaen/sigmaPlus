@@ -1,0 +1,122 @@
+<rule id="10002" owner="system" kbid="10002_1" enable="t" ver="1" file_name="">
+    <filter_list>
+        <filter id="1" name="Admin configuration failed attempt on Router" weight="1">
+            <source>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </target>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="resource">Switch/Router</tag>
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="result">Failed</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="2" name="Multiple Admin configuration failed attempt on Router (5 attempts)" occurrence="4"
+                weight="5" timeout="900">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="resource">Switch/Router</tag>
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="result">Failed</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="3" name="Multiple Admin configuration failed attempt on Router (15 attempts)" occurrence="10"
+                weight="10" timeout="900">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="resource">Switch/Router</tag>
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="result">Failed</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="4" name="Multiple Admin configuration failed attempt on Router (115 attempts)" occurrence="100"
+                weight="10" timeout="1800">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="resource">Switch/Router</tag>
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="result">Failed</tag>
+                </event>
+            </event_list>
+        </filter>
+    </filter_list>
+    <action>
+        <alert priority="high" category="AbnormalActivity">
+            <message>Multiple Failed Configuration Change Attempt on Router</message>
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+            </target>
+        </alert>
+        <prerequisite>
+            <predicate type="Recon-Host">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Recon-Service">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+        </prerequisite>
+        <consequence>
+            <predicate type="Access-Host">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Access-Host">
+                <param reference_type="target.ip"/>
+            </predicate>
+        </consequence>
+    </action>
+    <regulation>
+        <sequence>
+            <filter id="1"/>
+            <filter id="2"/>
+            <filter id="3"/>
+            <filter id="4"/>
+        </sequence>
+    </regulation>
+</rule>

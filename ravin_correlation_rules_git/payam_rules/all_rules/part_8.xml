@@ -1,0 +1,51 @@
+<rule id="10013" owner="system" kbid="10013_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Active Directory Ticket Forging Attempt" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4769-failed" sensor_type="327" />
+                </event_list>
+            </filter>
+            <filter id="2" name="Active Directory Forged Ticket" occurrence="1" timeout="360" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4776" sensor_type="327" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="GainAccess" priority="high">
+                <message>Failed Active Directory Privilage Escalation Attempt</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

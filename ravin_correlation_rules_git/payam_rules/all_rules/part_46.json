@@ -1,0 +1,412 @@
+{
+  "rule": {
+    "@id": "3401",
+    "@owner": "system",
+    "@kbid": "3401_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "DDOS",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                }
+              },
+              {
+                "@event_type": "1:3001",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3015",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3014",
+                "@sensor_type": "2",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "DDOS",
+          "@occurrence": "2",
+          "@weight": "5",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                }
+              },
+              {
+                "@event_type": "1:3001",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3015",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3014",
+                "@sensor_type": "2",
+                "@class_type": ""
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "DDOS",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "2400",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                }
+              },
+              {
+                "@event_type": "1:3001",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3015",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3014",
+                "@sensor_type": "2",
+                "@class_type": ""
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "DDOS",
+          "@occurrence": "100",
+          "@weight": "5",
+          "@timeout": "3600",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                }
+              },
+              {
+                "@event_type": "1:3001",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3015",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3014",
+                "@sensor_type": "2",
+                "@class_type": ""
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@name": "DDOS",
+          "@occurrence": "1000",
+          "@weight": "5",
+          "@timeout": "9200",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                }
+              },
+              {
+                "@event_type": "1:3001",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3015",
+                "@sensor_type": "2",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "1:3014",
+                "@sensor_type": "2",
+                "@class_type": ""
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "DDOS",
+        "message": "Attempt to launch a distributed Denial of service",
+        "source": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "4",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "5",
+              "@reference_type": "source"
+            }
+          ]
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Degrade-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Degrade-Service",
+            "param": [
+              {
+                "@reference_type": "target.ip"
+              },
+              {
+                "@reference_type": "target.port"
+              }
+            ]
+          },
+          {
+            "@type": "Degrade-Network",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Degrade-Host",
+          "@timeout": "3600",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          },
+          {
+            "@id": "5"
+          }
+        ]
+      }
+    }
+  }
+}

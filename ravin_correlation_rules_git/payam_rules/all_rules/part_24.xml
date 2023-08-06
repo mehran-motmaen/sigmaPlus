@@ -1,0 +1,40 @@
+<rule enable="t" id="12015" owner="system" ver="1" kbid="12015_1" file_name="">
+        <filter_list>
+            <filter id="1" name="PLC FORCES command" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="450" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="Function Group" operator="EQ">Programmer commands</additional_data>
+                    <additional_data meaning="Subfunction" operator="EQ">Forces</additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="AttemptUser" priority="medium">
+                <message>PLC FORCES command</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Function Group" reference_id="1" />
+                <additional_data meaning="Subfunction" reference_id="1" />
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

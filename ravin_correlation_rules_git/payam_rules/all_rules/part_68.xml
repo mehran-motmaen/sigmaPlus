@@ -1,0 +1,105 @@
+<rule id="5000" owner="system" kbid="5000_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Configuration change on Firewall" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Configuration Activity</tag>
+                        <tag meaning="resource">Firewall</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Configuration change on Firewall" occurrence="5" weight="5" timeout="10">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Configuration Activity</tag>
+                        <tag meaning="resource">Firewall</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="Configuration change on Firewall" occurrence="10" weight="10" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Configuration Activity</tag>
+                        <tag meaning="resource">Firewall</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="SecurityPolicyViolation">
+                <message>Configuration change on Firewall</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Access-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Trojan-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Access-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Trojan-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+            </sequence>
+        </regulation>
+    </rule>
+    

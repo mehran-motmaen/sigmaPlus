@@ -1,0 +1,239 @@
+{
+  "rule": {
+    "@id": "3014",
+    "@owner": "system",
+    "@kbid": "3014_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "One to One High volume traffic",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Host"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "One to One High volume traffic",
+          "@occurrence": "3",
+          "@weight": "10",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Host"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "One to One High volume traffic",
+          "@occurrence": "15",
+          "@weight": "10",
+          "@timeout": "600",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Host"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "One to One High volume traffic",
+          "@occurrence": "40",
+          "@weight": "10",
+          "@timeout": "1800",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Overloading Saturation"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Host"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "Attempt to DOS Host by One to One traffic",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Degrade-Host",
+          "@timeout": "3600",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

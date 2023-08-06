@@ -1,0 +1,252 @@
+{
+  "rule": {
+    "@id": "10006",
+    "@owner": "system",
+    "@enable": "f",
+    "@kbid": "10006_1",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "An application communication has blocked by Access Control System",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Multiple application communication has blocked by Access Control System (5 attempts)",
+          "@occurrence": "10",
+          "@weight": "5",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Multiple application communication has blocked by Access Control System (15 attempts)",
+          "@occurrence": "15",
+          "@weight": "10",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "Multiple An application communication has blocked by Access Control System (115 attempts)",
+          "@occurrence": "20",
+          "@weight": "10",
+          "@timeout": "720",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "ACL Policy Violation"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Denied"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "SecurityPolicyViolation",
+        "message": "Suspecious Attempt To Communicate With Blocked Outdoor Machine,\n                Possible Unwanted Application",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "CnC-Server",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Infection-Malicious",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

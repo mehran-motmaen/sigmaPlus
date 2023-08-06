@@ -1,0 +1,180 @@
+{
+  "rule": {
+    "@kbid": "7006_1",
+    "@id": "7006",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "f",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Fortigate, Deny Traffic",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "360",
+                "@event_type": "3"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "6"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "13"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "14"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "15"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "16"
+              }
+            ]
+          },
+          "additional_data_list": {
+            "additional_data": [
+              {
+                "@meaning": "action",
+                "@operator": "EQ",
+                "#text": "deny"
+              },
+              {
+                "@meaning": "devname",
+                "@operator": "EQ",
+                "#text": "fortigate-devicename"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Fortigate, High Rate of Denied Traffic",
+          "@weight": "5",
+          "@occurrence": "1000",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "360",
+                "@event_type": "3"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "6"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "13"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "14"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "15"
+              },
+              {
+                "@sensor_type": "360",
+                "@event_type": "16"
+              }
+            ]
+          },
+          "additional_data_list": {
+            "additional_data": [
+              {
+                "@meaning": "action",
+                "@operator": "EQ",
+                "#text": "deny"
+              },
+              {
+                "@meaning": "devname",
+                "@operator": "EQ",
+                "#text": "fortigate-devicename"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "Fortigate, High rate of denied traffic on firewall",
+        "source": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "source"
+            }
+          ]
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

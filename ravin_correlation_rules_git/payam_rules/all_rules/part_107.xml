@@ -1,0 +1,71 @@
+<rule kbid="7006_1" id="7006" owner="system" ver="1" enable="f" file_name="">
+        <filter_list>
+            <filter id="1" name="Fortigate, Deny Traffic" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="360" event_type="3" />
+                    <event sensor_type="360" event_type="6" />
+                    <event sensor_type="360" event_type="13" />
+                    <event sensor_type="360" event_type="14" />
+                    <event sensor_type="360" event_type="15" />
+                    <event sensor_type="360" event_type="16" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="action" operator="EQ">deny</additional_data>
+                    <additional_data meaning="devname" operator="EQ">fortigate-devicename</additional_data>
+                </additional_data_list>
+            </filter>
+            <filter id="2" name="Fortigate, High Rate of Denied Traffic" weight="5" occurrence="1000" timeout="60">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="360" event_type="3" />
+                    <event sensor_type="360" event_type="6" />
+                    <event sensor_type="360" event_type="13" />
+                    <event sensor_type="360" event_type="14" />
+                    <event sensor_type="360" event_type="15" />
+                    <event sensor_type="360" event_type="16" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="action" operator="EQ">deny</additional_data>
+                    <additional_data meaning="devname" operator="EQ">fortigate-devicename</additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="WasteOfResource">
+                <message>Fortigate, High rate of denied traffic on firewall</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <ip reference_id="2" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="2" reference_type="target" />
+                </target>
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,270 @@
+{
+  "rule": {
+    "@id": "3905",
+    "@owner": "system",
+    "@kbid": "3905_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "non standard mail server sending lots of mails",
+          "@weight": "3",
+          "source": {
+            "ip": "!$SMTP_SERVERS,!$MAIL_SERVERS",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "!$SMTP_SERVERS,!$MAIL_SERVERS",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Spam"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Malware"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "non standard mail server sending lots of mails",
+          "@occurrence": "2",
+          "@weight": "6",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "!$SMTP_SERVERS,!$MAIL_SERVERS",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Spam"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Malware"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "non standard mail server sending lots of mails",
+          "@occurrence": "10",
+          "@weight": "15",
+          "@timeout": "300",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "!$SMTP_SERVERS,!$MAIL_SERVERS",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Spam"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Malware"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "non standard mail server sending lots of mails",
+          "@occurrence": "100",
+          "@weight": "2",
+          "@timeout": "3600",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "!$SMTP_SERVERS,!$MAIL_SERVERS",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Spam"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Malware"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "Spam",
+        "message": "Non-MailServer host is sending lots of mail, potential SpamBot detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "target"
+            }
+          ]
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "4"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "4"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Degrade-Mail",
+            "param": [
+              {
+                "@reference_type": "target.ip"
+              },
+              {
+                "@reference_type": "target.port"
+              }
+            ]
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

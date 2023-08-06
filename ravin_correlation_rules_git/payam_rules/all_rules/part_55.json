@@ -1,0 +1,196 @@
+{
+  "rule": {
+    "@id": "3900",
+    "@owner": "system",
+    "@kbid": "3900_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Fake Application activity",
+          "@weight": "5",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Fake App"
+              }
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Fake Application activity",
+          "@occurrence": "5",
+          "@weight": "5",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Fake App"
+              }
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Fake Application activity",
+          "@occurrence": "10",
+          "@weight": "1",
+          "@timeout": "3600",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Fake App"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "Masquerade",
+        "message": "Installed Fake Application Detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Server",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Server",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          }
+        ]
+      }
+    }
+  }
+}

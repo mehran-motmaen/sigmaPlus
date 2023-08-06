@@ -1,0 +1,232 @@
+{
+  "rule": {
+    "@id": "40001",
+    "@kbid": "40001_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "3",
+          "@name": "Possible Amplification Attack",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "10",
+          "@occurrence": "1",
+          "@timeout": "120",
+          "@name": "Possible Amplification Attack",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@weight": "10",
+          "@occurrence": "30",
+          "@timeout": "300",
+          "@name": "Possible Amplification Attack",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "DDOS",
+        "message": "Client Attack : Possible amplification attack, target may be degraded by large replies. [rule\n                    id:40001]",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Degrade-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Recon-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": {
+              "@id": "2"
+            }
+          },
+          {
+            "filter": {
+              "@id": "3"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

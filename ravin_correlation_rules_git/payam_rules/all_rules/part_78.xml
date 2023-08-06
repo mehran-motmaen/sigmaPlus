@@ -1,0 +1,39 @@
+<rule id="6106" owner="system" kbid="6106_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Botnet Communication With CnC Server Detection" weight="20">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Command</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="Botnet">
+                <message>Potentially bot clients try to communicate with a botnet CnC server</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,39 @@
+<rule id="6126" owner="system" kbid="6126_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Botnet DNS Lookup Failure Detection" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3" event_type="1025:91" />
+                    <event sensor_type="3" event_type="1025:92" />
+                    <event sensor_type="3" event_type="1:91" />
+                    <event sensor_type="3" event_type="1:92" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="Botnet">
+                <message>Possible botnet DNS query request/responses detected</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

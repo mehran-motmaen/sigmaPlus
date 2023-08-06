@@ -1,0 +1,2 @@
+- recommendation: Check if the user that executed the commands is suspicious (e.g.
+    service accounts, LOCAL_SYSTEM)

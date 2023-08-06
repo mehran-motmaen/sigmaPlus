@@ -1,0 +1,160 @@
+{
+  "rule": {
+    "@id": "6001",
+    "@owner": "system",
+    "@enable": "f",
+    "@kbid": "6001_1",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Registery Modification",
+          "@weight": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "4",
+                "@event_type": "registery:update"
+              },
+              {
+                "@sensor_type": "4",
+                "@event_type": "registery:create"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Registery Modification",
+          "@occurrence": "5",
+          "@weight": "5",
+          "@timeout": "10",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "4",
+                "@event_type": "registery:update"
+              },
+              {
+                "@sensor_type": "4",
+                "@event_type": "registery:create"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "SecurityPolicyViolation",
+        "message": "Registery Modification",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

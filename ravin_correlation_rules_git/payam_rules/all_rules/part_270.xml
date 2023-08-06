@@ -1,0 +1,63 @@
+<rule kbid="9218_1" id="9218" owner="system" ver="1" enable="t" file_name="">
+        <filter_list>
+            <filter id="1" name="ANY, Client Attack,Internet Browser,Access, 1 in 1s" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="resource">Internet Browser</tag>
+                        <tag meaning="effect">Access</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="ANY, Client Attack,Account,Internet Browser, 3 in 120s, different target ip" weight="15" occurrence="3" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="resource">Internet Browser</tag>
+                        <tag meaning="effect">Access</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="GainAccess">
+                <message>Client Attack: Attempt to Access through Internet Browser detected.</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="2" reference_type="target" />
+                </target>
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,309 @@
+{
+  "rule": {
+    "@id": "40000",
+    "@kbid": "40000_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "1",
+          "@name": "Try to Reconnaissance detected",
+          "source": {
+            "ip": "$EXTERNAL_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "3",
+          "@occurrence": "5",
+          "@timeout": "120",
+          "@name": "Multiple try to Reconnaissance detected ( 5  times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@weight": "3",
+          "@occurrence": "20",
+          "@timeout": "360",
+          "@name": "Multiple try to Reconnaissance DNS detected ( 20 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@weight": "3",
+          "@occurrence": "50",
+          "@timeout": "720",
+          "@name": "Multiple try to Reconnaissance detected ( 50 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@weight": "3",
+          "@occurrence": "100",
+          "@timeout": "960",
+          "@name": "Multiple try to Reconnaissance detected ( Aggregator : 100 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Amplification"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "Enumeration",
+        "message": "Client Attack : Amplification Attack Scan.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Recon-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Recon-Service",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": {
+              "@id": "2"
+            }
+          },
+          {
+            "filter": {
+              "@id": "3"
+            }
+          },
+          {
+            "filter": {
+              "@id": "4"
+            }
+          },
+          {
+            "filter": {
+              "@id": "5"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

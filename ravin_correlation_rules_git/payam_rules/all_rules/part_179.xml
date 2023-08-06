@@ -1,0 +1,110 @@
+<rule id="9089" kbid="9089_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" name="Attempt to Access Web Application detected" weight="3">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Web Application</tag>
+                        <tag meaning="effect">System Compromised</tag>
+                    </event>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Web Application</tag>
+                        <tag meaning="effect">Access</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Multiple attempt to Access Web Application to 3 hosts detected  " weight="15" occurrence="3" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Web Application</tag>
+                        <tag meaning="effect">System Compromised</tag>
+                    </event>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Web Application</tag>
+                        <tag meaning="effect">Access</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="GainAccess">
+                <message>Server Attack : Attempt to Access Web Application detected.</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="2" reference_type="target" />
+                    <ip reference_id="1" reference_type="target" />
+                    <port reference_id="2" reference_type="target" />
+                    <port reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="1" />
+                <additional_data meaning="Username" reference_id="2" />
+                <additional_data meaning="ComputerName" reference_id="1" />
+                <additional_data meaning="ComputerName" reference_id="2" />
+                <additional_data meaning="Application" reference_id="1" />
+                <additional_data meaning="Application" reference_id="2" />
+                <additional_data meaning="Filename" reference_id="1" />
+                <additional_data meaning="Filename" reference_id="2" />
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="2" />
+                <additional_data meaning="DomainName" reference_id="1" />
+                <additional_data meaning="DomainName" reference_id="2" />
+                <additional_data meaning="URL" reference_id="1" />
+                <additional_data meaning="URL" reference_id="2" />
+                <additional_data meaning="Protocol" reference_id="1" />
+                <additional_data meaning="Protocol" reference_id="2" />
+                <additional_data meaning="Service" reference_id="1" />
+                <additional_data meaning="Service" reference_id="2" />
+                <additional_data meaning="TargetAccount" reference_id="1" />
+                <additional_data meaning="TargetAccount" reference_id="2" />
+                <additional_data meaning="GroupName" reference_id="1" />
+                <additional_data meaning="GroupName" reference_id="2" />
+                <additional_data meaning="MacAddress" reference_id="1" />
+                <additional_data meaning="MacAddress" reference_id="2" />
+                <additional_data meaning="NATSourceAddress" reference_id="1" />
+                <additional_data meaning="NATSourceAddress" reference_id="2" />
+                <additional_data meaning="NATTargetAddress" reference_id="1" />
+                <additional_data meaning="NATTargetAddress" reference_id="2" />
+                <additional_data meaning="DestinationInterface" reference_id="1" />
+                <additional_data meaning="DestinationInterface" reference_id="2" />
+                <additional_data meaning="SourceInterface" reference_id="1" />
+                <additional_data meaning="SourceInterface" reference_id="2" />
+                <additional_data meaning="PolicyName" reference_id="1" />
+                <additional_data meaning="PolicyName" reference_id="2" />
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

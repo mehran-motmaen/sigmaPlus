@@ -1,0 +1,108 @@
+<rule id="40001" kbid="40001_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" weight="3" name="Possible Amplification Attack">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" weight="10" occurrence="1" timeout="120" name="Possible Amplification Attack">
+                <source>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" weight="10" occurrence="30" timeout="300" name="Possible Amplification Attack">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="low" category="DDOS">
+                <message>Client Attack : Possible amplification attack, target may be degraded by large replies. [rule
+                    id:40001]
+                </message>
+                <source>
+                    <ip reference_id="1" reference_type="target" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="source" />
+                    <ip reference_id="3" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Degrade-Host" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                </group>
+                <group>
+                    <filter id="3" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

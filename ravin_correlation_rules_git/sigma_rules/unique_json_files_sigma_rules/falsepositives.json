@@ -1,0 +1,3161 @@
+[
+  [
+    "Application bugs"
+  ],
+  [
+    "If the application expects to work with XML there may be parsing issues that don't necessarily mean XXE."
+  ],
+  [
+    "Puppeteer invocation exceptions often contain child_process related errors, that doesn't necessarily mean that the app is vulnerable."
+  ],
+  [
+    "Unknown"
+  ],
+  [
+    "Legitimate usage of remote file encryption"
+  ],
+  [
+    "Remote administrative tasks on Windows Events"
+  ],
+  [
+    "Actual printing"
+  ],
+  [
+    "Some administrative tasks on remote host"
+  ],
+  [
+    "Remote administration of registry values"
+  ],
+  [
+    "Legitimate remote share creation"
+  ],
+  [
+    "Administrative tasks on remote services"
+  ],
+  [
+    "A syntax error in MySQL also occurs in non-dynamic (safe) queries if there is an empty in() clause, that may often be the case."
+  ],
+  [
+    "Application bugs",
+    "Missing .vm files"
+  ],
+  [
+    "Unlikely"
+  ],
+  [
+    "Unlikely, or pending PSP analysis"
+  ],
+  [
+    "Inventory and monitoring activity",
+    "Vulnerability scanners",
+    "Legitimate applications"
+  ],
+  [
+    "Lambda Layer being attached may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Lambda Layer being attached from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Valid change in a Trail"
+  ],
+  [
+    "Valid change in AWS Config Service"
+  ],
+  [
+    "System Administrator Activities",
+    "DEV, UAT, SAT environment. You should apply this rule with PROD account only."
+  ],
+  [
+    "Valid changes to the startup script"
+  ],
+  [
+    "Task Definition being modified to request credentials from the Task Metadata Service for valid reasons"
+  ],
+  [
+    "EKS Cluster being created or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "EKS Cluster created or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "A ElastiCache security group may be created by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Security group creations from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "A ElastiCache security group deletion may be done by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Security Group deletions from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Administrators listing buckets, it may be necessary to filter out users who commonly conduct this activity."
+  ],
+  [
+    "Valid change in the GuardDuty (e.g. to ignore internal scanners)"
+  ],
+  [
+    "Adding user keys to their own accounts (the filter cannot cover all possible variants of user naming)",
+    "AWS API keys legitimate exchange workflows"
+  ],
+  [
+    "Valid usage of S3 Browser for IAM LoginProfile listing and/or creation"
+  ],
+  [
+    "Valid usage of S3 Browser for IAM User and/or AccessKey creation"
+  ],
+  [
+    "Glue Development Endpoint Activity may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Benign changes to a db instance"
+  ],
+  [
+    "AWS Tasks That Require AWS Account Root User Credentials https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html"
+  ],
+  [
+    "A domain transfer lock may be disabled by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Activity from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "A domain may be transferred to another AWS account by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Domain transfers from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "A S3 configuration change may be done by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. S3 configuration change from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "System or Network administrator behaviors",
+    "DEV, UAT, SAT environment. You should apply this rule with PROD environment only."
+  ],
+  [
+    "Valid change to a snapshot's permissions"
+  ],
+  [
+    "AssumeRole may be done by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "AssumeRole from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.",
+    "Automated processes that uses Terraform may lead to false positives."
+  ],
+  [
+    "GetSessionToken may be done by a system or network administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. GetSessionToken from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Automated processes that uses Terraform may lead to false positives.",
+    "SAML Provider could be updated by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "SAML Provider being updated from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Legit User Account Administration"
+  ],
+  [
+    "Legitimate AD FS servers added to an AAD Health AD FS service instance"
+  ],
+  [
+    "Legitimate AAD Health AD FS service instances being deleted in a tenant"
+  ],
+  [
+    "Misconfigured role permissions",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment."
+  ],
+  [
+    "Legit administrative action"
+  ],
+  [
+    "If this was approved by System Administrator."
+  ],
+  [
+    "Increase of users in the environment"
+  ],
+  [
+    "Known Legacy Accounts"
+  ],
+  [
+    "PIM (Privileged Identity Management) generates this event each time 'eligible role' is enabled."
+  ],
+  [
+    "Application being deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Application deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Application gateway being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Application gateway modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Application security group being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Application security group modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "When and administrator is making legitimate AppID URI configuration changes to an application. This should be a planned event."
+  ],
+  [
+    "When credentials are added/removed as part of the normal working hours/workflows"
+  ],
+  [
+    "Application credential added may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Application credential added from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "When the permission is legitimately needed for the app"
+  ],
+  [
+    "Applications that are input constrained will need to use device code flow and are valid authentications."
+  ],
+  [
+    "When a new application owner is added by an administrator"
+  ],
+  [
+    "Applications that are being used as part of automated testing or a legacy application that cannot use any other modern authentication flow"
+  ],
+  [
+    "When and administrator is making legitimate URI configuration changes to an application. This should be a planned event."
+  ],
+  [
+    "Account disabled or blocked in error",
+    "Automation account has been blocked or disabled"
+  ],
+  [
+    "Service Account misconfigured",
+    "Misconfigured Systems",
+    "Vulnerability Scanners"
+  ],
+  [
+    "Container Registry being created or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Container Registry created or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Valid change"
+  ],
+  [
+    "Administrator may have forgotten to review the device."
+  ],
+  [
+    "Device or device configuration being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Device or device configuration modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "DNS zone modified and deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "DNS zone modification from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Federation Settings being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Federation Settings modified from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Firewall being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Firewall modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Rule Collections (Application, NAT, and Network) being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Rule Collections (Application, NAT, and Network) modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "User removed from the group is approved"
+  ],
+  [
+    "A non malicious user is unaware of the proper process"
+  ],
+  [
+    "Key being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Key modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Key Vault being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Key Vault modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Secrets being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Secrets modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Azure Kubernetes Admissions Controller may be done by a system administrator.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Kubernetes cluster being created or  deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Kubernetes cluster created or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Azure Kubernetes CronJob/Job may be done by a system administrator.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Event deletions may be done by a system or network administrator. Verify whether the username, hostname, and/or resource name should be making changes in your environment. Events deletions from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Network Policy being modified and deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Network Policy being modified and deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Pods deletions from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "RoleBinding/ClusterRoleBinding being modified and deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "RoleBinding/ClusterRoleBinding modification from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "ClusterRoles/Roles being modified and deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "ClusterRoles/Roles modification from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Sensitive objects may be accessed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Sensitive objects accessed from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Service account being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Service account modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "User has been put in acception group so they can use legacy authentication"
+  ],
+  [
+    "Users actually login but miss-click into the Deny button when MFA prompt."
+  ],
+  [
+    "Authorized modification by administrators"
+  ],
+  [
+    "Firewall Policy being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Firewall Policy modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Firewall Rule Configuration being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Firewall Rule Configuration modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Point-to-site VPN being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Point-to-site VPN modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Network Security Configuration being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Network Security Configuration modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Virtual Network Device being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Virtual Network Device modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "A new cloudshell may be created by a system administrator."
+  ],
+  [
+    "Owner being removed may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Owner removed from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Actual admin using PIM."
+  ],
+  [
+    "Administrator disabling PIM alerts as an active choice."
+  ],
+  [
+    "Legit administrative PIM setting configuration changes"
+  ],
+  [
+    "Legtimate administrator actions of adding members from a role"
+  ],
+  [
+    "Legtimate administrator actions of removing members from a role"
+  ],
+  [
+    "A legitimate new admin account being created"
+  ],
+  [
+    "Service principal being created may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Service principal created from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Service principal being removed may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Service principal removed from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Suppression Rule being created may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Suppression Rule created from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Administrator adding a legitimate temporary access pass"
+  ],
+  [
+    "If this was approved by System Administrator or confirmed user action."
+  ],
+  [
+    "Virtual Network being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Virtual Network modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "VPN Connection being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "VPN Connection modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Storage Buckets being enumerated may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Storage Buckets enumerated from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Storage Buckets being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Storage Buckets modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Firewall rules being modified or deleted may be performed by a system administrator. Verify that the firewall configuration change was expected.",
+    "Exceptions can be added to this rule to filter expected behavior."
+  ],
+  [
+    "Full Network Packet Capture may be done by a system or network administrator.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Google Cloud Kubernetes Admission Controller may be done by a system administrator.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Google Cloud Kubernetes CronJob/Job may be done by a system administrator.",
+    "If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "RoleBindings and ClusterRoleBinding being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "RoleBindings and ClusterRoleBinding modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Secrets being modified or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Secrets modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Service Account being disabled or deleted may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Service Account disabled or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Service Account being modified may be performed by a system administrator. Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Service Account modified from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "SQL Database being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "SQL Database modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "VPN Tunnel being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "VPN Tunnel modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Validate the deletion activity is permitted. The \"actor\" field need to be validated."
+  ],
+  [
+    "Approved changes by the Organization owner. Please validate the 'actor' if authorized to make the changes."
+  ],
+  [
+    "Approved administrator/owner activities."
+  ],
+  [
+    "Organization approved new members"
+  ],
+  [
+    "This detection cloud be noisy depending on the environment. It is recommended to keep a check on the new secrets when created and validate the \"actor\"."
+  ],
+  [
+    "Validate the actor if permitted to access the repo.",
+    "Validate the Multifactor Authentication changes."
+  ],
+  [
+    "Allowed self-hosted runners changes in the environment.",
+    "A self-hosted runner is automatically removed from GitHub if it has not connected to GitHub Actions for more than 14 days.",
+    "An ephemeral self-hosted runner is automatically removed from GitHub if it has not connected to GitHub Actions for more than 1 day."
+  ],
+  [
+    "Application being removed may be performed by a System Administrator."
+  ],
+  [
+    "MFA may be disabled and performed by a system administrator."
+  ],
+  [
+    "Google Workspace admin role privileges, may be modified by system administrators."
+  ],
+  [
+    "User using a VPN or Proxy"
+  ],
+  [
+    "The creation of a new Federated domain is not necessarily malicious, however these events need to be followed closely, as it may indicate federated credential abuse or backdoor via federated identities at a similar or different cloud provider."
+  ],
+  [
+    "PST export can be done for legitimate purposes but due to the sensitive nature of its content it must be monitored."
+  ],
+  [
+    "Exporting a PST can be done for legitimate purposes by legitimate sources, but due to the sensitive nature of PST content, it must be monitored."
+  ],
+  [
+    "Administrator roles could be assigned to users or group by other admin users."
+  ],
+  [
+    "Legitimate creation of a new admin role assignment"
+  ],
+  [
+    "Legitimate creation of an API token by authorized users"
+  ],
+  [
+    "If a MFA reset or deactivated was performed by a system administrator."
+  ],
+  [
+    "Okta Policies being modified or deleted may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Okta Policies modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "User might of believe that they had access."
+  ],
+  [
+    "System may lock or suspend user accounts."
+  ],
+  [
+    "Legitimate administrative activity"
+  ],
+  [
+    "Legitimate ports redirect"
+  ],
+  [
+    "Administrator interacting with immutable files (e.g. for instance backups)."
+  ],
+  [
+    "Legitimate usage of xclip tools"
+  ],
+  [
+    "Other tools that use a --cpu-priority flag"
+  ],
+  [
+    "Admin activity"
+  ],
+  [
+    "Legitimate use of archiving tools by legitimate user."
+  ],
+  [
+    "Legitimate usage of wget utility to post a file"
+  ],
+  [
+    "Appending null bytes to files.",
+    "Legitimate overwrite of files."
+  ],
+  [
+    "User interacting with files permissions (normal/daily behaviour)."
+  ],
+  [
+    "Administrative work"
+  ],
+  [
+    "Legitimate admin activity"
+  ],
+  [
+    "Legitimate administration activities"
+  ],
+  [
+    "Legitimate administrator or user uses network sniffing tool for legitimate reasons."
+  ],
+  [
+    "Legitimate use of SCX RunAsProvider Invoke_ExecuteShellCommand."
+  ],
+  [
+    "Installation of legitimate service.",
+    "Legitimate reconfiguration of service."
+  ],
+  [
+    "Legitimate use of screenshot utility"
+  ],
+  [
+    "Admin or User activity"
+  ],
+  [
+    "Admin activity (especially in /tmp folders)",
+    "Crazy web applications"
+  ],
+  [
+    "Legitimate administrative activity",
+    "Legitimate software, cleaning hist file"
+  ],
+  [
+    "Admin work like legit service installs."
+  ],
+  [
+    "Likely"
+  ],
+  [
+    "Admin or User activity are expected to generate some false positives"
+  ],
+  [
+    "Admin activity",
+    "Crazy web applications"
+  ],
+  [
+    "Log rotation"
+  ],
+  [
+    "Rare temporary workaround for library misconfiguration"
+  ],
+  [
+    "Administrative activity"
+  ],
+  [
+    "Typos"
+  ],
+  [
+    "Legitimate modification of crontab"
+  ],
+  [
+    "Any legitimate cron file."
+  ],
+  [
+    "Creation of legitimate files in sudoers.d folder part of administrator work"
+  ],
+  [
+    "Legitimate shell scripts in the \"profile.d\" directory could be common in your environment. Apply additional filter accordingly via \"image\", by adding specific filenames you \"trust\" or by correlating it with other events.",
+    "Regular file creation during system update or software installation by the package manager"
+  ],
+  [
+    "Legitimate downloads of files in the tmp folder."
+  ],
+  [
+    "Legitimate use of crypto miners"
+  ],
+  [
+    "Legitimate use of ngrok"
+  ],
+  [
+    "Legitimate activities"
+  ],
+  [
+    "Legitimate usage of the unsafe option"
+  ],
+  [
+    "Log rotation."
+  ],
+  [
+    "Legitimate usage of xclip tools."
+  ],
+  [
+    "Legitimate use of crontab"
+  ],
+  [
+    "Scripts created by developers and admins",
+    "Administrative activity"
+  ],
+  [
+    "Any user deleting files that way."
+  ],
+  [
+    "Network administrators"
+  ],
+  [
+    "Legitimate administrator activities"
+  ],
+  [
+    "Administrators or installed processes that leverage nohup"
+  ],
+  [
+    "Legitimate use of SCX RunAsProvider ExecuteScript."
+  ],
+  [
+    "Administrator or administrator scripts might delete packages for several reasons (debugging, troubleshooting)."
+  ],
+  [
+    "Admin changing file permissions."
+  ],
+  [
+    "Scripts created by developers and admins"
+  ],
+  [
+    "Legitimate software that uses these patterns"
+  ],
+  [
+    "Some false positives are to be expected on user or administrator machines. Apply additional filters as needed."
+  ],
+  [
+    "Admin changing date of files."
+  ],
+  [
+    "Web applications that invoke Linux command line tools"
+  ],
+  [
+    "Application installers might contain scripts as part of the installation process."
+  ],
+  [
+    "Legitimate script work"
+  ],
+  [
+    "Legitimate administration tools and activities"
+  ],
+  [
+    "Legitimate software uses the scripts (preinstall, postinstall)"
+  ],
+  [
+    "Legitimate user activity taking screenshots"
+  ],
+  [
+    "Mistyped commands or legitimate binaries named to match the pattern"
+  ],
+  [
+    "Legitimate browser install, update and recovery scripts"
+  ],
+  [
+    "Legitimate administrators may run these commands"
+  ],
+  [
+    "Commonly run by administrators"
+  ],
+  [
+    "Not commonly run by administrators. Also whitelist your known good certificates"
+  ],
+  [
+    "Commonly used by administrators for troubleshooting"
+  ],
+  [
+    "Legitimate administrators may run these commands, though rarely."
+  ],
+  [
+    "Will be used sometimes by admins to clean up local flash space"
+  ],
+  [
+    "Not commonly run by administrators, especially if remote logging is configured"
+  ],
+  [
+    "When remote authentication is in place, this should not change often"
+  ],
+  [
+    "Generally used to copy configs or IOS images"
+  ],
+  [
+    "Admins may setup new or modify old spans, or use a monitor for troubleshooting"
+  ],
+  [
+    "Unlikely. Except due to misconfigurations"
+  ],
+  [
+    "Legitimate crypto coin mining"
+  ],
+  [
+    "Legitimate use of Telegram bots in the company"
+  ],
+  [
+    "Analyst testing"
+  ],
+  [
+    "Windows administrator tasks or troubleshooting",
+    "Windows management scripts or software"
+  ],
+  [
+    "Uncommon but legitimate windows administrator or software tasks that make use of the Encrypting File System RPC Calls. Verify if this is common activity (see description)."
+  ],
+  [
+    "Legitimate remote alteration of a printer driver."
+  ],
+  [
+    "Domain Controllers that are sometimes, commonly although should not be, acting as printer servers too"
+  ],
+  [
+    "A DNS lookup does not necessarily  mean a successful attempt, verify a) if there was a response using the zeek answers field, if there was then verify the connections (conn.log) to those IPs. b) verify if HTTP, SSL, or TLS activity to the domain that was queried. http.log field is 'host' and ssl/tls is 'server_name'."
+  ],
+  [
+    "Internal or legitimate external domains using DNSSec. Verify if these are legitimate DNSSec domains and then exclude them.",
+    "If you work in a Public Sector then it may be good to exclude things like endswith \".edu\", \".gov\" and or \".mil\""
+  ],
+  [
+    "Exploits that were attempted but unsuccessful.",
+    "Scanning attempts with the abnormal use of the HTTP POST method with no indication of code execution within the HTTP Client (Request) body. An example would be vulnerability scanners trying to identify unpatched versions while not actually exploiting the vulnerability. See description for investigation tips."
+  ],
+  [
+    "Although it is recommended to NOT have RDP exposed to the internet, verify that this is a) allowed b) the server has not already been compromised via some brute force or remote exploit since it has been exposed to the internet. Work to secure the server if you are unable to remove it from being exposed to the internet."
+  ],
+  [
+    "Update the excluded named pipe to filter out any newly observed legit named pipe"
+  ],
+  [
+    "Help Desk operator doing backup or re-imaging end user machine or backup software",
+    "Users working with these data types or exchanging message files"
+  ],
+  [
+    "Transferring sensitive files for legitimate administration work by legitimate administrator"
+  ],
+  [
+    "Normal enterprise SPN requests activity"
+  ],
+  [
+    "3rd party apache modules - https://bz.apache.org/bugzilla/show_bug.cgi?id=46185"
+  ],
+  [
+    "Serious issues with a configuration or plugin"
+  ],
+  [
+    "Legitimate use by administrators"
+  ],
+  [
+    "Old browsers"
+  ],
+  [
+    "Administrative scripts that download files from the Internet",
+    "Administrative scripts that retrieve certain website contents",
+    "Legitimate WebDAV administration"
+  ],
+  [
+    "Software downloads"
+  ],
+  [
+    "All kinds of software downloads"
+  ],
+  [
+    "All kind of software downloads"
+  ],
+  [
+    "Valid requests with this exact user agent to server scripts of the defined names"
+  ],
+  [
+    "Web vulnerability scanners"
+  ],
+  [
+    "Administrative scripts that download files from the Internet",
+    "Administrative scripts that retrieve certain website contents"
+  ],
+  [
+    "User activity (e.g. developer that shared and copied code snippets and used the raw link instead of just copy & paste)"
+  ],
+  [
+    "Unknown flash download locations"
+  ],
+  [
+    "Legitimate use of IPFS being used in the organisation. However the cs-uri regex looking for a user email will likely negate this."
+  ],
+  [
+    "Rare programs that use Bitsadmin and update from regional TLDs e.g. .uk or .ca"
+  ],
+  [
+    "Valid requests with this exact user agent to that is used by legitimate scripts or sysadmin operations"
+  ],
+  [
+    "Legitimate apps"
+  ],
+  [
+    "Legitimate apps the use these paths"
+  ],
+  [
+    "Happens all the time on systems exposed to the Internet",
+    "Internal vulnerability scanners"
+  ],
+  [
+    "Java scripts and CSS Files",
+    "User searches in search boxes of the respective website",
+    "Internal vulnerability scanners can cause some serious FPs when used, if you experience a lot of FPs due to this think of adding more filters such as \"User Agent\" strings and more response codes"
+  ],
+  [
+    "User searches in search boxes of the respective website",
+    "Internal vulnerability scanners can cause some serious FPs when used, if you experience a lot of FPs due to this think of adding more filters such as \"User Agent\" strings and more response codes"
+  ],
+  [
+    "Legitimate application and websites that use windows paths in their URL"
+  ],
+  [
+    "Web applications that use the same URL parameters as ReGeorg"
+  ],
+  [
+    "Web sites like wikis with articles on os commands and pages that include the os commands in the URLs",
+    "User searches in search boxes of the respective website"
+  ],
+  [
+    "JavaScripts,CSS Files and PNG files",
+    "User searches in search boxes of the respective website",
+    "Internal vulnerability scanners can cause some serious FPs when used, if you experience a lot of FPs due to this think of adding more filters such as \"User Agent\" strings and more response codes"
+  ],
+  [
+    "Naughty administrators",
+    "AV Signature updates",
+    "Files with Mimikatz in their filename"
+  ],
+  [
+    "MsMpEng might crash if the \"C:\\\" partition is full"
+  ],
+  [
+    "Rare legitimate crashing of the lsass process"
+  ],
+  [
+    "Legitimate backup operation/creating shadow copies"
+  ],
+  [
+    "False positives may occur if you allow installation from folders such as the desktop, the public folder or remote shares"
+  ],
+  [
+    "Legitimate Atera agent installation"
+  ],
+  [
+    "Other MSI packages for which your admins have used that name"
+  ],
+  [
+    "Rare legitimate administrative activity"
+  ],
+  [
+    "This event should only fire when an administrator is modifying the audit policy. Which should be a rare occurrence once it's set up"
+  ],
+  [
+    "Legitimate extended stored procedures named maggie"
+  ],
+  [
+    "Legitimate use of the feature by administrators (rare)"
+  ],
+  [
+    "Legitimate enable/disable of the setting",
+    "Note that since the event contain the change for both values. This means that this will trigger on both enable and disable"
+  ],
+  [
+    "Some software piracy tools (key generators, cracks) are classified as hack tools"
+  ],
+  [
+    "Need tuning applocker or add exceptions in SIEM"
+  ],
+  [
+    "Legitimate usage of the applications from the Windows Store"
+  ],
+  [
+    "Rare occasions where a malicious package uses the exact same name and version as a legtimate application"
+  ],
+  [
+    "Legitimate AppX packages not signed by MS used part of an enterprise"
+  ],
+  [
+    "Many legitimate applications or scripts could leverage \"bitsadmin\". This event is best correlated with EID 16403 via the JobID field"
+  ],
+  [
+    "Administrator PowerShell scripts"
+  ],
+  [
+    "While the file extensions in question can be suspicious at times. It's best to add filters according to your environment to avoid large amount false positives"
+  ],
+  [
+    "This rule doesn't exclude other known TLDs such as \".org\" or \".net\". It's recommended to apply additional filters for software and scripts that leverage the BITS service"
+  ],
+  [
+    "Legitimate application requesting certificate exports will trigger this. Apply additional filters as needed"
+  ],
+  [
+    "Antivirus and other third party products. Apply additional filters accordingly"
+  ],
+  [
+    "Legitimate package hosted on a known and authorized remote location"
+  ],
+  [
+    "Rare legitimate access to anonfiles.com"
+  ],
+  [
+    "Legitimate DNS queries and usage of Mega"
+  ],
+  [
+    "Legitimate DNS queries and usage of Ufile"
+  ],
+  [
+    "Any legitimate application that runs from the AppData user directory"
+  ],
+  [
+    "Standard domain users who are part of the administrator group. These users shouldn't have these right. But in the case where it's necessary. They should be filtered out using the \"TargetUserName\" field"
+  ],
+  [
+    "Unknown, please report false positives via https://github.com/SigmaHQ/sigma/issues"
+  ],
+  [
+    "Legitimate installations of exchange TransportAgents. AssemblyPath is a good indicator for this."
+  ],
+  [
+    "Legacy hosts"
+  ],
+  [
+    "Systems with names equal to the spoofed ones used by the brute force tools"
+  ],
+  [
+    "Host connections to valid domains, exclude these.",
+    "Host connections not using host FQDN.",
+    "Host connections to external legitimate domains."
+  ],
+  [
+    "Legitimate administrator activity"
+  ],
+  [
+    "New Domain Controller computer account, check user SIDs within the value attribute of event 5136 and verify if it's a regular user or DC computer account."
+  ],
+  [
+    "If source account name is not an admin then its super suspicious"
+  ],
+  [
+    "Administrator activity",
+    "Proxy SSL certificate with subject modification",
+    "Smart card enrollement"
+  ],
+  [
+    "Administrators configuring new users."
+  ],
+  [
+    "Go utilities that use staaldraad awesome NTLM library"
+  ],
+  [
+    "Domain Controllers acting as printer servers too? :)"
+  ],
+  [
+    "Valid DC Sync that is not covered by the filters; please report",
+    "Local Domain Admin account used for Azure AD Connect"
+  ],
+  [
+    "Intended inclusions by administrator"
+  ],
+  [
+    "If a computer is a member of a domain, DPAPI has a backup mechanism to allow unprotection of the data. Which will trigger this event."
+  ],
+  [
+    "If the source IP is not localhost then it's super suspicious, better to monitor both local and remote changes to GPO scheduledtasks"
+  ],
+  [
+    "Legitimate use of Hybrid Connection Manager via Azure function apps."
+  ],
+  [
+    "Software installation ISO files"
+  ],
+  [
+    "Legitimate Administrator using credential dumping tool for password recovery"
+  ],
+  [
+    "Linux hostnames composed of 16 characters."
+  ],
+  [
+    "Possible, different agents with a 8 character binary and a 4, 8 or 16 character service name"
+  ],
+  [
+    "Highly unlikely"
+  ],
+  [
+    "Read only access list authority"
+  ],
+  [
+    "Valid user was not added to RDP group"
+  ],
+  [
+    "Unknown. Feedback welcomed."
+  ],
+  [
+    "False positives are possible if the environment is using certificates for authentication. We recommend filtering Account_Name to the Domain Controller computer accounts."
+  ],
+  [
+    "Valid on domain controllers; exclude known DCs"
+  ],
+  [
+    "Programs that connect locally to the RDP port"
+  ],
+  [
+    "Legitimate use of remote PowerShell execution"
+  ],
+  [
+    "Software installation"
+  ],
+  [
+    "The rule doesn't look for anything suspicious so false positives are expected. If you use one of the tools mentioned, comment it out"
+  ],
+  [
+    "Legitimate extension of domain structure"
+  ],
+  [
+    "Migration of an account into a new domain"
+  ],
+  [
+    "Disk device errors"
+  ],
+  [
+    "Initial installation of a domain controller"
+  ],
+  [
+    "Rollout of log collection agents (the setup routine often includes a reset of the local Eventlog)",
+    "System provisioning (system reset before the golden image creation)"
+  ],
+  [
+    "User using a disabled account"
+  ],
+  [
+    "Faulty legacy applications"
+  ],
+  [
+    "Companies, who may use these default LDAP-Attributes for personal information"
+  ],
+  [
+    "Administrators that use the RunAS command or scheduled tasks"
+  ],
+  [
+    "Legitimate software accessing LSASS process for legitimate reason; update the whitelist with it"
+  ],
+  [
+    "Administrator activity"
+  ],
+  [
+    "Legitimate used of encrypted ZIP files"
+  ],
+  [
+    "Web Browsers"
+  ],
+  [
+    "Modifications in the msDS-KeyCredentialLink attribute can be done legitimately by the Azure AD Connect synchronization account or the ADFS service account. These accounts can be added as Exceptions. (From elastic FP section)"
+  ],
+  [
+    "Service accounts used on legacy systems (e.g. NetApp)",
+    "Windows Domains with DFL 2003 and legacy systems"
+  ],
+  [
+    "Legitimate usage of SDelete"
+  ],
+  [
+    "HyperV or other virtualization technologies with binary not listed in filter portion of detection"
+  ],
+  [
+    "Legitimate OpenVPN TAP insntallation"
+  ],
+  [
+    "Domain Controller Logs",
+    "Local accounts managed by privileged account management tools"
+  ],
+  [
+    "Other legimate tools loading drivers. Including but not limited to, Sysinternals, CPU-Z, AVs etc. A baseline needs to be created according to the used products and allowed tools. A good thing to do is to try and exclude users who are allowed to load drivers."
+  ],
+  [
+    "Legitimate use of VSSVC. Maybe backup operations. It would usually be done by C:\\Windows\\System32\\VSSVC.exe."
+  ],
+  [
+    "Unknown (data set is too small; further testing needed)"
+  ],
+  [
+    "Anti-Virus"
+  ],
+  [
+    "Legitimate administrative activity."
+  ],
+  [
+    "Runas command-line tool using /netonly parameter"
+  ],
+  [
+    "SCCM"
+  ],
+  [
+    "Legitimate or intentional inbound connections from public IP addresses on the RDP port."
+  ],
+  [
+    "Legitimate or intentional inbound connections from public IP addresses on the SMB port."
+  ],
+  [
+    "Legitimate logon attempts over the internet",
+    "IPv4-to-IPv6 mapped IPs"
+  ],
+  [
+    "Legitimate remote administration activity"
+  ],
+  [
+    "Monitoring tools",
+    "Legitimate system administration"
+  ],
+  [
+    "Packages or applications being legitimately used by users or administrators"
+  ],
+  [
+    "Account fallback reasons (after failed login with specific account)"
+  ],
+  [
+    "Environments that use NTLMv1"
+  ],
+  [
+    "Legitimate use of volume shadow copy mounts (backups maybe)."
+  ],
+  [
+    "Corrupted user profiles - https://social.technet.microsoft.com/wiki/contents/articles/3571.windows-user-profiles-service-event-1511-windows-cannot-find-the-local-profile-and-is-logging-you-on-with-a-temporary-profile.aspx"
+  ],
+  [
+    "Administrator actions",
+    "Auto updates of Windows Defender causes restarts"
+  ],
+  [
+    "Legitimate usage of the anydesk tool"
+  ],
+  [
+    "Legitimate use of the tool"
+  ],
+  [
+    "False positives could occur since service termination could happen due to multiple reasons"
+  ],
+  [
+    "Rare false positives could occur since service termination could happen due to multiple reasons"
+  ],
+  [
+    "Bad connections or network interruptions"
+  ],
+  [
+    "False positives may occur with some of the selected binaries if you have tasks using them (which could be very common in your environment). Exclude all the specific trusted tasks before using this rule"
+  ],
+  [
+    "Google Chrome GoogleUpdate.exe",
+    "Some Taskmgr.exe related activity"
+  ],
+  [
+    "Administrator actions (should be investigated)",
+    "Seen being triggered occasionally during Windows 8 Defender Updates"
+  ],
+  [
+    "Administrator actions"
+  ],
+  [
+    "Deletion of Defender malware detections history for legitimate reasons"
+  ],
+  [
+    "Some crashes can occur sometimes and the event doesn't provide enough information to tune out these cases. Manual exception is required"
+  ],
+  [
+    "Legitimate administrator activity restoring a file"
+  ],
+  [
+    "Administrator activity (must be investigated)"
+  ],
+  [
+    "Administrator might try to disable defender features during testing (must be investigated)"
+  ],
+  [
+    "Antivirus products"
+  ],
+  [
+    "This rule isn't looking for any particular binary characteristics. As legitimate installers and programs were seen embedding hidden binaries in their ADS. Some false positives are expected from browser processes and similar."
+  ],
+  [
+    "Other legitimate browsers not currently included in the filter (please add them)",
+    "Legitimate downloads via scripting or command-line tools (Investigate to determine if it's legitimate)"
+  ],
+  [
+    "Legitimate file downloads from a websites and web services that uses the \".zip\" top level domain."
+  ],
+  [
+    "Legitimate use of Azure Hybrid Connection Manager and the Azure Service Bus service"
+  ],
+  [
+    "Legitimate domain names matching the regex pattern by chance (e.g. domain controllers dc01.company.co.uk)"
+  ],
+  [
+    "Likely with other browser software"
+  ],
+  [
+    "Legitimate usage of IP lookup services such as ipify API"
+  ],
+  [
+    "Programs that also lookup the observed domain"
+  ],
+  [
+    "Unknown binary names of TeamViewer",
+    "Other programs that also lookup the observed domain"
+  ],
+  [
+    "Legitimate BIOS driver updates (should be rare)"
+  ],
+  [
+    "Legitimate use of process hacker or system informer by low level developers or system administrators"
+  ],
+  [
+    "System Informer is regularly used legitimately by system administrators or developers. Apply additional filters accordingly"
+  ],
+  [
+    "There is a relevant set of false positives depending on applications in the environment"
+  ],
+  [
+    "False positives may occur if one of the vulnerable driver names mentioned above didn't change its name between versions. So always make sure that the driver being loaded is the legitimate one and the non vulnerable version.",
+    "If you experience a lot of FP you could comment the driver name or its exact known legitimate location (when possible)"
+  ],
+  [
+    "Legitimate driver loads (old driver that didn't receive an update)"
+  ],
+  [
+    "Legitimate WinDivert driver usage"
+  ],
+  [
+    "Antivirus, Anti-Spyware, Anti-Malware Software",
+    "Backup software",
+    "Legitimate software installed on partitions other than \"C:\\\"",
+    "Searching software such as \"everything.exe\""
+  ],
+  [
+    "Legitimate software installed by the users for example in the \"AppData\" directory may access these files (for any reason)."
+  ],
+  [
+    "Changes made to or by the local NTP service"
+  ],
+  [
+    "Legitime usage"
+  ],
+  [
+    "Possible FP during log rotation"
+  ],
+  [
+    "During uninstallation of the IIS service",
+    "During log rotation"
+  ],
+  [
+    "During uninstallation of the tomcat server",
+    "During log rotation"
+  ],
+  [
+    "Legitime usage of SDelete"
+  ],
+  [
+    "Legitimate administrative use"
+  ],
+  [
+    "Legitimate use"
+  ],
+  [
+    "Some false positives may arise in some environment and this may require some tuning. Add addional filters or reduce level depending on the level of noise"
+  ],
+  [
+    "Administrator or backup activity"
+  ],
+  [
+    "System processes copied outside their default folders for testing purposes",
+    "Third party software naming their software with the same names as the processes mentioned here"
+  ],
+  [
+    "Legitimate Administrator using tool for password recovery"
+  ],
+  [
+    "Unknown",
+    "Possibly some Microsoft Edge upgrades"
+  ],
+  [
+    "Very unlikely"
+  ],
+  [
+    "Files that accidentally contain these strings"
+  ],
+  [
+    "Any powershell script that creates bat files"
+  ],
+  [
+    "Rare legitimate files with similar filename structure"
+  ],
+  [
+    "Potential FP by sysadmin opening a zip file containing a legitimate ISO file"
+  ],
+  [
+    "Cases in which a user mounts an image file for legitimate reasons"
+  ],
+  [
+    "Dumping lsass memory for forensic investigation purposes by legitimate incident responder or forensic invetigator",
+    "Dumps of another process that contains lsass in its process name (substring)"
+  ],
+  [
+    "Rare legitimate dump of the process by the operating system due to a crash of lsass"
+  ],
+  [
+    "Rundll32.exe with zzzzInvokeManagedCustomActionOutOfProc in command line and msiexec.exe as parent process - https://twitter.com/SBousseaden/status/1388064061087260675"
+  ],
+  [
+    "The installation of new screen savers by third party software"
+  ],
+  [
+    "Possible FPs during first installation of Notepad++",
+    "Legitimate use of custom plugins by users in order to enhance notepad++ functionalities"
+  ],
+  [
+    "Legitimate add-ins"
+  ],
+  [
+    "Very common in environments that rely heavily on macro documents"
+  ],
+  [
+    "Legitimate macro files downloaded from the internet",
+    "Legitimate macro files sent as attachments via emails"
+  ],
+  [
+    "Legitimate usage of \".one\" or \".onepkg\" files from those locations"
+  ],
+  [
+    "False positives should be very low with the extensions list cited. Especially if you don't heavily utilize OneNote.",
+    "Occasional FPs might occur if OneNote is used internally to share different embedded documents"
+  ],
+  [
+    "User genuinely creates a VB Macro for their email"
+  ],
+  [
+    "Legitimate use of outlook forms"
+  ],
+  [
+    "Legitimate usage of \".pub\" files from those locations"
+  ],
+  [
+    "Loading a user environment from a backup or a domain controller",
+    "Synchronization of templates"
+  ],
+  [
+    "Other legitimate extensions used by either excel or word"
+  ],
+  [
+    "False positives will differ depending on the environement and scripts used. Apply additional filters accordingly."
+  ],
+  [
+    "False positive rate will vary depending on the environments. Additional filters might be required to make this logic usable in production."
+  ],
+  [
+    "Depending on your environment accepted applications may leverage this at times. It is recommended to search for anomalies inidicative of malware."
+  ],
+  [
+    "Legitimate Rclone usage"
+  ],
+  [
+    "Rare cases of administrative activity"
+  ],
+  [
+    "FP could be caused by legitimate application writing shortcuts for example. This folder should always be inspected to make sure that all the files in there are legitimate"
+  ],
+  [
+    "Other legimate tools, which do ADSI (LDAP) operations, e.g. any remoting activity by MMC, Powershell, Windows etc."
+  ],
+  [
+    "False positives depend on scripts and administrative tools used in the monitored environment"
+  ],
+  [
+    "Operations performed through Windows SCCM or equivalent",
+    "Read only access list authority"
+  ],
+  [
+    "Legitimate microsoft diagcab"
+  ],
+  [
+    "Software installers",
+    "Update utilities",
+    "32bit applications launching their 64bit versions"
+  ],
+  [
+    "File names with legitimate Cyrillic text. Will likely require tuning (or not be usable) in countries where these alphabets are in use."
+  ],
+  [
+    "Some tuning is required for other general purpose directories of third party apps"
+  ],
+  [
+    "System administrators managing certififcates."
+  ],
+  [
+    "System administrator creating Powershell profile manually"
+  ],
+  [
+    "Other legimate tools using this driver and filename (like Sysinternals). Note - Clever attackers may easily bypass this detection by just renaming the driver filename. Therefore just Medium-level and don't rely on it."
+  ],
+  [
+    "Rare legitimate usage of some of the extensions mentioned in the rule"
+  ],
+  [
+    "Administrative activity",
+    "PowerShell scripts running as SYSTEM user"
+  ],
+  [
+    "Legitimate uses of TeamViewer in an organisation"
+  ],
+  [
+    "Legitimate use of the profile by developers or administrators"
+  ],
+  [
+    "Some false positives may occur with admin scripts that set WT settings."
+  ],
+  [
+    "In rare occasions administrators might leverage LiveKD to perform live kernel debugging. This should not be allowed on production systems. Investigate and apply additional filters where necessary."
+  ],
+  [
+    "Legitimate usage of LiveKD for debugging purposes will also trigger this"
+  ],
+  [
+    "Administrators might rename LiveKD before its usage which could trigger this. Add additional names you use to the filter"
+  ],
+  [
+    "Some false positives may occur with legitimate renamed process explorer binaries"
+  ],
+  [
+    "Some false positives may occur with legitimate renamed process monitor binaries"
+  ],
+  [
+    "Legitimate downloads of \".vhd\" files would also trigger this"
+  ],
+  [
+    "Legitimate administrator or developer creating legitimate executable files in a web application folder"
+  ],
+  [
+    "Dell Power Manager (C:\\Program Files\\Dell\\PowerManager\\DpmPowerPlanSetup.exe)"
+  ],
+  [
+    "Legitimate usage of the file by hardware manufacturer such as lenovo (Thanks @0gtweet for the tip)"
+  ],
+  [
+    "Application installation"
+  ],
+  [
+    "Backup software"
+  ],
+  [
+    "False positives are expected since this rules is only looking for the DLL load event. This rule is better used in correlation with related activity"
+  ],
+  [
+    "Unikely"
+  ],
+  [
+    "Legitimate third party apps installed in \"ProgramData\" and \"AppData\" might generate some false positives. Apply additional filters accordingly"
+  ],
+  [
+    "False positives are very common from system and third party applications, activity needs to be investigated. This rule is best correlated with other events to increase the level of suspiciousness"
+  ],
+  [
+    "Used by some .NET binaries, minimal on user workstation.",
+    "Used by Microsoft SQL Server Management Studio"
+  ],
+  [
+    "Other DLLs with the same Imphash"
+  ],
+  [
+    "Legitimate macro usage. Add the appropriate filter according to your environment"
+  ],
+  [
+    "Some tuning might be required to allow or remove certain locations used by the rule if you consider them as safe locations"
+  ],
+  [
+    "Legitimate event consumers",
+    "Dell computers on some versions register an event consumer that is known to cause false positives when brightness is changed by the corresponding keyboard button"
+  ],
+  [
+    "Legitimate third party application located in \"AppData\" may leverage this DLL to offer 7z compression functionality and may generate false positives. Apply additional filters as needed."
+  ],
+  [
+    "Applications that load the same dlls mentioned in the detection section. Investigate them and filter them out if a lot FPs are caused.",
+    "Dell SARemediation plugin folder (C:\\Program Files\\Dell\\SARemediation\\plugin\\log.dll) is known to contain the 'log.dll' file.",
+    "The Canon MyPrinter folder 'C:\\Program Files\\Canon\\MyPrinter\\' is known to contain the 'log.dll' file"
+  ],
+  [
+    "False positives could occur from other custom installation paths. Apply additional filters accordingly."
+  ],
+  [
+    "Legitimate applications loading their own versions of the DLL mentioned in this rule"
+  ],
+  [
+    "Legitimate applications loading their own versions of the DLLs mentioned in this rule"
+  ],
+  [
+    "False positives are expected from Google Chrome installations running from user locations (AppData) and other custom locations. Apply additional filters accordingly.",
+    "Other third party chromium browsers located in AppData"
+  ],
+  [
+    "False positives are expected if VLC is installed in non-default locations"
+  ],
+  [
+    "If installed on a per-user level, the path would be located in \"AppData\\Local\". Add additional filters to reflect this mode of installation"
+  ],
+  [
+    "Some installers may trigger some false positives"
+  ],
+  [
+    "FP could occur if the legitimate version of vmGuestLib already exists on the system"
+  ],
+  [
+    "Many legitimate applications leverage this DLL. (Visual Studio, JetBrains, Ruby, Anaconda, GithubDesktop, etc.)"
+  ],
+  [
+    "Loading of legitimate driver"
+  ],
+  [
+    "Legitimate Py2Exe Binaries",
+    "Known false positive caused with Python Anaconda"
+  ],
+  [
+    "Very likely, needs more tuning"
+  ],
+  [
+    "Legitimate usage by software developers/testers"
+  ],
+  [
+    "Actions of a legitimate telnet client"
+  ],
+  [
+    "Other legitimate processes loading those DLLs in your environment."
+  ],
+  [
+    "Valid user connecting using RDP"
+  ],
+  [
+    "The command wmic os get lastboottuptime loads vbscript.dll",
+    "The command wmic os get locale loads vbscript.dll",
+    "Since the ImageLoad event doesn't have enough information in this case. It's better to look at the recent process creation events that spawned the WMIC process and investigate the command line and parent/child processes to get more insights"
+  ],
+  [
+    "Unknown",
+    "@subTee in your network"
+  ],
+  [
+    "One might need to exclude other internet browsers found in it's network or other applications like ones mentioned above from Microsoft Defender."
+  ],
+  [
+    "Communication to other corporate systems that use IP addresses from public address spaces"
+  ],
+  [
+    "You may have to tune certain domains out that Excel may call out to, such as microsoft or other business use case domains.",
+    "Office documents commonly have templates that refer to external addresses, like sharepoint.ourcompany.com may have to be tuned.",
+    "It is highly recommended to baseline your activity and tune out common business use cases."
+  ],
+  [
+    "Legitimate applications communicating with the \"googleapis.com\" endpoints that are not already in the exclusion list. This is environmental dependent and requires further testing and tuning."
+  ],
+  [
+    "Legitimate script"
+  ],
+  [
+    "Legitimate use of mega.nz uploaders and tools"
+  ],
+  [
+    "Legitimate msiexec over networks"
+  ],
+  [
+    "Legitimate use of ngrok.io"
+  ],
+  [
+    "Legitimate applications communicating with the \"api.notion.com\" endpoint that are not already in the exclusion list. The desktop and browser applications do not appear to be using the API by default unless integrations are configured."
+  ],
+  [
+    "Other ports can be used, apply additional filters accordingly"
+  ],
+  [
+    "Administrative scripts",
+    "Microsoft IP range"
+  ],
+  [
+    "Legitimate python script"
+  ],
+  [
+    "Third party RDP tools"
+  ],
+  [
+    "Legitimate applications communicating with the Reddit API e.g. web browsers not in the exclusion list, app with an RSS  etc."
+  ],
+  [
+    "Legitimate usage of remote PowerShell, e.g. remote administration and monitoring.",
+    "Network Service user name of a not-covered localization"
+  ],
+  [
+    "Legitimate scripts"
+  ],
+  [
+    "Legitimate use of the API with a tool that the author wasn't aware of"
+  ],
+  [
+    "Legitimate use of the external websites for troubleshooting or network monitoring"
+  ],
+  [
+    "Other SMTP tools"
+  ],
+  [
+    "Legitimate applications communicating with the Telegram API e.g. web browsers not in the exclusion list, app with an RSS  etc."
+  ],
+  [
+    "Legitimate use of wuauclt.exe over the network."
+  ],
+  [
+    "Programs using PowerShell directly without invocation of a dedicated interpreter."
+  ],
+  [
+    "Rare legitimate use of psexec from the locations mentioned above"
+  ],
+  [
+    "Legitimate Administrator activity"
+  ],
+  [
+    "Processes in the filter condition"
+  ],
+  [
+    "Chrome instances using the exact same pipe name \"mojo.something\""
+  ],
+  [
+    "Programs using PowerShell directly without invocation of a dedicated interpreter",
+    "MSP Detection Searcher",
+    "Citrix ConfigSync.ps1"
+  ],
+  [
+    "Legitimate Administrator deletes Shadow Copies using operating systems utilities for legitimate reason"
+  ],
+  [
+    "Legitimate use remote PowerShell sessions"
+  ],
+  [
+    "PowerShell scripts that download content from the Internet"
+  ],
+  [
+    "Legitimate PowerShell scripts that disable Windows Defender for troubleshooting purposes. Must be investigated."
+  ],
+  [
+    "Legitimate use of the library for administrative activity"
+  ],
+  [
+    "Moderate-to-low; Despite the shorter length/lower entropy for some of these, because of high specificity, fp appears to be fairly limited in many environments."
+  ],
+  [
+    "Legitimate PowerShell scripts"
+  ],
+  [
+    "Administrator script"
+  ],
+  [
+    "Very special / sneaky PowerShell scripts"
+  ],
+  [
+    "App-V clients"
+  ],
+  [
+    "Carbon PowerShell Module (https://github.com/webmd-health-services/Carbon)"
+  ],
+  [
+    "Legitimate usage of the capabilities by administrators or users. Add additional filters accordingly."
+  ],
+  [
+    "Legitimate admin scripts may use the same technique, it's better to exclude specific computers or users who execute these commands or scripts often"
+  ],
+  [
+    "Legitimate administrative script"
+  ],
+  [
+    "Legitimate user creation"
+  ],
+  [
+    "Highly likely if archive operations are done via PowerShell."
+  ],
+  [
+    "Legitimate script that disables the command history"
+  ],
+  [
+    "Legitimate usage of PowerShell Dnscat2 \u2014 DNS Exfiltration tool (unlikely)"
+  ],
+  [
+    "Legitimate use of the library"
+  ],
+  [
+    "Legitimate usage of the features listed in the rule."
+  ],
+  [
+    "Legitimate usage of the cmdlet to forward emails"
+  ],
+  [
+    "Legitimate certificate exports by administrators. Additional filters might be required."
+  ],
+  [
+    "Legitimate administration scripts"
+  ],
+  [
+    "Legitimate usage of System.Net.NetworkInformation.Ping class"
+  ],
+  [
+    "Installation of unsigned packages for testing purposes"
+  ],
+  [
+    "Depending on the scripts, this rule might require some initial tunning to fit the environment"
+  ],
+  [
+    "Diagnostics"
+  ],
+  [
+    "Mimikatz can be useful for testing the security of networks"
+  ],
+  [
+    "Should not be any as administrators do not use this tool"
+  ],
+  [
+    "The same functionality can be implemented by admin scripts, correlate with name and creator"
+  ],
+  [
+    "Help Desk or IT may need to manually add a corporate Root CA on occasion. Need to test if GPO push doesn't trigger FP"
+  ],
+  [
+    "Rare need to clear logs before doing something. Sometimes used by installers or cleaner scripts. The script should be investigated to determine if it's legitimate"
+  ],
+  [
+    "Legitimate administration script"
+  ],
+  [
+    "Legitimate usage of \"TroubleshootingPack\" cmdlet for troubleshooting purposes"
+  ],
+  [
+    "Legitimate certificate exports invoked by administrators or users (depends on processes in the environment - filter if unusable)"
+  ],
+  [
+    "Administrators or Power users may remove their shares via cmd line"
+  ],
+  [
+    "Rare intended use of hidden services",
+    "Rare FP could occur due to the non linearity of the ScriptBlockText log"
+  ],
+  [
+    "Admin script"
+  ],
+  [
+    "Legitimate applications writing events via this cmdlet. Investigate alerts to determine if the action is benign"
+  ],
+  [
+    "Legitimate admin script"
+  ],
+  [
+    "Legitimate administration and tuning scripts that aim to add functionality to a user PowerShell session"
+  ],
+  [
+    "Administrators backup scripts (must be investigated)"
+  ],
+  [
+    "Use of Get-Command and Get-Help modules to reference Invoke-WebRequest and Start-BitsTransfer."
+  ],
+  [
+    "Legitimate administration and backup scripts"
+  ],
+  [
+    "Administrative scripts that use the same keywords."
+  ],
+  [
+    "Legitimate CMSTP use (unlikely in modern enterprise environments)"
+  ],
+  [
+    "False positives are present when looking for 0x1410. Exclusions may be required."
+  ],
+  [
+    "Unlikely, since these tools shouldn't access lsass.exe at all"
+  ],
+  [
+    "Rare programs that contain the word dump in their name and access lsass"
+  ],
+  [
+    "Actual failures in lsass.exe that trigger a crash dump (unlikely)",
+    "Unknown cases in which WerFault accesses lsass.exe"
+  ],
+  [
+    "Legitimate software accessing LSASS process for legitimate reason"
+  ],
+  [
+    "Legitimate software such as AV and EDR"
+  ],
+  [
+    "Updaters and installers are typical false positives. Apply custom filters depending on your environment"
+  ],
+  [
+    "Non identified legit exectubale"
+  ],
+  [
+    "Legitimate activity is expected since compressing files with a password is common."
+  ],
+  [
+    "Legitimate activity is expected since extracting files with a password can be common in some environement."
+  ],
+  [
+    "Legitimate usage of Adplus for debugging purposes"
+  ],
+  [
+    "IgfxCUIService.exe hiding *.cui files via .bat script (attrib.exe a child of cmd.exe and igfxCUIService.exe is the parent of the cmd.exe)",
+    "Msiexec.exe hiding desktop.ini"
+  ],
+  [
+    "Unlikely (at.exe deprecated as of Windows 8)"
+  ],
+  [
+    "The old auditpol utility isn't available by default on recent versions of Windows as it was replaced by a newer version. The FP rate should be very low except for tools that use a similar flag structure"
+  ],
+  [
+    "Administrator or administrator scripts might leverage the flags mentioned in the detection section. Either way, it should always be monitored"
+  ],
+  [
+    "Some legitimate apps use this, but limited."
+  ],
+  [
+    "Software that uses MsEdge to download components in the background (see ParentImage, ParentCommandLine)"
+  ],
+  [
+    "As this is a general purpose rule, legitimate usage of the encode functionality will trigger some false positives. Apply additional filters accordingly"
+  ],
+  [
+    "There legitimate reasons to export certificates. Investigate the activity to determine if it's benign"
+  ],
+  [
+    "During Anaconda update the 'conda.exe' process will eventually execution the 'chcp' command.",
+    "Discord was seen using chcp to look up code pages"
+  ],
+  [
+    "Administrative activity (adjust code pages according to your organization's region)"
+  ],
+  [
+    "Legitimate usage of Cloudflared."
+  ],
+  [
+    "Legitimate usage for administration purposes"
+  ],
+  [
+    "Legitimate administrative tasks"
+  ],
+  [
+    "False positives levels will differ Depending on the environment. You can use a combination of ParentImage and other keywords from the CommandLine field to filter legitimate activity"
+  ],
+  [
+    "High"
+  ],
+  [
+    "Legitimate administrator working with shadow copies, access for backup purposes"
+  ],
+  [
+    "Java tools are known to produce false-positive when loading libraries"
+  ],
+  [
+    "Internet Download Manager extensions use named pipes and redirection via CLI. Filter it out if you use it in your environment"
+  ],
+  [
+    "Legitimate admin or third party scripts used for diagnostic collection might generate some false positives"
+  ],
+  [
+    "Backup scenarios using the commandline"
+  ],
+  [
+    "Very Likely, including launching cmd.exe via Run As Administrator"
+  ],
+  [
+    "Command lines that use the same flags"
+  ],
+  [
+    "Legitimate software from program files - https://twitter.com/gN3mes1s/status/1206874118282448897",
+    "Legitimate Microsoft software - https://twitter.com/gabriele_pippi/status/1206907900268072962"
+  ],
+  [
+    "Legitimate usage by software developers"
+  ],
+  [
+    "Possible depending on environment. Pair with other factors such as net connections, command-line args, etc."
+  ],
+  [
+    "Access to badly maintained internal or development systems"
+  ],
+  [
+    "Legitimate use by users"
+  ],
+  [
+    "Legitimate administration use"
+  ],
+  [
+    "Legitimate use by third party tools in order to investigate installed drivers"
+  ],
+  [
+    "Legitimate administrators granting over permissive permissions to users"
+  ],
+  [
+    "Legitimate use of dsacls to bind to an LDAP session"
+  ],
+  [
+    "Legitimate use of the utilities by legitimate user for legitimate reason"
+  ],
+  [
+    "To be determined"
+  ],
+  [
+    "Copying sensitive files for legitimate use (eg. backup) or forensic investigation by legitimate incident responder or forensic invetigator"
+  ],
+  [
+    "Legitimate Administrator using tools"
+  ],
+  [
+    "System administrator Usage"
+  ],
+  [
+    "Legitimate explorer.exe run from cmd.exe"
+  ],
+  [
+    "Domain Controller User Logon",
+    "Unknown how many legitimate software products use that method"
+  ],
+  [
+    "Admin activity (unclear what they do nowadays with finger.exe)"
+  ],
+  [
+    "Certain software or administrative tasks may trigger false positives."
+  ],
+  [
+    "Admin activity",
+    "Scripts and administrative tools used in the monitored environment"
+  ],
+  [
+    "Other parent binaries using GUP not currently identified"
+  ],
+  [
+    "Other parent processes other than notepad++ using GUP that are not currently identified"
+  ],
+  [
+    "Execution of tools named GUP.exe and located in folders different than Notepad++\\updater"
+  ],
+  [
+    "False positives are expected with legitimate \".CHM\""
+  ],
+  [
+    "Other programs that use these command line option and accepts an 'All' parameter"
+  ],
+  [
+    "Other tools that incidentally use the same command line parameters"
+  ],
+  [
+    "Legitimate use of one of these tools"
+  ],
+  [
+    "Tools that use similar command line flags and values"
+  ],
+  [
+    "Software that uses the caret encased keywords PASS and USER in its command line"
+  ],
+  [
+    "Legitimate use of the impacket tools"
+  ],
+  [
+    "Commandlines containing components like cmd accidentally",
+    "Jobs and services started with cmd"
+  ],
+  [
+    "Legitimate files with these rare hacktool names"
+  ],
+  [
+    "Programs that use the same command line flags"
+  ],
+  [
+    "Another service that uses a single -s command line switch"
+  ],
+  [
+    "Another tool that uses the command line switches of XORdump"
+  ],
+  [
+    "Commandlines with legitimate Cyrillic text; will likely require tuning (or not be usable) in countries where these alphabets are in use."
+  ],
+  [
+    "Unknown as it may vary from organisation to organisation how admins use to install IIS modules"
+  ],
+  [
+    "Legitimate usage of appcmd to add new URL rewrite rules"
+  ],
+  [
+    "Legitimate calls to system binaries",
+    "Company specific internal usage"
+  ],
+  [
+    "Rare occasions of legitimate cases where kernel debugging is necessary in production. Investigation is required"
+  ],
+  [
+    "Since the content of the files are unknown, false positives are expected"
+  ],
+  [
+    "Legitimate usage by an administrator"
+  ],
+  [
+    "Legitimate deactivation by administrative staff",
+    "Installer tools that disable services, e.g. before log collection agent installation"
+  ],
+  [
+    "Legitimate use via Intune management. You exclude script paths and names to reduce FP rate"
+  ],
+  [
+    "Legitimate use of debugging tools"
+  ],
+  [
+    "DataSvcUtil.exe being used may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "DataSvcUtil.exe being executed from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Legitimate use of devtoolslauncher.exe by legitimate user"
+  ],
+  [
+    "Very Possible"
+  ],
+  [
+    "False postitve can be if administrators use diskshadow tool in their infrastructure as a main backup tool with scripts."
+  ],
+  [
+    "Windows installed on non-C drive"
+  ],
+  [
+    "Legitimate use of dnx.exe by legitimate user"
+  ],
+  [
+    "Process dumping is the expected behavior of the tool. So false positives are expected in legitimate usage. The PID/Process Name of the process being dumped needs to be investigated"
+  ],
+  [
+    "Dump64.exe in other folders than the excluded one"
+  ],
+  [
+    "Administrative findstr usage"
+  ],
+  [
+    "Legitimate use via a batch script or by an administrator."
+  ],
+  [
+    "Legitimate use by a software developer."
+  ],
+  [
+    "Legitimate uses of logon scripts distributed via group policy"
+  ],
+  [
+    "ViberPC updater calls this binary with the following commandline \"ie4uinit.exe -ClearIconCache\""
+  ],
+  [
+    "Legitimate usage of the script by a developer"
+  ],
+  [
+    "Legitimate use for tracing purposes"
+  ],
+  [
+    "Possible undocumented parents of \"msdt\" other than \"pcwrun\""
+  ],
+  [
+    "Rare false positives could occur on servers with multiple drives."
+  ],
+  [
+    "Legitimate use by an administrator"
+  ],
+  [
+    "Legitimate use by a via a batch script or by an administrator."
+  ],
+  [
+    "Need to use extra processing with 'unique_count' / 'filter' to focus on outliers as opposed to commonly seen artifacts",
+    "Legit usage of scripts"
+  ],
+  [
+    "Use of Program Compatibility Troubleshooter Helper"
+  ],
+  [
+    "Legitimate use of Pester for writing tests for Powershell scripts and modules"
+  ],
+  [
+    "Legitimate \".xbap\" being executed via \"PresentationHost\""
+  ],
+  [
+    "Legitimate usage of the script. Always investigate what's being registered to confirm if it's benign"
+  ],
+  [
+    "Approved installs of Windows SDK with Debugging Tools for Windows (WinDbg)."
+  ],
+  [
+    "Legitimate use when App-v is deployed"
+  ],
+  [
+    "Legitimate usage of Setres"
+  ],
+  [
+    "Expected FP with some electron based applications such as (1Clipboard, Beaker Browser, Caret, Discord, GitHub Desktop,...Etc)"
+  ],
+  [
+    "Legitimate use of the UI Accessibility Checker"
+  ],
+  [
+    "Legitimate, non-default assistive technology applications execution"
+  ],
+  [
+    "Pnputil.exe being used may be performed by a system administrator.",
+    "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment.",
+    "Pnputil.exe being executed from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule."
+  ],
+  [
+    "Legitimate execution of dxcap.exe by legitimate user"
+  ],
+  [
+    "Legitimate MSSQL Server actions"
+  ],
+  [
+    "Legitimate testing of Microsoft UI parts."
+  ],
+  [
+    "Utilization of this tool should not be seen in enterprise environment"
+  ],
+  [
+    "Legitimate use by a software developer"
+  ],
+  [
+    "Legitimate MWC use (unlikely in modern enterprise environments)"
+  ],
+  [
+    "Other VB scripts that leverage the same starting command line flags"
+  ],
+  [
+    "Some rare backup scenarios"
+  ],
+  [
+    "Winzip",
+    "Other self-extractors"
+  ],
+  [
+    "Legitimate usage of \".diagcab\" files"
+  ],
+  [
+    "Inline scripting can be used by some rare third party applications or administrators. Investigate and apply additional filters accordingly"
+  ],
+  [
+    "Printer software / driver installations",
+    "HP software"
+  ],
+  [
+    "WindowsApps installing updates via the quiet flag"
+  ],
+  [
+    "Legitimate use of Msra.exe"
+  ],
+  [
+    "Direct PS command execution through SQLPS.exe is uncommon, childprocess sqlps.exe spawned by sqlagent.exe is a legitimate action."
+  ],
+  [
+    "Direct PS command execution through SQLToolsPS.exe is uncommon, childprocess sqltoolsps.exe spawned by smss.exe is a legitimate action."
+  ],
+  [
+    "WSL (Windows Sub System For Linux)"
+  ],
+  [
+    "Likely with legitimate usage of \".rdp\" files"
+  ],
+  [
+    "Likelihood is related to how often the paths are used in the environment"
+  ],
+  [
+    "Legitimate administration activity",
+    "Software installations"
+  ],
+  [
+    "Legitimate administration activity"
+  ],
+  [
+    "Legitimate administration activity",
+    "Software installations and removal"
+  ],
+  [
+    "Legitimate administration activity",
+    "WSL2 network bridge PowerShell script used for WSL/Kubernetes/Docker (e.g. https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723)"
+  ],
+  [
+    "Legitimate administration activity to troubleshoot network issues"
+  ],
+  [
+    "Some false positives could occur with the admin or guest account. It depends on the scripts being used by the admins in your env. If you experience a lot of FP you could reduce the level to medium"
+  ],
+  [
+    "Inventory tool runs",
+    "Administrative activity"
+  ],
+  [
+    "Legitimate use of net.exe utility by legitimate user"
+  ],
+  [
+    "Legitimate administrator or user executes a service for legitimate reasons."
+  ],
+  [
+    "There are many legitimate reasons to stop a service. This rule isn't looking for any suspicious behaviour in particular. Filter legitimate activity accordingly"
+  ],
+  [
+    "Will need to be tuned. If using Splunk, I recommend | stats count by Computer,CommandLine following the search for easy hunting by computer/CommandLine."
+  ],
+  [
+    "Legitimate user creation.",
+    "Better use event IDs for user creation rather than command line rules."
+  ],
+  [
+    "Administrators"
+  ],
+  [
+    "Legitimate activity by administrators and scripts"
+  ],
+  [
+    "Legitimate administration use but user and host must be investigated"
+  ],
+  [
+    "Legitimate usage to restore snapshots",
+    "Legitimate admin activity"
+  ],
+  [
+    "NTDS maintenance"
+  ],
+  [
+    "Legitimate driver DLLs being registered via \"odbcconf\" will generate false positives. Investigate the path of the DLL and its contents to determine if the action is authorized."
+  ],
+  [
+    "Legitimate DLLs being registered via \"odbcconf\" will generate false positives. Investigate the path of the DLL and its content to determine if the action is authorized."
+  ],
+  [
+    "The rule is looking for any usage of response file, which might generate false positive when this function is used legitimately. Investigate the contents of the \".rsp\" file to determine if it is malicious and apply additional filters if necessary."
+  ],
+  [
+    "In rare occurrences where \"odbcconf\" crashes. It might spawn a \"werfault\" process",
+    "Other child processes will depend on the DLL being registered by actions like \"regsvr\". In case where the DLLs have external calls (which should be rare). Other child processes might spawn and additional filters need to be applied."
+  ],
+  [
+    "File located in the AppData folder with trusted signature"
+  ],
+  [
+    "Legitimate usage of office automation via scripting"
+  ],
+  [
+    "Legitimate use of the PDQDeploy tool to execute these commands"
+  ],
+  [
+    "Unlikely, because no sane admin pings IP addresses in a hexadecimal form"
+  ],
+  [
+    "Administrative activity using a remote port forwarding to a local port"
+  ],
+  [
+    "Legitimate audio capture by legitimate user."
+  ],
+  [
+    "Legitimate use to pass password to different powershell commands"
+  ],
+  [
+    "Amazon SSM Document Worker",
+    "Windows Defender ATP"
+  ],
+  [
+    "Legitimate administrator or user creates a service for legitimate reasons.",
+    "Software installation"
+  ],
+  [
+    "Legitimate administrative scripts may use this functionality. Use \"ParentImage\" in combination with the script names and allowed users and applications to filter legitimate executions"
+  ],
+  [
+    "Possible Admin Activity",
+    "Other Cmdlets that may use the same parameters"
+  ],
+  [
+    "Minimal, for some older versions of dev tools, such as pycharm, developers were known to sometimes disable Windows Defender to improve performance, but this generally is not considered a good security practice."
+  ],
+  [
+    "Scripts or tools that download files"
+  ],
+  [
+    "Some PowerShell installers were seen using similar combinations. Apply filters accordingly"
+  ],
+  [
+    "Other tools that work with encoded scripts in the command line instead of script files"
+  ],
+  [
+    "Administrative script libraries"
+  ],
+  [
+    "Rare intended use of hidden services"
+  ],
+  [
+    "Legitimate scripts that use IEX"
+  ],
+  [
+    "Likely. Many admin scripts and tools leverage PowerShell in their BAT or VB scripts which may trigger this rule often. It is best to add additional filters or use this to hunt for anomalies"
+  ],
+  [
+    "In rare administrative cases, this function might be used to check network connectivity"
+  ],
+  [
+    "Some rare backup scenarios",
+    "PowerShell scripts fixing HiveNightmare / SeriousSAM ACLs"
+  ],
+  [
+    "Microsoft Operations Manager (MOM)",
+    "Other scripts"
+  ],
+  [
+    "False positives may occur with troubleshooting scripts"
+  ],
+  [
+    "Some false positive is to be expected from PowerShell scripts that might make use of additional binaries such as \"mshta\", \"bitsadmin\", etc. Apply additional filters for those scripts when needed."
+  ],
+  [
+    "Software installers that pull packages from remote systems and execute them"
+  ],
+  [
+    "Other scripts"
+  ],
+  [
+    "Administrative scripts"
+  ],
+  [
+    "Legitimate use by developers as part of NodeJS development with Visual Studio Tools"
+  ],
+  [
+    "Authorized administrative activity"
+  ],
+  [
+    "Legitimate administrative use",
+    "Tools with similar commandline (very rare)"
+  ],
+  [
+    "Some false positives may occur with other tools with similar commandlines"
+  ],
+  [
+    "Legitimate administrative use (Should be investigated either way)"
+  ],
+  [
+    "Legitimate admin usage"
+  ],
+  [
+    "Legitimate uses of Mouse Lock software"
+  ],
+  [
+    "Legitimate ncat use"
+  ],
+  [
+    "Another tool that uses the command line switches of Ngrok",
+    "Ngrok http 3978 (https://docs.microsoft.com/en-us/azure/bot-service/bot-service-debug-channel-ngrok?view=azure-bot-service-4.0)"
+  ],
+  [
+    "Legitimate use of Nim on a developer systems"
+  ],
+  [
+    "Network administrator computer"
+  ],
+  [
+    "While sometimes 'Process Hacker is used by legitimate administrators, the execution of Process Hacker must be investigated and allowed on a case by case basis"
+  ],
+  [
+    "Legitimate use of the tool by administrators or users to update metadata of a binary"
+  ],
+  [
+    "Python libraries that use a flag starting with \"-c\". Filter according to your environment"
+  ],
+  [
+    "Legitimate use of Winrar command line version",
+    "Other command line tools, that use these flags"
+  ],
+  [
+    "Highly likely if rar is a default archiver in the monitored environment."
+  ],
+  [
+    "Dumping hives for legitimate purpouse i.e. backup or forensic investigation"
+  ],
+  [
+    "Legitimate export of keys"
+  ],
+  [
+    "Legitimate import of keys",
+    "Evernote"
+  ],
+  [
+    "Legitimate modification of keys"
+  ],
+  [
+    "Legitimate addition of Logon Scripts via the command line by administrators or third party tools"
+  ],
+  [
+    "Other legitimate network providers used and not filtred in this rule"
+  ],
+  [
+    "Administrator typo might cause some false positives"
+  ],
+  [
+    "FQDNs that start with a number such as \"7-Zip\""
+  ],
+  [
+    "Unlikely, but can rarely occur. Apply additional filters accordingly."
+  ],
+  [
+    "Some installers might execute \"regsvr32\" with DLLs located in %TEMP% or in %PROGRAMDATA%. Apply additional filters if necessary."
+  ],
+  [
+    "Legitimate \".bat\", \".hta\", \".ps1\" or \".vbs\" scripts leverage legitimately often. Apply additional filter and exclusions as necessary",
+    "Some legitimate Windows services"
+  ],
+  [
+    "Other legitimate extensions currently not in the list either from third party or specific Windows components."
+  ],
+  [
+    "Legitimate software automatically (mostly, during installation) sets up autorun keys for legitimate reasons.",
+    "Legitimate administrator sets up autorun keys for legitimate reasons.",
+    "Discord"
+  ],
+  [
+    "Legitimate import of keys"
+  ],
+  [
+    "GPO"
+  ],
+  [
+    "Rare legitimate add to registry via cli (to these locations)"
+  ],
+  [
+    "Legitimate administration"
+  ],
+  [
+    "Rare legitimate use by administrators to test software (should always be investigated)"
+  ],
+  [
+    "Legitimate piping of the password to anydesk",
+    "Some FP could occur with similar tools that uses the same command line '--set-password'"
+  ],
+  [
+    "Legitimate deployment of AnyDesk"
+  ],
+  [
+    "Legitimate use of AnyDesk from a non-standard folder"
+  ],
+  [
+    "Legitimate usage of the tool"
+  ],
+  [
+    "Legitimate use by administrative staff"
+  ],
+  [
+    "Case in which administrators are allowed to use ScreenConnect's Backstage mode"
+  ],
+  [
+    "Legitimate use of the system utilities to discover system time for legitimate reason"
+  ],
+  [
+    "Custom applications use renamed binaries adding slight change to binary name. Typically this is easy to spot and add to whitelist"
+  ],
+  [
+    "Custom applications use renamed binaries adding slight change to binary name. Typically this is easy to spot and add to whitelist",
+    "PsExec installed via Windows Store doesn't contain original filename field (False negative)"
+  ],
+  [
+    "Unknown yet"
+  ],
+  [
+    "Software that illegally integrates MegaSync in a renamed form",
+    "Administrators that have renamed MegaSync"
+  ],
+  [
+    "Weird admins that rename their tools",
+    "Software companies that bundle PAExec with their software and rename it, so that it is less embarrassing",
+    "When executed with the \"-s\" flag. PAExec will copy itself to the \"C:\\Windows\\\" directory with a different name. Usually like this \"PAExec-[XXXXX]-[ComputerName]\""
+  ],
+  [
+    "Procdump illegaly bundled with legitimate software",
+    "Administrators who rename binaries (should be investigated)"
+  ],
+  [
+    "System administrator usage"
+  ],
+  [
+    "False positives depend on scripts and administrative tools used in the monitored environment",
+    "Windows control panel elements have been identified as source (mmc)"
+  ],
+  [
+    "Legitimate installation of a new screensaver"
+  ],
+  [
+    "Possible but rare"
+  ],
+  [
+    "Scripts and administrative tools that use INF files for driver installation with setupapi.dll"
+  ],
+  [
+    "Scripts or links on the user desktop used to lock the workstation instead of Windows+L or the menu option"
+  ],
+  [
+    "False positives may occur if a user called rundll32 from CLI with no options"
+  ],
+  [
+    "Administrative activity",
+    "Software installation"
+  ],
+  [
+    "Benign scheduled tasks creations or executions that happen often during software installations",
+    "Software that uses the AppData folder and scheduled tasks to update the software in the AppData folders"
+  ],
+  [
+    "Legitimate software naming their tasks as GUIDs"
+  ],
+  [
+    "Software installers that run from temporary folders and also install scheduled tasks"
+  ],
+  [
+    "Legitimate processes that run at logon. Filter according to your environment"
+  ],
+  [
+    "Some installers were seen using this method of creation unfortunately. Filter them in your environment"
+  ],
+  [
+    "Software installers that run from temporary folders and also install scheduled tasks are expected to generate some false positives"
+  ],
+  [
+    "Rare legitimate installation of kernel drivers via sc.exe"
+  ],
+  [
+    "Legitimate query of a service by an administrator to get more information such as the state or PID",
+    "Keybase process \"kbfsdokan.exe\" query the dokan1 service with the following commandline \"sc query dokan1\""
+  ],
+  [
+    "Legitimate uses in which users or programs use the SSH service of Serv-U for remote command execution"
+  ],
+  [
+    "Administration activity"
+  ],
+  [
+    "Legitimate usage of stordiag.exe."
+  ],
+  [
+    "System administrator usage",
+    "Anti virus products",
+    "WindowsApps located in \"C:\\Program Files\\WindowsApps\\\""
+  ],
+  [
+    "Legitimate cases in which archives contain ISO or IMG files and the user opens the archive and the image via clicking and not extraction"
+  ],
+  [
+    "Google Drive",
+    "Citrix"
+  ],
+  [
+    "Depend on scripts and administrative tools used in the monitored environment (For example an admin scripts like https://www.itexperience.net/sccm-batch-files-and-32-bits-processes-on-64-bits-os/)",
+    "When cmd.exe and xcopy.exe are called directly",
+    "When the command contains the keywords but not in the correct order"
+  ],
+  [
+    "Legitimate use of crypto miners",
+    "Some build frameworks"
+  ],
+  [
+    "Legitimate deinstallation by administrative staff"
+  ],
+  [
+    "Scripts or tools that download attachments from these domains (OneNote, Outlook 365)"
+  ],
+  [
+    "Legitimate commands in .lnk files"
+  ],
+  [
+    "Admin activity",
+    "Scripts and administrative tools used in the monitored environment",
+    "Maintenance activity"
+  ],
+  [
+    "Installers are sometimes known for creating temporary folders with GUID like names. Add appropriate filters accordingly"
+  ],
+  [
+    "Various applications",
+    "Tools that include ping or nslookup command invocations"
+  ],
+  [
+    "Users interacting with the files on their own (unlikely unless privileged users).",
+    "Dynatrace app"
+  ],
+  [
+    "Legitimate administrator or user enumerates local users for legitimate reason"
+  ],
+  [
+    "Legitimate scripts located on other partitions such as \"D:\""
+  ],
+  [
+    "Legitimate sub processes started by Manage Engine ServiceDesk Pro"
+  ],
+  [
+    "Administrator, hotline ask to user"
+  ],
+  [
+    "Applications could use this notation occasionally which might generate some false positives. In that case investigate the parent and child process."
+  ],
+  [
+    "Applications could use this notation occasionally which might generate some false positives. In that case Investigate the parent and child process."
+  ],
+  [
+    "Software Installers"
+  ],
+  [
+    "Other programs that cause these patterns (please report)"
+  ],
+  [
+    "Some security products seem to spawn these"
+  ],
+  [
+    "Legitimate tools that accidentally match on the searched patterns"
+  ],
+  [
+    "Commandlines that contains scriptures such as arabic or hebrew might make use of this character"
+  ],
+  [
+    "Administrators or tools shutting down the services due to upgrade or removal purposes. If you experience some false positive, please consider adding filters to the parent process launching this command and not removing the entry"
+  ],
+  [
+    "Legitimate Administrator deletes Shadow Copies using operating systems utilities for legitimate reason",
+    "LANDesk LDClient Ivanti-PSModule (PS EncodedCommand)"
+  ],
+  [
+    "Administrative scripts",
+    "Microsoft SCCM"
+  ],
+  [
+    "Exotic software"
+  ],
+  [
+    "Administrative activity",
+    "Scripts and administrative tools used in the monitored environment",
+    "Monitoring activity"
+  ],
+  [
+    "It's not an uncommon to use te.exe directly to execute legal TAEF tests"
+  ],
+  [
+    "The process spawned by vsjitdebugger.exe is uncommon."
+  ],
+  [
+    "Legitimate usage of the passwords by users via commandline (should be discouraged)",
+    "Other currently unknown false positives"
+  ],
+  [
+    "Legitimate usage of the uncommon Windows Work Folders feature."
+  ],
+  [
+    "Rpcnet.exe / rpcnetp.exe which is a lojack style software. https://www.blackhat.com/docs/us-14/materials/us-14-Kamlyuk-Kamluk-Computrace-Backdoor-Revisited.pdf"
+  ],
+  [
+    "Legitimate use of SysInternals tools",
+    "Programs that use the same command line flag"
+  ],
+  [
+    "Administration and debugging activity (must be investigated)"
+  ],
+  [
+    "Unlikely in production environement"
+  ],
+  [
+    "Legitimate use of procdump by a developer or administrator"
+  ],
+  [
+    "False positives are expected in cases in which ProcDump just gets copied to a different directory without any renaming"
+  ],
+  [
+    "Unlikely, because no one should dump an lsass process memory",
+    "Another tool that uses command line flags similar to ProcDump"
+  ],
+  [
+    "Administrative scripts."
+  ],
+  [
+    "Admins that use PsExec or PAExec to escalate to the SYSTEM account for maintenance purposes (rare)",
+    "Users that debug Microsoft Intune issues using the commands mentioned in the official documentation; see https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension"
+  ],
+  [
+    "Users that debug Microsoft Intune issues using the commands mentioned in the official documentation; see https://learn.microsoft.com/en-us/mem/intune/apps/intune-management-extension"
+  ],
+  [
+    "Another tool that uses the command line switches of PsLogList",
+    "Legitimate use of PsLogList by an administrator"
+  ],
+  [
+    "Legitimate use of PsService by an administrator"
+  ],
+  [
+    "Weird admins that rename their tools",
+    "Software companies that bundle PsExec/PAExec with their software and rename it, so that it is less embarrassing"
+  ],
+  [
+    "Legitimate administrators might use this command to update Sysmon configuration."
+  ],
+  [
+    "Legitimate administrators might use this command to remove Sysmon for debugging purposes"
+  ],
+  [
+    "Expected FP with some processes using this techniques to terminate one of their processes during installations and updates"
+  ],
+  [
+    "Legitimate use of cmstp.exe utility by legitimate user"
+  ],
+  [
+    "Legitimate use of fodhelper.exe utility by legitimate user"
+  ],
+  [
+    "Unknown sub processes of Wsreset.exe"
+  ],
+  [
+    "Administrator might leverage the same command line for debugging or other purposes. However this action must be always investigated"
+  ],
+  [
+    "Legitimate logon scripts or custom shells may trigger false positives. Apply additional filters accordingly."
+  ],
+  [
+    "This may have false positives on hosts where Virtualbox is legitimately being used for operations"
+  ],
+  [
+    "Legitimate use of VBoxDrvInst.exe utility by VirtualBox Guest Additions installation process"
+  ],
+  [
+    "Legitimate use by VM administrator"
+  ],
+  [
+    "In development environment where VsCode is used heavily. False positives may occur when developers use task to compile or execute different types of code. Remove or add processes accordingly"
+  ],
+  [
+    "False positives depend on custom use of vsls-agent.exe"
+  ],
+  [
+    "Particular web applications may spawn a shell process legitimately"
+  ],
+  [
+    "Windows Error Reporting might produce similar behavior. In that case, check the PID associated with the \"-p\" parameter in the CommandLine."
+  ],
+  [
+    "Legitimate usage of the utility by administrators to query the event log"
+  ],
+  [
+    "Admin activity",
+    "Scripts and administrative tools used in the monitored environment",
+    "Monitoring activity"
+  ],
+  [
+    "Other legitimate \"Windows Terminal\" profiles"
+  ],
+  [
+    "False positive are expected with legitimate sources"
+  ],
+  [
+    "False positives might occur if the users are unaware of such control checks"
+  ],
+  [
+    "Some false positives are expected in some environment that may use this functionality to install and test their custom applications"
+  ],
+  [
+    "Legitimate use of WinRAR with a command line in which .dmp appears accidentally"
+  ],
+  [
+    "Legitimate use of WinRAR in a folder of a software that bundles WinRAR"
+  ],
+  [
+    "Legitimate usage of remote Powershell, e.g. for monitoring purposes."
+  ],
+  [
+    "Legitimate WinRM usage"
+  ],
+  [
+    "Legitimate software creating script event consumers"
+  ],
+  [
+    "WMIC.exe FP depend on scripts and administrative methods used in the monitored environment.",
+    "Msxsl.exe is not installed by default, so unlikely.",
+    "Static format arguments - https://petri.com/command-line-wmi-part-3"
+  ],
+  [
+    "False positives are expected (e.g. in environments where WinRM is used legitimately)"
+  ],
+  [
+    "AppvClient",
+    "CCM",
+    "WinRM"
+  ],
+  [
+    "Some additional tunning is required. It is recommended to add the user profile path in CommandLine if it is getting too noisy."
+  ],
+  [
+    "Some false positives might occur with admin or third party software scripts. Investigate and apply additional filters accordingly."
+  ],
+  [
+    "Automation and orchestration scripts may use this method to execute scripts etc.",
+    "Legitimate use by Windows to kill processes opened via WSL (example VsCode WSL server)"
+  ],
+  [
+    "The \"extract\" flag still works on older 'wusa.exe' versions, which could be a legitimate use (monitor the path of the cab being extracted)"
+  ],
+  [
+    "Legitimate security products adding their own AMSI providers. Filter these according to your environment"
+  ],
+  [
+    "Maybe some system utilities in rare cases use linking keys for backward compatibility"
+  ],
+  [
+    "Legitimate new entry added by windows"
+  ],
+  [
+    "Investigate the contents of the \"UserInitMprLogonScript\" value to determine of the added script is legitimate"
+  ],
+  [
+    "Legitimate use of SysInternals tools",
+    "Programs that use the same Registry Key"
+  ],
+  [
+    "Legitimate use of SysInternals tools. Filter the legitimate paths used in your environnement"
+  ],
+  [
+    "Legitimate administrators removing applications (should always be investigated)"
+  ],
+  [
+    "Legitimate software (un)installations are known to cause some false positives. Please add them as a filter when encountered"
+  ],
+  [
+    "Legitimate installation of printer driver QMS 810, Texas Instruments microLaser printer (unlikely)"
+  ],
+  [
+    "Legitimate modification of screensaver"
+  ],
+  [
+    "This will alert on legitimate macro usage as well, additional tuning is required"
+  ],
+  [
+    "WSL2 network bridge PowerShell script used for WSL/Kubernetes/Docker (e.g. https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723)",
+    "Synergy Software KVM (https://symless.com/synergy)"
+  ],
+  [
+    "Legitimate modification of the registry key by legitimate program"
+  ],
+  [
+    "Creation of non-default, legitimate at usage"
+  ],
+  [
+    "Software installers downloaded and used by users"
+  ],
+  [
+    "Unlikely, there could be conferencing software running from a Temp folder accessing the devices"
+  ],
+  [
+    "Legitimate use of the key to setup a debugger. Which is often the case on developers machines"
+  ],
+  [
+    "Legitimate use of the feature (alerts should be investigated either way)"
+  ],
+  [
+    "Legitimate software automatically (mostly, during installation) sets up autorun keys for legitimate reason",
+    "Legitimate administrator sets up autorun keys for legitimate reason"
+  ],
+  [
+    "Legitimate driver altitude change to hide sysmon"
+  ],
+  [
+    "Legitimate internal requirements."
+  ],
+  [
+    "Legitimate disabling of crashdumps"
+  ],
+  [
+    "New printer port install on host"
+  ],
+  [
+    "Other Antivirus software installations could cause Windows to disable that eventlog (unknown)"
+  ],
+  [
+    "Rare falsepositives may occur from legitimate administrators disabling specific event log for troubleshooting"
+  ],
+  [
+    "This value is not set by default but could be rarly used by administrators"
+  ],
+  [
+    "As this is controlled by group policy as well as user settings. Some false positives may occur."
+  ],
+  [
+    "Legitimate application that needs to do a full dump of their process"
+  ],
+  [
+    "This rule is to explore new applications on an endpoint. False positives depends on the organization.",
+    "Newly setup system.",
+    "Legitimate installation of new application."
+  ],
+  [
+    "Other unknown legitimate or custom paths need to be filtered to avoid false positives"
+  ],
+  [
+    "Legitimate applications registering their binary from on of the suspicious locations mentioned above (tune it)"
+  ],
+  [
+    "Probable legitimate applications. If you find these please add them to an exclusion list"
+  ],
+  [
+    "Many legitimate applications can register a new custom protocol handler. Additional filters needs to applied according to your environement."
+  ],
+  [
+    "Legitimate registration of IFilters by the OS or software"
+  ],
+  [
+    "Might trigger if a legitimate new SIP provider is registered. But this is not a common occurrence in an environment and should be investigated either way"
+  ],
+  [
+    "Unlikely but if you experience FPs add specific processes and locations you would like to monitor for"
+  ],
+  [
+    "Legitimate Addin Installation"
+  ],
+  [
+    "Legitimate use of the dll."
+  ],
+  [
+    "Some installed utilities (i.e. OneDrive) may serve new COM objects at user-level"
+  ],
+  [
+    "Legitimate admin or third party scripts. Baseline according to your environment"
+  ],
+  [
+    "Legitimate use of screen saver"
+  ],
+  [
+    "Administrative scripts",
+    "Installation of a service"
+  ],
+  [
+    "Legitimate SIP being registered by the OS or different software."
+  ],
+  [
+    "Some FP may occur when the feature is disabled by the AV itself, you should always investigate if the action was legitimate"
+  ],
+  [
+    "Administrators or users that actually use the selected keyboard layouts (heavily depends on the organisation's user base)"
+  ],
+  [
+    "Installers and updaters may set currently in use files for rename after a reboot."
+  ],
+  [
+    "Alerts on legitimate printer drivers that do not set any more details in the Manufacturer value"
+  ],
+  [
+    "Software using weird folders for updates"
+  ],
+  [
+    "Other legimate tools using this service names and drivers. Note - clever attackers may easily bypass this detection by just renaming the services. Therefore just Medium-level and don't rely on it."
+  ],
+  [
+    "Some of the keys mentioned here could be modified by an administrator while setting group policy (it should be investigated either way)"
+  ],
+  [
+    "Administrator actions via the Windows Defender interface"
+  ],
+  [
+    "The event doesn't contain information about the type of change. False positives are expected with legitimate changes"
+  ],
+  [
+    "Administrators or developers might enable this for testing purposes or to install custom private packages"
+  ],
+  [
+    "Legitimate use of the multi session functionality"
+  ],
+  [
+    "Legitimate administrative action"
+  ],
+  [
+    "There are no known false positives at this time"
+  ],
+  [
+    "Exclude legitimate (vetted) use of WMI event subscription in your network"
+  ],
+  [
+    "Legitimate administrative scripts"
+  ],
+  [
+    "Scanning from Nuclei",
+    "Unknown"
+  ],
+  [
+    "Several false positives identified, check for suspicious file names or locations (e.g. Temp folders)"
+  ],
+  [
+    "Renamed SysInternals tool"
+  ],
+  [
+    "Scripts that shutdown the system immediately and reboot them in safe mode are unlikely"
+  ],
+  [
+    "Administrators that use checkadmin.exe tool to enumerate local administrators"
+  ],
+  [
+    "Unknown but benign sub processes of the Windows DNS service dns.exe"
+  ],
+  [
+    "Legitimate setups that use similar flags"
+  ],
+  [
+    "Problems with printer drivers"
+  ],
+  [
+    "OVA uploads to your VSphere appliance"
+  ],
+  [
+    "Vulnerability Scanning"
+  ],
+  [
+    "Vulnerability Scanners"
+  ],
+  [
+    "Vulnerability scanners that scan a host that returns 200 status codes even in cases of a file not found or other error"
+  ],
+  [
+    "Vulnerability scanning"
+  ],
+  [
+    "User selecting a different installation folder (check for other sub processes of this explorer.exe process)"
+  ],
+  [
+    "Unknown",
+    "UAC bypass method used by other malware"
+  ],
+  [
+    "Legitimate access to other web applications that use the same folder names as Exchange (e.g. owa, ecp) but are not Microsoft Exchange related"
+  ],
+  [
+    "Rarely observed"
+  ],
+  [
+    "Unknown",
+    "Some cases in which the service spawned a werfault.exe process"
+  ],
+  [
+    "Vulnerability scanners"
+  ],
+  [
+    "Vulnerability scanners",
+    "Legitimate access to the URI"
+  ],
+  [
+    "Errors with the initialization or generation of the X25519 elliptic curve keys may generate the same error message"
+  ],
+  [
+    "Legitimate reminders received for a task or a note will also trigger this rule."
+  ],
+  [
+    "Searchprotocolhost.exe likes to query these registry keys. To avoid false postives, it's better to filter out those events before they reach the SIEM"
+  ],
+  [
+    "Some false positives may occur from external trusted servers. Apply additional filters accordingly"
+  ],
+  [
+    "Vulnerability scanners",
+    "Some rare false positives may occur if the password contains the characters \"$(\". Apply addition indicators such as executed commands to remove FP"
+  ],
+  [
+    "To avoid FP, this rule should only be applied on MOVEit servers."
+  ],
+  [
+    "Some legitimate software was also seen using these names. Apply additional filters and use this rule as a hunting basis."
+  ],
+  [
+    "Some additional tuning might be required to tune out legitimate processes that write to this key by default"
+  ],
+  [
+    "Legitimate usage of 3CXDesktopApp"
+  ],
+  [
+    "User doing actual work outside of normal business hours."
+  ],
+  [
+    "Not using a PAW/SAW in the environment"
+  ],
+  [
+    "A legit admin not following proper processes"
+  ],
+  [
+    "An admin doing actual work outside of normal business hours"
+  ],
+  [
+    "Automatic DC computer account password change",
+    "Legitimate DC computer account password change"
+  ],
+  [
+    "Legitimate usage of remote registry management by administrator"
+  ],
+  [
+    "Administrative activity via KVM or ILO board"
+  ],
+  [
+    "Certain scripts or applications may leverage this."
+  ],
+  [
+    "The rules is only looking for \".xll\" loads. So some false positives are expected with legitimate and allowed XLLs"
+  ],
+  [
+    "False positives are expected from ClickOnce manifests hosted on public IPs and domains. Apply additional filters for the accepted IPs in your environement as necessary"
+  ],
+  [
+    "Administration scripts"
+  ],
+  [
+    "Due to the nature of the script block, the matching of the string could sometimes result in a false positive. Use this rule to hunt for potential malicious or suspicious scripts."
+  ],
+  [
+    "Scripts created by developers and admins",
+    "Administrative activity",
+    "The \"\\Git\\usr\\bin\\sh.exe\" process uses the \"--output\" flag to download a specific file in the temp directory with the pattern \"gfw-httpget-xxxxxxxx.txt \""
+  ],
+  [
+    "False positives are expected in environement leveraging ClickOnce deployments. An initial baselining is required before using this rule in production."
+  ],
+  [
+    "Depending on the environement, many legitimate scripts will import modules inline. This rule is targeted for hunting purposes."
+  ],
+  [
+    "During office installations or setup, trusted locations are added, which will trigger this rule."
+  ]
+]

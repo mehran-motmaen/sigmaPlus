@@ -1,0 +1,216 @@
+{
+  "rule": {
+    "@id": "3902",
+    "@owner": "system",
+    "@enable": "f",
+    "@kbid": "3902_1",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "A Trojan Aplication Send Data To Trojan Server",
+          "@weight": "4",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$EXTERNAL_NET,$BAD_IP",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Send Data"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "A Trojan Aplication Send Data To Trojan Server",
+          "@occurrence": "3",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Send Data"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "A Trojan Aplication Send Data To Trojan Server",
+          "@occurrence": "5",
+          "@weight": "20",
+          "@timeout": "7200",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Send Data"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "Trojan",
+        "message": "Trojan Aplication Send Data To Trojan Server",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Server",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Server",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          }
+        ]
+      }
+    }
+  }
+}

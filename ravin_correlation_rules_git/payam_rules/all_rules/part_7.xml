@@ -1,0 +1,134 @@
+<rule id="10012" owner="system" kbid="10012_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Active Directory Forged Ticket" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4769" sensor_type="327" />
+                </event_list>
+            </filter>
+            <filter id="2" name="Active Directory Forged Ticket" occurrence="5" timeout="600" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4769" sensor_type="327" />
+                    <event event_type="Microsoft-Windows-Security-Auditing:4768" sensor_type="327" />
+                </event_list>
+            </filter>
+            <filter id="3" name="Access with admin privilages" occurrence="1" timeout="600" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4672" sensor_type="327" />
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Account</tag>
+                        <tag meaning="effect">Access</tag>
+                        <tag meaning="mechanism">Escalation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" name="Active Directory user account has been created" occurrence="1" timeout="1200" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4720" sensor_type="327" />
+                </event_list>
+            </filter>
+            <filter id="5" name="Active Directory user account has been enabled/changed" occurrence="1" timeout="1200" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4722" sensor_type="327" />
+                    <event event_type="Microsoft-Windows-Security-Auditing:4724" sensor_type="327" />
+                    <event event_type="Microsoft-Windows-Security-Auditing:4738" sensor_type="327" />
+                    <event event_type="Microsoft-Windows-Security-Auditing:4732" sensor_type="327" />
+                    <event event_type="Microsoft-Windows-Security-Auditing:4735" sensor_type="327" />
+                </event_list>
+            </filter>
+            <filter id="6" name="Special privilages assigned to Active Directory user" occurrence="1" timeout="1800" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event event_type="Microsoft-Windows-Security-Auditing:4732" sensor_type="327" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="GainAccess" priority="high">
+                <message>Potential Active Directory Privilege Escalation</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="3" />
+                    <filter id="2" />
+                </group>
+                <group>
+                    <filter id="5" />
+                    <filter id="4" />
+                </group>
+                <filter id="6" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,39 @@
+<rule id="6107" owner="system" kbid="6107_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Botnet Attack Detection" weight="30">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Botnet</tag>
+                        <tag meaning="mechanism_detail">Activity</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="Botnet">
+                <message>Bot clients controlled by a cnc server attack to a victim</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,375 @@
+{
+  "rule": {
+    "@id": "9029",
+    "@kbid": "9029_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "10",
+          "@name": "Attempt to Access Host detected",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Server Attack"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  },
+                  {
+                    "@meaning": "effect",
+                    "#text": "Access"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Server Attack"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  },
+                  {
+                    "@meaning": "effect",
+                    "#text": "System Compromised"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "15",
+          "@occurrence": "3",
+          "@timeout": "120",
+          "@name": "Multiple attempt to Access Host to 3 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Server Attack"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  },
+                  {
+                    "@meaning": "effect",
+                    "#text": "Access"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Server Attack"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  },
+                  {
+                    "@meaning": "effect",
+                    "#text": "System Compromised"
+                  }
+                ]
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "GainAccess",
+        "message": "Server Attack : Attempt to Access Host detected.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Username",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "URL",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "URL",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MacAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MacAddress",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "NATSourceAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATSourceAddress",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "NATTargetAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATTargetAddress",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "DestinationInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DestinationInterface",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "SourceInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "SourceInterface",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "2"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

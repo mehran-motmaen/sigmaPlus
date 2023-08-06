@@ -1,0 +1,1298 @@
+{
+  "rule": {
+    "@id": "9049",
+    "@kbid": "9049_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "1",
+          "@name": "Try to Reconnaissance NAT detected",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "3",
+          "@occurrence": "10",
+          "@timeout": "600",
+          "@name": "Multiple try to Reconnaissance NAT detected ( 10  times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@weight": "3",
+          "@occurrence": "60",
+          "@timeout": "3600",
+          "@name": "Multiple try to Reconnaissance NAT detected ( 60 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@weight": "3",
+          "@occurrence": "120",
+          "@timeout": "7200",
+          "@name": "Multiple try to Reconnaissance NAT detected ( 120 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@weight": "3",
+          "@occurrence": "240",
+          "@timeout": "14400",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 240 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "6",
+          "@weight": "3",
+          "@occurrence": "500",
+          "@timeout": "28800",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 500 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "7",
+          "@weight": "3",
+          "@occurrence": "1000",
+          "@timeout": "50000",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 1000 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "8",
+          "@weight": "3",
+          "@occurrence": "2000",
+          "@timeout": "100000",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 2000 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "9",
+          "@weight": "3",
+          "@occurrence": "5000",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 5000 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "10",
+          "@weight": "3",
+          "@occurrence": "10000",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 10000 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "11",
+          "@weight": "3",
+          "@occurrence": "20000",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT detected ( Aggregator : 20000 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "12",
+          "@weight": "3",
+          "@occurrence": "2000000",
+          "@timeout": "2",
+          "@name": "Try to Reconnaissance NAT detected",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "AlertOnTimeout"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "20",
+          "@weight": "5",
+          "@occurrence": "5",
+          "@timeout": "600",
+          "@name": "Multiple try to Reconnaissance NAT to 5 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "21",
+          "@weight": "5",
+          "@occurrence": "30",
+          "@timeout": "3600",
+          "@name": "Multiple try to Reconnaissance NAT to 30 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "22",
+          "@weight": "5",
+          "@occurrence": "60",
+          "@timeout": "7200",
+          "@name": "Multiple try to Reconnaissance NAT to 60 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "23",
+          "@weight": "5",
+          "@occurrence": "120",
+          "@timeout": "14400",
+          "@name": "Multiple try to Reconnaissance NAT to 120 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "24",
+          "@weight": "5",
+          "@occurrence": "250",
+          "@timeout": "28800",
+          "@name": "Multiple try to Reconnaissance NAT to 250 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "25",
+          "@weight": "5",
+          "@occurrence": "500",
+          "@timeout": "50000",
+          "@name": "Multiple try to Reconnaissance NAT to 500 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "26",
+          "@weight": "5",
+          "@occurrence": "1000",
+          "@timeout": "100000",
+          "@name": "Multiple try to Reconnaissance NAT to 1000 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "27",
+          "@weight": "5",
+          "@occurrence": "2500",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT to 2500 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "28",
+          "@weight": "5",
+          "@occurrence": "5000",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT to 5000 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "29",
+          "@weight": "5",
+          "@occurrence": "10000",
+          "@timeout": "200000",
+          "@name": "Multiple try to Reconnaissance NAT to 10000 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "30",
+          "@weight": "5",
+          "@occurrence": "2000000",
+          "@timeout": "2",
+          "@name": "Multiple try to Reconnaissance NAT to 2000000 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "AlertOnTimeout"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Directory Traversal"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "NAT"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "Reconnaissance",
+        "message": "Server Attack : Attempt to Reconnaissance NAT detected. [rule id:9049]",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "20",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "21",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "22",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "23",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "24",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "25",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "26",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "27",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "28",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "29",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Recon-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": [
+              {
+                "@id": "2"
+              },
+              {
+                "@id": "20"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "3"
+              },
+              {
+                "@id": "21"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "4"
+              },
+              {
+                "@id": "22"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "5"
+              },
+              {
+                "@id": "23"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "6"
+              },
+              {
+                "@id": "24"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "7"
+              },
+              {
+                "@id": "25"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "8"
+              },
+              {
+                "@id": "26"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "9"
+              },
+              {
+                "@id": "27"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "10"
+              },
+              {
+                "@id": "28"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "11"
+              },
+              {
+                "@id": "29"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

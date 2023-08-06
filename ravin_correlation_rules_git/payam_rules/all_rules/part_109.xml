@@ -1,0 +1,39 @@
+<rule kbid="7008_1" id="7008" owner="system" ver="1" enable="t" file_name="">
+        <filter_list>
+            <filter id="1" name="Fortigate, Recieved Byte Exceeded the Threshold" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="360" event_type="20" />
+                    <event sensor_type="360" event_type="13" />
+                    <event sensor_type="360" event_type="14" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="rcvdbyte" operator="GT">230000000000</additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="WasteOfResource">
+                <message>Recieved Traffic Volume Exceeded the Threshold</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

@@ -1,0 +1,75 @@
+{
+  "rule": {
+    "@kbid": "7005_1",
+    "@id": "7005",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Fortigate, totalsession threshold exceeded",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "360",
+            "@event_type": "40704"
+          }
+        },
+        "additional_data_list": {
+          "additional_data": [
+            {
+              "@meaning": "devname",
+              "@operator": "EQ",
+              "#text": "fortigate-devname"
+            },
+            {
+              "@meaning": "totalsession",
+              "@operator": "GT",
+              "#text": "500000"
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Fortigate device, totalsession threshold exceeded",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

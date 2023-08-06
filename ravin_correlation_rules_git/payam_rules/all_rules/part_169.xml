@@ -1,0 +1,548 @@
+<rule id="9078" kbid="9078_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" weight="1" name="Try to Degradation Switch/Router detected">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" weight="3" occurrence="10" timeout="600" name="Multiple try to Degradation Switch/Router detected ( 10  times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" weight="3" occurrence="60" timeout="3600" name="Multiple try to Degradation Switch/Router detected ( 60 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" weight="3" occurrence="120" timeout="7200" name="Multiple try to Degradation Switch/Router detected ( 120 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" weight="3" occurrence="240" timeout="14400" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 240 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="6" weight="3" occurrence="500" timeout="28800" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 500 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="7" weight="3" occurrence="1000" timeout="50000" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 1000 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="8" weight="3" occurrence="2000" timeout="100000" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 2000 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="9" weight="3" occurrence="5000" timeout="200000" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 5000 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="10" weight="3" occurrence="10000" timeout="200000" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 10000 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="11" weight="3" occurrence="20000" timeout="200000" name="Multiple try to Degradation Switch/Router detected ( Aggregator : 20000 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="12" weight="3" occurrence="2000000" timeout="2" name="Try to Degradation Switch/Router detected">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>AlertOnTimeout</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="20" weight="5" occurrence="5" timeout="600" name="Multiple try to Degradation Switch/Router to 5 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="21" weight="5" occurrence="30" timeout="3600" name="Multiple try to Degradation Switch/Router to 30 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="22" weight="5" occurrence="60" timeout="7200" name="Multiple try to Degradation Switch/Router to 60 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="23" weight="5" occurrence="120" timeout="14400" name="Multiple try to Degradation Switch/Router to 120 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="24" weight="5" occurrence="250" timeout="28800" name="Multiple try to Degradation Switch/Router to 250 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="25" weight="5" occurrence="500" timeout="50000" name="Multiple try to Degradation Switch/Router to 500 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="26" weight="5" occurrence="1000" timeout="100000" name="Multiple try to Degradation Switch/Router to 1000 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="27" weight="5" occurrence="2500" timeout="200000" name="Multiple try to Degradation Switch/Router to 2500 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="28" weight="5" occurrence="5000" timeout="200000" name="Multiple try to Degradation Switch/Router to 5000 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="29" weight="5" occurrence="10000" timeout="200000" name="Multiple try to Degradation Switch/Router to 10000 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="30" weight="5" occurrence="2000000" timeout="2" name="Multiple try to Degradation Switch/Router to 2000000 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>AlertOnTimeout</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="mechanism">Application Exploit</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="DOS">
+                <message>Server Attack : Attempt to Degradation Switch/Router detected. [rule id:9078]</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="20" reference_type="target" />
+                    <ip reference_id="21" reference_type="target" />
+                    <ip reference_id="22" reference_type="target" />
+                    <ip reference_id="23" reference_type="target" />
+                    <ip reference_id="24" reference_type="target" />
+                    <ip reference_id="25" reference_type="target" />
+                    <ip reference_id="26" reference_type="target" />
+                    <ip reference_id="27" reference_type="target" />
+                    <ip reference_id="28" reference_type="target" />
+                    <ip reference_id="29" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Host-Accessed">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Degrade-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="20" />
+                </group>
+                <group>
+                    <filter id="3" />
+                    <filter id="21" />
+                </group>
+                <group>
+                    <filter id="4" />
+                    <filter id="22" />
+                </group>
+                <group>
+                    <filter id="5" />
+                    <filter id="23" />
+                </group>
+                <group>
+                    <filter id="6" />
+                    <filter id="24" />
+                </group>
+                <group>
+                    <filter id="7" />
+                    <filter id="25" />
+                </group>
+                <group>
+                    <filter id="8" />
+                    <filter id="26" />
+                </group>
+                <group>
+                    <filter id="9" />
+                    <filter id="27" />
+                </group>
+                <group>
+                    <filter id="10" />
+                    <filter id="28" />
+                </group>
+                <group>
+                    <filter id="11" />
+                    <filter id="29" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

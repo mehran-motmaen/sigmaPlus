@@ -1,0 +1,74 @@
+<rule id="10010" owner="system" kbid="10010_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Privilege Escalation Attempt" weight="3">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="effect">Access</tag>
+                        <tag meaning="mechanism">Escalation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Privilege Escalation Attempt" occurrence="5" timeout="600" weight="1">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="effect">Access</tag>
+                        <tag meaning="mechanism">Escalation</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="GainAccess" priority="high">
+                <message>Privilege Escalation Attempt</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="1" />
+                <additional_data meaning="ComputerName" reference_id="1" />
+                <additional_data meaning="Application" reference_id="1" />
+                <additional_data meaning="DomainName" reference_id="1" />
+                <additional_data meaning="Service" reference_id="1" />
+                <additional_data meaning="TargetAccount" reference_id="1" />
+                <additional_data meaning="GroupName" reference_id="1" />
+                <additional_data meaning="PolicyName" reference_id="1" />
+            </alert>
+            <prerequisite>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Host-Accessed">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

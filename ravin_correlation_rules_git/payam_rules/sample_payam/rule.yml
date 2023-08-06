@@ -1,0 +1,153 @@
+'@enable': t
+'@file_name': ''
+'@id': '10002'
+'@kbid': '10002_1'
+'@owner': system
+'@ver': '1'
+action:
+  alert:
+    '@category': AbnormalActivity
+    '@priority': high
+    message: Multiple Failed Configuration Change Attempt on Router
+    source:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': source
+    target:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': target
+  consequence:
+    predicate:
+    - '@type': Access-Host
+      param:
+      - '@reference_type': source.ip
+      - '@reference_type': target.ip
+    - '@type': Access-Host
+      param:
+        '@reference_type': target.ip
+  prerequisite:
+    predicate:
+    - '@type': Recon-Host
+      param:
+      - '@reference_type': source.ip
+      - '@reference_type': target.ip
+    - '@type': Recon-Service
+      param:
+      - '@reference_type': source.ip
+      - '@reference_type': target.ip
+filter_list:
+  filter:
+  - '@id': '1'
+    '@name': Admin configuration failed attempt on Router
+    '@weight': '1'
+    event_list:
+      event:
+        '@class_type': ''
+        '@sensor_type': ANY
+        tag:
+        - '#text': Switch/Router
+          '@meaning': resource
+        - '#text': Configuration Activity
+          '@meaning': event_type
+        - '#text': Failed
+          '@meaning': result
+    source:
+      ip:
+        '@location': ANY
+      port: 0-65535
+    target:
+      ip:
+        '@location': ANY
+      port: 0-65535
+  - '@id': '2'
+    '@name': Multiple Admin configuration failed attempt on Router (5 attempts)
+    '@occurrence': '4'
+    '@timeout': '900'
+    '@weight': '5'
+    event_list:
+      event:
+        '@class_type': ''
+        '@sensor_type': ANY
+        tag:
+        - '#text': Switch/Router
+          '@meaning': resource
+        - '#text': Configuration Activity
+          '@meaning': event_type
+        - '#text': Failed
+          '@meaning': result
+    flag_list:
+      flag: sticky
+    source:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': source
+      port: 0-65535
+    target:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': target
+      port: 0-65535
+  - '@id': '3'
+    '@name': Multiple Admin configuration failed attempt on Router (15 attempts)
+    '@occurrence': '10'
+    '@timeout': '900'
+    '@weight': '10'
+    event_list:
+      event:
+        '@class_type': ''
+        '@sensor_type': ANY
+        tag:
+        - '#text': Switch/Router
+          '@meaning': resource
+        - '#text': Configuration Activity
+          '@meaning': event_type
+        - '#text': Failed
+          '@meaning': result
+    flag_list:
+      flag: sticky
+    source:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': source
+      port: 0-65535
+    target:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': target
+      port: 0-65535
+  - '@id': '4'
+    '@name': Multiple Admin configuration failed attempt on Router (115 attempts)
+    '@occurrence': '100'
+    '@timeout': '1800'
+    '@weight': '10'
+    event_list:
+      event:
+        '@class_type': ''
+        '@sensor_type': ANY
+        tag:
+        - '#text': Switch/Router
+          '@meaning': resource
+        - '#text': Configuration Activity
+          '@meaning': event_type
+        - '#text': Failed
+          '@meaning': result
+    flag_list:
+      flag: sticky
+    source:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': source
+      port: 0-65535
+    target:
+      ip:
+        '@reference_id': '1'
+        '@reference_type': target
+      port: 0-65535
+regulation:
+  sequence:
+    filter:
+    - '@id': '1'
+    - '@id': '2'
+    - '@id': '3'
+    - '@id': '4'

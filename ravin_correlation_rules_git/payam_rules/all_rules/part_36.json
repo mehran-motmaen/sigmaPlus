@@ -1,0 +1,337 @@
+{
+  "rule": {
+    "@id": "14000",
+    "@owner": "system",
+    "@kbid": "14000_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Attempt to attack detected",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "2",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                }
+              },
+              {
+                "@sensor_type": "2",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Suspicious activity on compromised host",
+          "@occurrence": "1",
+          "@weight": "15",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Service Availability"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Information Status"
+                  },
+                  {
+                    "@meaning": "mechanism_detail",
+                    "#text": "Down"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Data Access"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Standard Activity"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Data Exchange"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Standard Activity"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Process"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Standard Activity"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Authentication"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Standard Activity"
+                  },
+                  {
+                    "@meaning": "mechanism_detail",
+                    "#text": "Login"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Successful"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Administration"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Configuration Activity"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Data Exchange"
+                  },
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Standard Activity"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Suspicious activity on compromised host",
+          "@occurrence": "1",
+          "@weight": "15",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "event_type",
+                "#text": "Suspicious Activity"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "GainAccess",
+        "message": "Possible successful attack was detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "1"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "@timeout": "43200",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Compromised-Host",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Host-Accessed",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": {
+          "filter": [
+            {
+              "@id": "2"
+            },
+            {
+              "@id": "3"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

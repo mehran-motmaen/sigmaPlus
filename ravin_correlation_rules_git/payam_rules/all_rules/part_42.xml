@@ -1,0 +1,163 @@
+<rule id="2000" owner="system" enable="t" kbid="2000_1" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="A security event occured" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="2" />
+                </event_list>
+            </filter>
+            <filter id="2" name="new signature in source" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:6" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="3" name="alert number in a connection is abnormal" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:7" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="4" name="number of specific event in source host is abnormal" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:5" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="5" name="number of specific event in destination host is abnormal" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:9" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="6" name="number of targets is abnormal" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:4" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="7" name="new signature in target" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:8" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+            <filter id="8" name="number of sources is abnormal" occurrence="1" weight="20" timeout="180">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event event_type="101:3" sensor_type="2" class_type="" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="AbnormalActivity">
+                <message>Abnormal Activity Detected</message>
+                <source>
+                    <ip reference_id="2" reference_type="source" />
+                    <ip reference_id="3" reference_type="source" />
+                    <ip reference_id="4" reference_type="source" />
+                    <ip reference_id="5" reference_type="source" />
+                    <ip reference_id="6" reference_type="source" />
+                    <ip reference_id="7" reference_type="source" />
+                    <ip reference_id="8" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="2" reference_type="target" />
+                    <ip reference_id="3" reference_type="target" />
+                    <ip reference_id="4" reference_type="target" />
+                    <ip reference_id="5" reference_type="target" />
+                    <ip reference_id="6" reference_type="target" />
+                    <ip reference_id="7" reference_type="target" />
+                    <ip reference_id="8" reference_type="target" />
+                </target>
+                <additional_data meaning="" reference_id="2" />
+                <additional_data meaning="" reference_id="3" />
+                <additional_data meaning="" reference_id="4" />
+                <additional_data meaning="" reference_id="5" />
+                <additional_data meaning="" reference_id="6" />
+                <additional_data meaning="" reference_id="7" />
+                <additional_data meaning="" reference_id="8" />
+            </alert>
+            <prerequisite>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="3" />
+                    <filter id="4" />
+                    <filter id="5" />
+                    <filter id="6" />
+                    <filter id="7" />
+                    <filter id="8" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

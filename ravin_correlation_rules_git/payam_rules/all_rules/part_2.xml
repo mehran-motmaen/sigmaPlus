@@ -1,0 +1,101 @@
+<rule id="10003" owner="system" kbid="10003_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Administrative configuration/activity on Router" weight="3">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="event_type">Configuration Activity</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Administrative configuration/activity on Router" occurrence="1" weight="3" timeout="120">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="event_type">Configuration Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Remote Execution</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="Administrative configuration/activity on Router" occurrence="3" weight="3" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="resource">Switch/Router</tag>
+                        <tag meaning="event_type">Configuration Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Remote Execution</tag>
+                        <tag meaning="resource">Switch/Router</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="info">
+                <message>Configuration change on Router</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Access-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+            </sequence>
+        </regulation>
+    </rule>
+    

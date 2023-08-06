@@ -1,0 +1,38 @@
+<rule id="6102" owner="system" kbid="6102_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Amplificated DoS Attack Detection" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3">
+                        <tag meaning="mechanism">Amplification</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="WasteOfResource">
+                <message>Much big responses on small requests detected (possible amplificated DoS attack)</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

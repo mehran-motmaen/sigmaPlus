@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="knowledge_info.xsd"/>
+  <xs:include schemaLocation="common_types.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      Author: Mohammad Razavi [mrazavi64@gmail.com]
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:annotation>
+    <xs:documentation>
+      To verify an xml file:
+      xmllint -noout -schema SCHEMA-FILE.xsd XML-FILE.xml
+
+      If you changed the xsd file, verify the xsd file itself with:
+      xmllint -noout -schema http://www.w3.org/2001/XMLSchema.xsd SCHEMA-FILE.xsd
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="knowledge">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="knowledge_info" type="KnowledgeInfoType"/>
+        <xs:element ref="rule" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="rule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="filter_list"/>
+        <xs:element ref="action"/>
+        <xs:element ref="regulation"/>
+      </xs:sequence>
+      <xs:attribute name="kbid" type="xs:string" use="required"/>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="ver" type="xs:string" use="required"/>
+      <xs:attribute name="file_name" type="xs:string"/>
+      <xs:attribute name="enable" type="TFBooleanType"/>
+      <xs:attribute name="owner" type="OwnerType" default="user"/>
+      <xs:attribute name="updated_by" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="filter_list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="filter" type="FilterType" maxOccurs="65535"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="FilterType">
+    <xs:sequence>
+      <xs:element name="source" type="FilterSourceTargetType"/>
+      <xs:element name="target" type="FilterSourceTargetType"/>
+      <xs:element ref="flag_list" minOccurs="0"/>
+      <xs:element ref="event_list"/>
+      <xs:element ref="additional_data_list" minOccurs="0"/>
+      <xs:element ref="diversity" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="weight" type="xs:nonNegativeInteger" default="0"/>
+    <xs:attribute name="occurrence" type="xs:positiveInteger" default="1"/>
+    <xs:attribute name="timeout" type="xs:positiveInteger" default="1"/>
+    <xs:attribute name="name" type="xs:string" default=""/>
+  </xs:complexType>
+
+  <xs:simpleType name="IPPortReferenceTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="source"/>
+      <xs:enumeration value="target"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="FilterSourceTargetType">
+    <xs:sequence>
+      <xs:element name="ip">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="location" type="xs:string" default=""/>
+              <xs:attribute name="reference_id" type="xs:string"/>
+              <xs:attribute name="reference_type" type="IPPortReferenceTypeType"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="port">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="reference_id" type="xs:string"/>
+              <xs:attribute name="reference_type" type="IPPortReferenceTypeType"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="flag_list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="flag" minOccurs="0" maxOccurs="unbounded">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="sticky"/>
+              <xs:enumeration value="unsticky"/>
+              <xs:enumeration value="alertontimeout"/>
+              <xs:enumeration value="Sticky"/>
+              <xs:enumeration value="Unsticky"/>
+              <xs:enumeration value="AlertOnTimeout"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="event_list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="tag" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="sensor_type" type="xs:string" default="ANY"/>
+            <xs:attribute name="class_type" type="xs:string"/>
+            <xs:attribute name="event_type" type="xs:string" default="ANY"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="reference_id" type="xs:positiveInteger"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="tag">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="meaning" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="additional_data_list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="additional_data" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="meaning" type="xs:string" use="required"/>
+                <xs:attribute name="operator" default="EQ">
+		  <xs:simpleType>
+		    <xs:restriction base="xs:string">
+		      <xs:enumeration value="EXISTS"/>
+		      <xs:enumeration value="EQ"/>
+		      <xs:enumeration value="NEQ"/>
+		      <xs:enumeration value="GT"/>
+		      <xs:enumeration value="LT"/>
+		      <xs:enumeration value="EGT"/>
+		      <xs:enumeration value="ELT"/>
+		      <xs:enumeration value="CONT"/>
+		      <xs:enumeration value="STRT"/>
+		      <xs:enumeration value="END"/>
+		      <xs:enumeration value="REGX"/>
+		    </xs:restriction>
+		  </xs:simpleType>
+		</xs:attribute>
+                <xs:attribute name="reference_id" type="xs:integer" default="-1"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="diversity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="reference_type" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="source"/>
+                  <xs:enumeration value="source.ip"/>
+                  <xs:enumeration value="source.port"/>
+                  <xs:enumeration value="target"/>
+                  <xs:enumeration value="target.ip"/>
+                  <xs:enumeration value="target.port"/>
+                  <xs:enumeration value="event"/>
+                  <xs:enumeration value="event.sensor"/>
+                  <xs:enumeration value="event.class"/>
+                  <xs:enumeration value="event.event"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="alert"/>
+        <xs:element name="prerequisite" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="predicate" type="PrerequisitePredicateType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="consequence" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="predicate" type="ConsequencePredicateType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="alert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="message" type="xs:string"/>
+        <xs:element name="source" type="ActionSourceTargetType"/>
+        <xs:element name="target" type="ActionSourceTargetType"/>
+        <xs:element name="additional_data" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="meaning" type="xs:string" use="required"/>
+                <xs:attribute name="reference_id" type="xs:integer" default="-1"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="tag" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="priority" default="info">
+        <xs:simpleType>
+          <xs:union memberTypes="SeverityType">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="internal"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:union>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="category" type="xs:string" default="OtherEvents"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ActionSourceTargetType">
+    <xs:sequence>
+      <xs:element name="ip" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="reference_id" type="xs:string"/>
+          <xs:attribute name="reference_type" type="IPPortReferenceTypeType"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="reference_id" type="xs:string"/>
+          <xs:attribute name="reference_type" type="IPPortReferenceTypeType"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PrerequisitePredicateType">
+    <xs:sequence>
+      <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="reference_type" use="required">
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="source"/>
+                    <xs:enumeration value="source.ip"/>
+                    <xs:enumeration value="source.port"/>
+                    <xs:enumeration value="target"/>
+                    <xs:enumeration value="target.ip"/>
+                    <xs:enumeration value="target.port"/>
+                    <xs:enumeration value="event"/>
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="static:.*"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="role">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="attacker" />
+                <xs:enumeration value="victim" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ConsequencePredicateType">
+    <xs:complexContent>
+      <xs:extension base="PrerequisitePredicateType">
+        <xs:attribute name="timeout" type="xs:nonNegativeInteger" default="60"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="regulation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="sequence">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="filter"/>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="filter"/>
+                <xs:element ref="sequence"/>
+                <xs:element ref="group"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="filter">
+    <xs:complexType>
+      <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sequence">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="sequence"/>
+        <xs:element ref="group"/>
+        <xs:element ref="filter"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="sequence"/>
+        <xs:element ref="group"/>
+        <xs:element ref="filter"/>
+      </xs:choice>
+      <xs:attribute name="type" default="OR">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OR" />
+            <xs:enumeration value="AND" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

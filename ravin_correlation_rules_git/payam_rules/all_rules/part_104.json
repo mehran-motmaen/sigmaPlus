@@ -1,0 +1,74 @@
+{
+  "rule": {
+    "@kbid": "7003_1",
+    "@id": "7003",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "f",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "SRX, High traffic volume detected based on client bytes",
+        "@weight": "5",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "466",
+              "@event_type": "RT_FLOW_SESSION_CLOSE_LS"
+            },
+            {
+              "@sensor_type": "466",
+              "@event_type": "RT_FLOW_SESSION_CLOSE"
+            }
+          ]
+        },
+        "additional_data_list": {
+          "additional_data": {
+            "@meaning": "bytes-from-client",
+            "@operator": "GT",
+            "#text": "10000000"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "SRX, High traffic volume detected based on client bytes",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

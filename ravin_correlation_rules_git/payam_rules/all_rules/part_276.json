@@ -1,0 +1,85 @@
+{
+  "rule": {
+    "@id": "123321",
+    "@owner": "system",
+    "@kbid": "123321_1",
+    "@enable": "f",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Test",
+        "@weight": "10",
+        "source": {
+          "ip": "!cl_4.ip",
+          "port": "!cl_4.port"
+        },
+        "target": {
+          "ip": "cl_4.ip",
+          "port": "cl_4.port"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "ANY"
+          }
+        },
+        "additional_data_list": {
+          "group": [
+            {
+              "additional_data": {
+                "@meaning": "CommandLine",
+                "@operator": "REGX",
+                "#text": ".*"
+              }
+            },
+            {
+              "@not": "false",
+              "additional_data": {
+                "@meaning": "ComputerName",
+                "@operator": "REGX",
+                "#text": ".*"
+              }
+            },
+            {
+              "@not": "false",
+              "additional_data": {
+                "@meaning": "ComputerName",
+                "@operator": "IN",
+                "#text": "!cl_3.computer_name"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Testtttt",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

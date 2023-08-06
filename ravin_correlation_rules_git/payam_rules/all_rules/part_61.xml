@@ -1,0 +1,183 @@
+<rule id="3909" owner="system" kbid="3909_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="One Trojan Host try to connect to One External server" weight="1">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip>$EXTERNAL_NET,$BAD_IP</ip>
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Trojan</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Virus</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Spyware</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Multiple Malicious Hosts try to connect to External servers" occurrence="3" weight="20" timeout="120">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Trojan</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Virus</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Spyware</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="3" name="Multiple Malicious Hosts try to connect to External servers" occurrence="5" weight="10" timeout="360">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Trojan</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Virus</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Spyware</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="4" name="Multiple Malicious Hosts try to connect to External servers" occurrence="10" weight="5" timeout="1800">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Trojan</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Worm</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Botnet</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Virus</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Spyware</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="Trojan">
+                <message>Multiple Malicious Hosts try to connect to External servers</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="2" reference_type="target" />
+                    <ip reference_id="3" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Trojan-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Compromise-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Compromise-Host" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Trojan-Host" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Trojan-Server" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host" timeout="3600">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Hopping" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+                <filter id="4" />
+            </sequence>
+        </regulation>
+    </rule>
+    

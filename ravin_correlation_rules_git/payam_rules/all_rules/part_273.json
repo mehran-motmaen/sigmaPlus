@@ -1,0 +1,134 @@
+{
+  "rule": {
+    "@kbid": "9221_1",
+    "@id": "9221",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "ANY, Server Attack,SSL,Access, 1 in 1s",
+          "@weight": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "SSL"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "ANY, Server Attack,SSL,Access 3 in 120s, different target ip",
+          "@weight": "15",
+          "@occurrence": "3",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "SSL"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "GainAccess",
+        "message": "Client Attack: Attempt to Access Data through SSL Detected.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

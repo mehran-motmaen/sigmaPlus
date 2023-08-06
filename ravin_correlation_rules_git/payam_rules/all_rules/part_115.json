@@ -1,0 +1,672 @@
+{
+  "rule": {
+    "@id": "9007",
+    "@kbid": "9007_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "1",
+          "@name": "Attempt to Reconnaissance DBMS detected",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "3",
+          "@occurrence": "3",
+          "@timeout": "120",
+          "@name": "Multiple attempt to Reconnaissance DBMS detected ( 3  times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@weight": "3",
+          "@occurrence": "5",
+          "@timeout": "180",
+          "@name": "Multiple attempt to Reconnaissance DBMS detected ( 5 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@weight": "3",
+          "@occurrence": "10",
+          "@timeout": "360",
+          "@name": "Multiple attempt to Reconnaissance DBMS detected ( 10 times ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@weight": "3",
+          "@occurrence": "20",
+          "@timeout": "720",
+          "@name": "Multiple attempt to Reconnaissance DBMS detected ( Aggregator : 20 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "6",
+          "@weight": "3",
+          "@occurrence": "100",
+          "@timeout": "1800",
+          "@name": "Multiple attempt to Reconnaissance DBMS detected ( Aggregator : 100 ) ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "20",
+          "@weight": "5",
+          "@occurrence": "5",
+          "@timeout": "120",
+          "@name": "Multiple attempt to Reconnaissance DBMS to 5 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "21",
+          "@weight": "5",
+          "@occurrence": "10",
+          "@timeout": "180",
+          "@name": "Multiple attempt to Reconnaissance DBMS to 10 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "22",
+          "@weight": "5",
+          "@occurrence": "20",
+          "@timeout": "360",
+          "@name": "Multiple attempt to Reconnaissance DBMS to 20 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "23",
+          "@weight": "5",
+          "@occurrence": "50",
+          "@timeout": "720",
+          "@name": "Multiple attempt to Reconnaissance DBMS to 50 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "24",
+          "@weight": "5",
+          "@occurrence": "100",
+          "@timeout": "1800",
+          "@name": "Multiple attempt to Reconnaissance DBMS to 100 hosts detected  ",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Reconnaissance"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "low",
+        "@category": "Reconnaissance",
+        "message": "Server Attack : Attempt to Reconnaissance DBMS detected.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "20",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "21",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "22",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "23",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "24",
+              "@reference_type": "target"
+            }
+          ]
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Username",
+            "@reference_id": "20"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "20"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "20"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "20"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": [
+              {
+                "@id": "2"
+              },
+              {
+                "@id": "20"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "3"
+              },
+              {
+                "@id": "21"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "4"
+              },
+              {
+                "@id": "22"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "5"
+              },
+              {
+                "@id": "23"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "6"
+              },
+              {
+                "@id": "24"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

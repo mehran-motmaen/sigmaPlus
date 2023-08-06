@@ -1,0 +1,131 @@
+{
+  "rule": {
+    "@id": "9220",
+    "@kbid": "9220_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "10",
+          "@name": "Attempt to Access Anti Malware detected",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Anti Malware"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "15",
+          "@occurrence": "3",
+          "@timeout": "120",
+          "@name": "Multiple attempt to Access Anti Malware to 3 hosts detected",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Anti Malware"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "GainAccess",
+        "message": "Server Attack : Attempt to Access Anti Malware detected.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

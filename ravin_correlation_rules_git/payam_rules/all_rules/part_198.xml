@@ -1,0 +1,190 @@
+<rule id="9110" kbid="9110_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" weight="1" name="failed login attempt on DNS server">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Authentication</tag>
+                        <tag meaning="mechanism_detail">Login</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" weight="10" occurrence="1" timeout="180" name="Multiple login failed attempt on DNS server">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" weight="10" occurrence="5" timeout="180" name="Multiple login failed attempt on DNS server">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Authentication</tag>
+                        <tag meaning="mechanism_detail">Login</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" weight="10" occurrence="20" timeout="3600" name="Multiple login failed attempt on DNS server">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Authentication</tag>
+                        <tag meaning="mechanism_detail">Login</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" weight="5" occurrence="50" timeout="3600" name="Multiple login failed attempt on DNS server">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="mechanism">Guess Password</tag>
+                        <tag meaning="resource">DNS</tag>
+                        <tag meaning="result">Failed</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="AttemptUser">
+                <message>Attempt To Brute Force Attack on (DNS Server) Detected</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="1" />
+                <additional_data meaning="Username" reference_id="3" />
+                <additional_data meaning="ComputerName" reference_id="1" />
+                <additional_data meaning="ComputerName" reference_id="3" />
+                <additional_data meaning="Application" reference_id="1" />
+                <additional_data meaning="Application" reference_id="3" />
+                <additional_data meaning="Filename" reference_id="1" />
+                <additional_data meaning="Filename" reference_id="3" />
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="3" />
+                <additional_data meaning="DomainName" reference_id="1" />
+                <additional_data meaning="DomainName" reference_id="3" />
+                <additional_data meaning="URL" reference_id="1" />
+                <additional_data meaning="URL" reference_id="3" />
+                <additional_data meaning="Protocol" reference_id="1" />
+                <additional_data meaning="Protocol" reference_id="3" />
+                <additional_data meaning="Service" reference_id="1" />
+                <additional_data meaning="Service" reference_id="3" />
+                <additional_data meaning="TargetAccount" reference_id="1" />
+                <additional_data meaning="TargetAccount" reference_id="3" />
+                <additional_data meaning="GroupName" reference_id="1" />
+                <additional_data meaning="GroupName" reference_id="3" />
+                <additional_data meaning="MacAddress" reference_id="1" />
+                <additional_data meaning="MacAddress" reference_id="3" />
+                <additional_data meaning="NATSourceAddress" reference_id="1" />
+                <additional_data meaning="NATSourceAddress" reference_id="3" />
+                <additional_data meaning="NATTargetAddress" reference_id="1" />
+                <additional_data meaning="NATTargetAddress" reference_id="3" />
+                <additional_data meaning="DestinationInterface" reference_id="1" />
+                <additional_data meaning="DestinationInterface" reference_id="3" />
+                <additional_data meaning="SourceInterface" reference_id="1" />
+                <additional_data meaning="SourceInterface" reference_id="3" />
+                <additional_data meaning="PolicyName" reference_id="1" />
+                <additional_data meaning="PolicyName" reference_id="3" />
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Access-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="3" />
+                </group>
+                <group>
+                    <filter id="4" />
+                    <filter id="5" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

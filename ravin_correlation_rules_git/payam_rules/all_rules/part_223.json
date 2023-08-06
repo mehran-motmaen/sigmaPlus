@@ -1,0 +1,514 @@
+{
+  "rule": {
+    "@id": "9135",
+    "@kbid": "9135_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "1",
+          "@name": "failed login attempt on Application server",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Guess Password"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Application"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Failed"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Authentication"
+                  },
+                  {
+                    "@meaning": "mechanism_detail",
+                    "#text": "Login"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Application"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Failed"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "1",
+          "@occurrence": "5",
+          "@timeout": "120",
+          "@name": "Multiple login failed attempt on Application server",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Guess Password"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Application"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@weight": "1",
+          "@occurrence": "5",
+          "@timeout": "120",
+          "@name": "Multiple login failed attempt on Application server",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Authentication"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Login"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Application"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@weight": "1",
+          "@occurrence": "1000",
+          "@timeout": "500",
+          "@name": "Multiple login failed attempt on Application server",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Authentication"
+                },
+                {
+                  "@meaning": "mechanism_detail",
+                  "#text": "Login"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Application"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@weight": "20",
+          "@occurrence": "1",
+          "@timeout": "500",
+          "@name": "Succeed Login Detected on Application server",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Authentication"
+                  },
+                  {
+                    "@meaning": "mechanism_detail",
+                    "#text": "Login"
+                  },
+                  {
+                    "@meaning": "effect",
+                    "#text": "Access"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Successful"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "ANY",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Guess Password"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Application"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Successful"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "SuccessUser",
+        "message": "Successful Brute Force Attack on (Application Server) Detected, Succeed Login after multiple\n                    login failed",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Username",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "URL",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "URL",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "MacAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MacAddress",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "NATSourceAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATSourceAddress",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "NATTargetAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATTargetAddress",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "DestinationInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DestinationInterface",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "SourceInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "SourceInterface",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "3"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": [
+              {
+                "@id": "2"
+              },
+              {
+                "@id": "3"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "4"
+              },
+              {
+                "@id": "5"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

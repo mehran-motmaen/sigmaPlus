@@ -1,0 +1,134 @@
+{
+  "rule": {
+    "@kbid": "9219_1",
+    "@id": "9219",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "ANY, Client Attack,Application,Degradation, 1 in 1s",
+          "@weight": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Application"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "ANY, Client Attack,Application,Degradation 3 in 120s, different target ip",
+          "@weight": "15",
+          "@occurrence": "3",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Client Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Application"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "AvailabilityViolation",
+        "message": "Client Attack: Attempt to Degrade Application Detected.",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

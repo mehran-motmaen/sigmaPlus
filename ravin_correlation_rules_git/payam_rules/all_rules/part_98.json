@@ -1,0 +1,77 @@
+{
+  "rule": {
+    "@id": "6127",
+    "@owner": "system",
+    "@kbid": "6127_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Too Many Client Error Detection",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:57"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:60"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1:57"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1:60"
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Too many client error detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

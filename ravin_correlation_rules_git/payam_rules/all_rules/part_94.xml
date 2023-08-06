@@ -1,0 +1,39 @@
+<rule id="6123" owner="system" kbid="6123_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Spammer Botnet Detection" weight="20">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3" event_type="1025:94" />
+                    <event sensor_type="3" event_type="1025:95" />
+                    <event sensor_type="3" event_type="1:94" />
+                    <event sensor_type="3" event_type="1:95" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="Spam">
+                <message>Bot clients controlled by a cnc server launch spam attack</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

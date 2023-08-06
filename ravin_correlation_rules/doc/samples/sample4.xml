@@ -1,0 +1,80 @@
+<rule id="10007" owner="system" kbid="10007_1" enable="t" ver="1" file_name="">
+    <filter_list>
+        <filter id="1" name="Firewall ACL List Configuration changed Successfuly" weight="3">
+            <source>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </target>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="resource">Firewall</tag>
+                    <tag meaning="resource_detail">ACL</tag>
+                    <tag meaning="result">Successful</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="2" name="Multiple Firewall ACL List Configuration changed Successfuly (5 attempts)"
+                occurrence="4" weight="5" timeout="900">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="event_type">Configuration Activity</tag>
+                    <tag meaning="resource">Firewall</tag>
+                    <tag meaning="resource_detail">ACL</tag>
+                    <tag meaning="result">Successful</tag>
+                </event>
+            </event_list>
+        </filter>
+    </filter_list>
+    <action>
+        <alert priority="info">
+            <message>Firewall ACL List Configuration Changed Successfuly</message>
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+            </target>
+        </alert>
+        <prerequisite>
+            <predicate type="Recon-Host">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Recon-Service">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+        </prerequisite>
+        <consequence>
+            <predicate type="Access-Host">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Access-Host">
+                <param reference_type="target.ip"/>
+            </predicate>
+        </consequence>
+    </action>
+    <regulation>
+        <sequence>
+            <filter id="1"/>
+            <filter id="2"/>
+        </sequence>
+    </regulation>
+</rule>

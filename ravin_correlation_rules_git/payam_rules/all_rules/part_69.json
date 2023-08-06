@@ -1,0 +1,217 @@
+{
+  "rule": {
+    "@id": "5001",
+    "@owner": "system",
+    "@kbid": "5001_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Configuration change on DBMS",
+          "@weight": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Configuration change on Firewall",
+          "@occurrence": "5",
+          "@weight": "5",
+          "@timeout": "10",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Configuration change on DBMS",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "DBMS"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "SecurityPolicyViolation",
+        "message": "Configuration change on DBMS",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          }
+        ]
+      }
+    }
+  }
+}

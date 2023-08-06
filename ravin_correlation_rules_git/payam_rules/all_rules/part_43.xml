@@ -1,0 +1,147 @@
+<rule id="3001" owner="system" enable="f" kbid="3001_1" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Trojan User Agent launch to DDOS from local network to external" weight="5">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip>$EXTERNAL_NET</ip>
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="event_type">Malware</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Malware</tag>
+                        <tag meaning="mechanism">Distributed Overloading</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Trojan User Agent launch to DDOS from local network to external" occurrence="10" weight="9" timeout="60">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="event_type">Malware</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Malware</tag>
+                        <tag meaning="mechanism">Distributed Overloading</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="3" name="Trojan User Agent launch to DDOS from local network to external" occurrence="160" weight="10" timeout="600">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="event_type">Malware</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Malware</tag>
+                        <tag meaning="mechanism">Distributed Overloading</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+            <filter id="4" name="Trojan User Agent launch to DDOS from local network to external" occurrence="1000" weight="10" timeout="3600">
+                <source>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="event_type">Malware</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Malware</tag>
+                        <tag meaning="mechanism">Distributed Overloading</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="source.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="DDOS">
+                <message>Multiple Internal BotSpot Agents launch DDoS attack</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <ip reference_id="2" reference_type="source" />
+                    <ip reference_id="3" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="2" />
+                <additional_data meaning="MalwareName" reference_id="3" />
+                <additional_data meaning="MalwareName" reference_id="4" />
+            </alert>
+            <prerequisite>
+                <predicate type="Trojan-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="source.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Degrade-Host" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+                <filter id="4" />
+            </sequence>
+        </regulation>
+    </rule>
+    

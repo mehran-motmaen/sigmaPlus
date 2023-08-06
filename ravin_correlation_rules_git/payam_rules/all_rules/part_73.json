@@ -1,0 +1,66 @@
+{
+  "rule": {
+    "@id": "6101",
+    "@owner": "system",
+    "@kbid": "6101_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Policy Violation Detection",
+        "@weight": "20",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "3",
+            "tag": {
+              "@meaning": "mechanism",
+              "#text": "ACL Policy Violation"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "SecurityPolicyViolation",
+        "message": "Violation from organization policies detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

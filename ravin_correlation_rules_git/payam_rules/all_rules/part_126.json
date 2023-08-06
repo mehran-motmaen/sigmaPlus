@@ -1,0 +1,264 @@
+{
+  "rule": {
+    "@id": "9024",
+    "@kbid": "9024_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@owner": "system",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@weight": "3",
+          "@name": "Attempt to Degradation Firewall detected",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Firewall"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "5",
+          "@occurrence": "5",
+          "@timeout": "180",
+          "@name": "Multiple attempt to Degradation Firewall detected ( 5 times ) ",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Firewall"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Degradation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "DOS",
+        "message": "Server Attack : Attempt to Degradation Firewall detected.",
+        "source": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "source"
+            }
+          ]
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Filename",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "URL",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Protocol",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MacAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATSourceAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "NATTargetAddress",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DestinationInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "SourceInterface",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "1"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@timeout": "43200",
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Host-Accessed",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@timeout": "43200",
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

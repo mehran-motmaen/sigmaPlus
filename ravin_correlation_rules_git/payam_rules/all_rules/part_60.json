@@ -1,0 +1,412 @@
+{
+  "rule": {
+    "@id": "3907",
+    "@owner": "system",
+    "@kbid": "3907_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "One Trojan Host try to connect to One External server",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Worm"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Botnet"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Spyware"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "One Trojan Host try to connect to Many External servers",
+          "@occurrence": "3",
+          "@weight": "20",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Worm"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Botnet"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Spyware"
+                }
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "One Trojan Host try to connect to Many External servers",
+          "@occurrence": "5",
+          "@weight": "10",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            }
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Worm"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Botnet"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Spyware"
+                }
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "One Trojan Host try to connect to Many External servers",
+          "@occurrence": "10",
+          "@weight": "5",
+          "@timeout": "1800",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            }
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Trojan"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Worm"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Botnet"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "ANY",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Spyware"
+                }
+              }
+            ]
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "Trojan",
+        "message": "One Trojan Host try to connect to Many External servers",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Compromise-Host",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Compromise-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Server",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

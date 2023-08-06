@@ -1,0 +1,306 @@
+<rule id="9048" kbid="9048_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" weight="1" name="Attempt to Degradation Mail detected">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip>$MAIL_SERVERS</ip>
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" weight="3" occurrence="3" timeout="120" name="Multiple attempt to Degradation Mail detected ( 3  times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" weight="3" occurrence="5" timeout="180" name="Multiple attempt to Degradation Mail detected ( 5 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" weight="3" occurrence="10" timeout="360" name="Multiple attempt to Degradation Mail detected ( 10 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" weight="3" occurrence="20" timeout="720" name="Multiple attempt to Degradation Mail detected ( Aggregator : 20 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="6" weight="3" occurrence="100" timeout="1800" name="Multiple attempt to Degradation Mail detected ( Aggregator : 100 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="20" weight="5" occurrence="5" timeout="120" name="Multiple attempt to Degradation Mail to 5 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="21" weight="5" occurrence="10" timeout="180" name="Multiple attempt to Degradation Mail to 10 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="22" weight="5" occurrence="20" timeout="360" name="Multiple attempt to Degradation Mail to 20 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="23" weight="5" occurrence="50" timeout="720" name="Multiple attempt to Degradation Mail to 50 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+            <filter id="24" weight="5" occurrence="100" timeout="1800" name="Multiple attempt to Degradation Mail to 100 hosts detected  ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Server Attack</tag>
+                        <tag meaning="resource">Mail</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+                <diversity>
+                    <param reference_type="target.ip" />
+                </diversity>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="DOS">
+                <message>Server Attack : Attempt to Degradation Mail detected.</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <ip reference_id="20" reference_type="target" />
+                    <ip reference_id="21" reference_type="target" />
+                    <ip reference_id="22" reference_type="target" />
+                    <ip reference_id="23" reference_type="target" />
+                    <ip reference_id="24" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="1" />
+                <additional_data meaning="Username" reference_id="20" />
+                <additional_data meaning="ComputerName" reference_id="1" />
+                <additional_data meaning="ComputerName" reference_id="20" />
+                <additional_data meaning="Application" reference_id="1" />
+                <additional_data meaning="Application" reference_id="20" />
+                <additional_data meaning="Filename" reference_id="1" />
+                <additional_data meaning="Filename" reference_id="20" />
+                <additional_data meaning="MalwareName" reference_id="1" />
+                <additional_data meaning="MalwareName" reference_id="20" />
+                <additional_data meaning="DomainName" reference_id="1" />
+                <additional_data meaning="DomainName" reference_id="20" />
+                <additional_data meaning="URL" reference_id="1" />
+                <additional_data meaning="URL" reference_id="20" />
+                <additional_data meaning="Protocol" reference_id="1" />
+                <additional_data meaning="Protocol" reference_id="20" />
+                <additional_data meaning="Service" reference_id="1" />
+                <additional_data meaning="Service" reference_id="20" />
+                <additional_data meaning="TargetAccount" reference_id="1" />
+                <additional_data meaning="TargetAccount" reference_id="20" />
+                <additional_data meaning="GroupName" reference_id="1" />
+                <additional_data meaning="GroupName" reference_id="20" />
+                <additional_data meaning="MacAddress" reference_id="1" />
+                <additional_data meaning="MacAddress" reference_id="20" />
+                <additional_data meaning="NATSourceAddress" reference_id="1" />
+                <additional_data meaning="NATSourceAddress" reference_id="20" />
+                <additional_data meaning="NATTargetAddress" reference_id="1" />
+                <additional_data meaning="NATTargetAddress" reference_id="20" />
+                <additional_data meaning="DestinationInterface" reference_id="1" />
+                <additional_data meaning="DestinationInterface" reference_id="20" />
+                <additional_data meaning="SourceInterface" reference_id="1" />
+                <additional_data meaning="SourceInterface" reference_id="20" />
+                <additional_data meaning="PolicyName" reference_id="1" />
+                <additional_data meaning="PolicyName" reference_id="20" />
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Host-Accessed">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Degrade-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="20" />
+                </group>
+                <group>
+                    <filter id="3" />
+                    <filter id="21" />
+                </group>
+                <group>
+                    <filter id="4" />
+                    <filter id="22" />
+                </group>
+                <group>
+                    <filter id="5" />
+                    <filter id="23" />
+                </group>
+                <group>
+                    <filter id="6" />
+                    <filter id="24" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

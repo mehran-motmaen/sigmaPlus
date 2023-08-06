@@ -1,0 +1,125 @@
+<rule id="503015" owner="system" kbid="503015_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="One to One High volume traffic to saturate Network passive devices" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="mechanism">Network ICMP</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Reconnaissance</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="One to One High volume traffic to saturate Network passive devices(100)" occurrence="80" weight="7" timeout="100">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="mechanism">Network ICMP</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Reconnaissance</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="One to One High volume traffic to saturate Network passive devices(1000)" occurrence="300" weight="10" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="mechanism">Network ICMP</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Reconnaissance</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                    <event sensor_type="300" class_type="">
+                        <tag meaning="effect">Degradation</tag>
+                        <tag meaning="mechanism">Network UDP</tag>
+                        <tag meaning="resource">Network</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="high" category="WasteOfResource">
+                <message>One to One High volume traffic to saturate Network Bandwidth</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Degrade-Host" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Degrade-Network" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+            </sequence>
+        </regulation>
+    </rule>
+    

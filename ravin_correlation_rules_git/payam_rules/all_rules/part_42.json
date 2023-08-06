@@ -1,0 +1,376 @@
+{
+  "rule": {
+    "@id": "2000",
+    "@owner": "system",
+    "@enable": "t",
+    "@kbid": "2000_1",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "A security event occured",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "2"
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "new signature in source",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:6",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "alert number in a connection is abnormal",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:7",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "number of specific event in source host is abnormal",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:5",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@name": "number of specific event in destination host is abnormal",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:9",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "6",
+          "@name": "number of targets is abnormal",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:4",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "7",
+          "@name": "new signature in target",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:8",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "8",
+          "@name": "number of sources is abnormal",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "180",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "101:3",
+              "@sensor_type": "2",
+              "@class_type": ""
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Abnormal Activity Detected",
+        "source": {
+          "ip": [
+            {
+              "@reference_id": "2",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "4",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "5",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "6",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "7",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "8",
+              "@reference_type": "source"
+            }
+          ]
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "4",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "5",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "6",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "7",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "8",
+              "@reference_type": "target"
+            }
+          ]
+        },
+        "additional_data": [
+          {
+            "@meaning": "",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "4"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "5"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "6"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "7"
+          },
+          {
+            "@meaning": "",
+            "@reference_id": "8"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": {
+          "@type": "Hopping",
+          "param": {
+            "@reference_type": "source.ip"
+          }
+        }
+      },
+      "consequence": {
+        "predicate": {
+          "@timeout": "43200",
+          "@type": "Hopping",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": {
+          "filter": [
+            {
+              "@id": "2"
+            },
+            {
+              "@id": "3"
+            },
+            {
+              "@id": "4"
+            },
+            {
+              "@id": "5"
+            },
+            {
+              "@id": "6"
+            },
+            {
+              "@id": "7"
+            },
+            {
+              "@id": "8"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

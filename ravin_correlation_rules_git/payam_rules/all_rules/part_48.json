@@ -1,0 +1,328 @@
+{
+  "rule": {
+    "@id": "3500",
+    "@owner": "system",
+    "@kbid": "3500_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Botnet Server try to communicate to a Botspot client",
+          "@weight": "3",
+          "source": {
+            "ip": "$EXTERNAL_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Botnet"
+              }
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "BotSpot client respond to CnC Bot Server",
+          "@occurrence": "1",
+          "@weight": "20",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Botnet"
+              }
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Botnet Server try to communicate to a Botspot client",
+          "@occurrence": "3",
+          "@weight": "10",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Botnet"
+              }
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "BotSpot client respond to CnC Bot Server",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Botnet"
+              }
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@name": "Botnet Server try to communicate to a Botspot client",
+          "@occurrence": "100",
+          "@weight": "5",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": "$HOME_NET",
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Botnet"
+              }
+            }
+          },
+          "diversity": {
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "Botnet",
+        "message": "Botnet CnC communication detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "3",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "4",
+              "@reference_type": "source"
+            },
+            {
+              "@reference_id": "5",
+              "@reference_type": "target"
+            }
+          ]
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "3"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "4"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "5"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "CnC-Server",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "CnC-Server",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          },
+          {
+            "@type": "BotSpot-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        },
+        "group": [
+          {
+            "filter": [
+              {
+                "@id": "2"
+              },
+              {
+                "@id": "4"
+              }
+            ]
+          },
+          {
+            "filter": [
+              {
+                "@id": "3"
+              },
+              {
+                "@id": "5"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+<rule id="6001" owner="system" enable="f" kbid="6001_1" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Registery Modification" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="4" event_type="registery:update" />
+                    <event sensor_type="4" event_type="registery:create" />
+                </event_list>
+            </filter>
+            <filter id="2" name="Registery Modification" occurrence="5" weight="5" timeout="10">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="4" event_type="registery:update" />
+                    <event sensor_type="4" event_type="registery:create" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="SecurityPolicyViolation">
+                <message>Registery Modification</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Access-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Trojan-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Access-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Trojan-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="BotSpot-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Infection-Malicious">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

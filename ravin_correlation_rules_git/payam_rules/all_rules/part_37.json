@@ -1,0 +1,223 @@
+{
+  "rule": {
+    "@id": "19000",
+    "@owner": "system",
+    "@kbid": "19000_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Too many OSPF adjacency changes",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "ROUTING-OSPF-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "ROUTING-OSPFv3-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Too many OSPF adjacency changes(5)",
+          "@occurrence": "5",
+          "@weight": "10",
+          "@timeout": "10",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "ROUTING-OSPF-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "ROUTING-OSPFv3-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Too many OSPF adjacency changes(10)",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "30",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "ROUTING-OSPF-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "ROUTING-OSPFv3-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "Too many OSPF adjacency changes(25)",
+          "@occurrence": "25",
+          "@weight": "10",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "ROUTING-OSPF-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "ROUTING-OSPFv3-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "5",
+          "@name": "Too many OSPF adjacency changes(50)",
+          "@occurrence": "50",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "ROUTING-OSPF-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "ROUTING-OSPFv3-5-ADJCHG",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Possible network attack, too many OSPF adjacency changes",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          },
+          {
+            "@id": "5"
+          }
+        ]
+      }
+    }
+  }
+}

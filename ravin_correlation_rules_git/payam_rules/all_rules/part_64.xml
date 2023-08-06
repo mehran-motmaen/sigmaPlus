@@ -1,0 +1,142 @@
+<rule id="40000" kbid="40000_1" enable="t" ver="1" owner="system" file_name="">
+        <filter_list>
+            <filter id="1" weight="1" name="Try to Reconnaissance detected">
+                <source>
+                    <ip>$EXTERNAL_NET</ip>
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" weight="3" occurrence="5" timeout="120" name="Multiple try to Reconnaissance detected ( 5  times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" weight="3" occurrence="20" timeout="360" name="Multiple try to Reconnaissance DNS detected ( 20 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" weight="3" occurrence="50" timeout="720" name="Multiple try to Reconnaissance detected ( 50 times ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="5" weight="3" occurrence="100" timeout="960" name="Multiple try to Reconnaissance detected ( Aggregator : 100 ) ">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY">
+                        <tag meaning="event_type">Client Attack</tag>
+                        <tag meaning="mechanism">Amplification</tag>
+                        <tag meaning="effect">Degradation</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="low" category="Enumeration">
+                <message>Client Attack : Amplification Attack Scan.</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate timeout="43200" type="Recon-Host">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Recon-Service">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate timeout="43200" type="Hopping">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                </group>
+                <group>
+                    <filter id="3" />
+                </group>
+                <group>
+                    <filter id="4" />
+                </group>
+                <group>
+                    <filter id="5" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

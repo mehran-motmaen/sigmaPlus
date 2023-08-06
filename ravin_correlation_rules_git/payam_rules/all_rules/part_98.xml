@@ -1,0 +1,39 @@
+<rule id="6127" owner="system" kbid="6127_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Too Many Client Error Detection" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3" event_type="1025:57" />
+                    <event sensor_type="3" event_type="1025:60" />
+                    <event sensor_type="3" event_type="1:57" />
+                    <event sensor_type="3" event_type="1:60" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="AbnormalActivity">
+                <message>Too many client error detected</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

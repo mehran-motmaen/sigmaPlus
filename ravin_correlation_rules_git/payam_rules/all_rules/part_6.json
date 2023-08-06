@@ -1,0 +1,167 @@
+{
+  "rule": {
+    "@id": "10010",
+    "@owner": "system",
+    "@kbid": "10010_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Privilege Escalation Attempt",
+          "@weight": "3",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Escalation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Privilege Escalation Attempt",
+          "@occurrence": "5",
+          "@timeout": "600",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Server Attack"
+                },
+                {
+                  "@meaning": "effect",
+                  "#text": "Access"
+                },
+                {
+                  "@meaning": "mechanism",
+                  "#text": "Escalation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@category": "GainAccess",
+        "@priority": "high",
+        "message": "Privilege Escalation Attempt",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "Username",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "ComputerName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Application",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "DomainName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "Service",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "TargetAccount",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "GroupName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "PolicyName",
+            "@reference_id": "1"
+          }
+        ]
+      },
+      "prerequisite": null,
+      "consequence": {
+        "predicate": {
+          "@timeout": "43200",
+          "@type": "Host-Accessed",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

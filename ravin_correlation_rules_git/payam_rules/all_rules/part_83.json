@@ -1,0 +1,66 @@
+{
+  "rule": {
+    "@id": "6111",
+    "@owner": "system",
+    "@kbid": "6111_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "DDOS Detection",
+        "@weight": "20",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "3",
+            "tag": {
+              "@meaning": "mechanism",
+              "#text": "Distributed Overloading"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "DDOS",
+        "message": "Botspot agents launch (Distributed) DoS attack",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

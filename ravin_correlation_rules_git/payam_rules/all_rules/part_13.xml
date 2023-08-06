@@ -1,0 +1,38 @@
+<rule enable="t" id="12003" owner="system" ver="1" kbid="12003_1" file_name="">
+        <filter_list>
+            <filter id="1" name="Unsuccessful Data Return" weight="5">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="450" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="Return Code" operator="NEQ">Success</additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="DataSecurityViolation" priority="medium">
+                <message>Unsuccessful data return</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Return Code" reference_id="1" />
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

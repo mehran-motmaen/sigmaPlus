@@ -1,0 +1,267 @@
+{
+  "rule": {
+    "@id": "---",
+    "@owner": "---",
+    "@kbid": "---",
+    "@enable": "---",
+    "@ver": "---",
+    "@file_name": "---",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "---",
+          "@name": "---",
+          "@weight": "---",
+          "source": {
+            "ip": {
+              "@location": "---"
+            },
+            "port": "---"
+          },
+          "target": {
+            "ip": {
+              "@location": "---"
+            },
+            "port": "---"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "---",
+              "@class_type": "---",
+              "tag": [
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "---",
+          "@name": "---",
+          "@occurrence": "---",
+          "@weight": "---",
+          "@timeout": "---",
+          "source": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "flag_list": {
+            "flag": "---"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "---",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "---",
+          "@name": "---",
+          "@occurrence": "---",
+          "@weight": "---",
+          "@timeout": "---",
+          "source": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "flag_list": {
+            "flag": "---"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "---",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "---",
+          "@name": "---",
+          "@occurrence": "---",
+          "@weight": "---",
+          "@timeout": "---",
+          "source": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "---",
+              "@reference_type": "---"
+            },
+            "port": "---"
+          },
+          "flag_list": {
+            "flag": "---"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "---",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                },
+                {
+                  "@meaning": "---",
+                  "#text": "---"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "---",
+        "@category": "---",
+        "message": "---",
+        "source": {
+          "ip": {
+            "@reference_id": "---",
+            "@reference_type": "---"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id":"---",
+            "@reference_type": "---"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "---",
+            "param": [
+              {
+                "@reference_type": "---"
+              },
+              {
+                "@reference_type": "---"
+              }
+            ]
+          },
+          {
+            "@type": "---",
+            "param": [
+              {
+                "@reference_type": "---"
+              },
+              {
+                "@reference_type": "---"
+              }
+            ]
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "---",
+            "param": [
+              {
+                "@reference_type": "---"
+              },
+              {
+                "@reference_type": "---"
+              }
+            ]
+          },
+          {
+            "@type": "---",
+            "param": {
+              "@reference_type": "---"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "---"
+          },
+          {
+            "@id": "---"
+          },
+          {
+            "@id": "---"
+          },
+          {
+            "@id": "---"
+          }
+        ]
+      }
+    }
+  }
+}

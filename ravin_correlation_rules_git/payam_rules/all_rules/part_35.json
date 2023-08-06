@@ -1,0 +1,79 @@
+{
+  "rule": {
+    "@enable": "t",
+    "@id": "12027",
+    "@owner": "system",
+    "@ver": "1",
+    "@kbid": "12027_1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "PLC variable out of range",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "450",
+            "@event_type": "100"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@category": "AttemptUser",
+        "@priority": "medium",
+        "message": "PLC variable out of range",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "VariableName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "VariableType",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MaximumValue",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MinimumValue",
+            "@reference_id": "1"
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+<rule id="3014" owner="system" kbid="3014_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="One to One High volume traffic" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="One to One High volume traffic" occurrence="3" weight="10" timeout="60">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="One to One High volume traffic" occurrence="15" weight="10" timeout="600">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="4" name="One to One High volume traffic" occurrence="40" weight="10" timeout="1800">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <flag_list>
+                    <flag>sticky</flag>
+                </flag_list>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Overloading Saturation</tag>
+                        <tag meaning="resource">Host</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="WasteOfResource">
+                <message>Attempt to DOS Host by One to One traffic</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Degrade-Host" timeout="3600">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+                <filter id="3" />
+                <filter id="4" />
+            </sequence>
+        </regulation>
+    </rule>
+    

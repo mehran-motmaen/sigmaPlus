@@ -1,0 +1,319 @@
+{
+  "rule": {
+    "@id": "503015",
+    "@owner": "system",
+    "@kbid": "503015_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "One to One High volume traffic to saturate Network passive devices",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network ICMP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Reconnaissance"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "One to One High volume traffic to saturate Network passive devices(100)",
+          "@occurrence": "80",
+          "@weight": "7",
+          "@timeout": "100",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network ICMP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Reconnaissance"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "One to One High volume traffic to saturate Network passive devices(1000)",
+          "@occurrence": "300",
+          "@weight": "10",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network ICMP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Host"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Reconnaissance"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "300",
+                "@class_type": "",
+                "tag": [
+                  {
+                    "@meaning": "effect",
+                    "#text": "Degradation"
+                  },
+                  {
+                    "@meaning": "mechanism",
+                    "#text": "Network UDP"
+                  },
+                  {
+                    "@meaning": "resource",
+                    "#text": "Network"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "WasteOfResource",
+        "message": "One to One High volume traffic to saturate Network Bandwidth",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Degrade-Host",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Degrade-Network",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          }
+        ]
+      }
+    }
+  }
+}

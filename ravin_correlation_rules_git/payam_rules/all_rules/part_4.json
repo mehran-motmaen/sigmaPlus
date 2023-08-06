@@ -1,0 +1,180 @@
+{
+  "rule": {
+    "@id": "10007",
+    "@owner": "system",
+    "@kbid": "10007_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Firewall ACL List Configuration changed Successfuly",
+          "@weight": "3",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Firewall"
+                },
+                {
+                  "@meaning": "resource_detail",
+                  "#text": "ACL"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Successful"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Multiple Firewall ACL List Configuration changed Successfuly (5 attempts)",
+          "@occurrence": "4",
+          "@weight": "5",
+          "@timeout": "900",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "resource",
+                  "#text": "Firewall"
+                },
+                {
+                  "@meaning": "resource_detail",
+                  "#text": "ACL"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Successful"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "info",
+        "message": "Firewall ACL List Configuration Changed Successfuly",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

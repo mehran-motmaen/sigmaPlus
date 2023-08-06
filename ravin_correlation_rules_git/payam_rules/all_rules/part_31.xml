@@ -1,0 +1,42 @@
+<rule enable="t" id="12023" owner="system" ver="1" kbid="12023_1" file_name="">
+        <filter_list>
+            <filter id="1" name="Alarm related command" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="450" />
+                </event_list>
+                <additional_data_list>
+                    <additional_data meaning="Function Group" operator="EQ">CPU functions</additional_data>
+                    <additional_data meaning="Subfunction" operator="EQ">ALARM ack 2 (Alarm was acknowledged in
+                        HMI/SCADA)
+                    </additional_data>
+                </additional_data_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert category="AttemptUser" priority="medium">
+                <message>PLC ALARAM ack2 command</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Function Group" reference_id="1" />
+                <additional_data meaning="Subfunction" reference_id="1" />
+            </alert>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

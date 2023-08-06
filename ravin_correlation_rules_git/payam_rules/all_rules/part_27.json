@@ -1,0 +1,56 @@
+{
+  "rule": {
+    "@enable": "t",
+    "@id": "12019",
+    "@owner": "system",
+    "@ver": "1",
+    "@kbid": "12019_1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Traffic from/to unknown PLC/WinCC agents detected",
+        "@weight": "15",
+        "source": {
+          "ip": "!($PLC_AGENTS,$WINCC_AGENTS)",
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": "!($PLC_AGENTS,$WINCC_AGENTS)",
+          "port": "102"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "450"
+          }
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@category": "SecurityPolicyViolation",
+        "@priority": "high",
+        "message": "Traffic from/to unknown PLC/WinCC agents detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

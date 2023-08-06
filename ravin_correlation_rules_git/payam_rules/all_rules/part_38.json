@@ -1,0 +1,186 @@
+{
+  "rule": {
+    "@id": "19001",
+    "@owner": "system",
+    "@kbid": "19001_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "port security violation on SRC_IP",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION_VLAN",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "port security violation on SRC_IP(3)",
+          "@occurrence": "3",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION_VLAN",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "port security violation on SRC_IP(10)",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "360",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION_VLAN",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "port security violation on SRC_IP(25)",
+          "@occurrence": "25",
+          "@weight": "10",
+          "@timeout": "400",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "PORT_SECURITY-2-PSECURE_VIOLATION_VLAN",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "SecurityPolicyViolation",
+        "message": "Possible network attack, port security violation on SRC_IP",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}

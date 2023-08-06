@@ -1,0 +1,269 @@
+{
+  "rule": {
+    "@id": "3504",
+    "@owner": "system",
+    "@kbid": "3504_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Transfer of virus binary file via network detected",
+          "@weight": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": {
+                "@meaning": "mechanism",
+                "#text": "Virus"
+              }
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "AntiMalware detected a virus on SRC_IP",
+          "@occurrence": "1",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "308",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "325",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "342",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "363",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "376",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "409",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "438",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "439",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "440",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "360",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "453",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "463",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "471",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              },
+              {
+                "@sensor_type": "484",
+                "@class_type": "",
+                "tag": {
+                  "@meaning": "mechanism",
+                  "#text": "Virus"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "Virus",
+        "message": "Virus Found",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        },
+        "additional_data": [
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "1"
+          },
+          {
+            "@meaning": "MalwareName",
+            "@reference_id": "2"
+          }
+        ]
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Trojan-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Infection-Malicious",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "param": {
+              "@reference_type": "source.ip"
+            }
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Infection-Malicious",
+            "@timeout": "3600",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          },
+          {
+            "@type": "Hopping",
+            "@timeout": "43200",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

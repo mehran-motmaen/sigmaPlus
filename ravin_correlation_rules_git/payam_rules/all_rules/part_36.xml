@@ -1,0 +1,134 @@
+<rule id="14000" owner="system" kbid="14000_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Attempt to attack detected" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="2" class_type="">
+                        <tag meaning="event_type">Server Attack</tag>
+                    </event>
+                    <event sensor_type="2" class_type="">
+                        <tag meaning="event_type">Client Attack</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Suspicious activity on compromised host" occurrence="1" weight="15" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Service Availability</tag>
+                        <tag meaning="event_type">Information Status</tag>
+                        <tag meaning="mechanism_detail">Down</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Data Access</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Data Exchange</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Process</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Authentication</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                        <tag meaning="mechanism_detail">Login</tag>
+                        <tag meaning="result">Successful</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Administration</tag>
+                        <tag meaning="event_type">Configuration Activity</tag>
+                    </event>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Data Exchange</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="3" name="Suspicious activity on compromised host" occurrence="1" weight="15" timeout="360">
+                <source>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="event_type">Suspicious Activity</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="low" category="GainAccess">
+                <message>Possible successful attack was detected</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="1" />
+                <additional_data meaning="ComputerName" reference_id="1" />
+            </alert>
+            <prerequisite>
+                <predicate type="Recon-Host">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Recon-Service">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Host-Accessed">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping">
+                    <param reference_type="source.ip" />
+                </predicate>
+            </prerequisite>
+            <consequence>
+                <predicate type="Access-Host" timeout="43200">
+                    <param reference_type="source.ip" />
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Compromised-Host" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Host-Accessed" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+                <predicate type="Hopping" timeout="43200">
+                    <param reference_type="target.ip" />
+                </predicate>
+            </consequence>
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <group>
+                    <filter id="2" />
+                    <filter id="3" />
+                </group>
+            </sequence>
+        </regulation>
+    </rule>
+    

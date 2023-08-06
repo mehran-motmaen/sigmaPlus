@@ -1,0 +1,45 @@
+<rule id="6100" owner="system" kbid="6100_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Traffic to Undefined Asset Detection" weight="10">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="3" event_type="1023:1" />
+                    <event sensor_type="3" event_type="1024:1" />
+                    <event sensor_type="3" event_type="1025:10" />
+                    <event sensor_type="3" event_type="1025:16" />
+                    <event sensor_type="3" event_type="1025:38" />
+                    <event sensor_type="3" event_type="1025:39" />
+                    <event sensor_type="3" event_type="1025:40" />
+                    <event sensor_type="3" event_type="1025:41" />
+                    <event sensor_type="3" event_type="1025:42" />
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="AbnormalActivity">
+                <message>Traffic to/from undefined asset detected (possible network enumuration or trojan backdoor)
+                </message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+            </sequence>
+        </regulation>
+    </rule>
+    

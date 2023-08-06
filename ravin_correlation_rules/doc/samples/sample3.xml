@@ -1,0 +1,127 @@
+<rule id="10006" owner="system" enable="f" kbid="10006_1" ver="1" file_name="">
+    <filter_list>
+        <filter id="1" name="An application communication has blocked by Access Control System" weight="1">
+            <source>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </target>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="2" name="Multiple application communication has blocked by Access Control System (5 attempts)"
+                occurrence="10" weight="5" timeout="120">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="3" name="Multiple application communication has blocked by Access Control System (15 attempts)"
+                occurrence="15" weight="10" timeout="360">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="4"
+                name="Multiple An application communication has blocked by Access Control System (115 attempts)"
+                occurrence="20" weight="10" timeout="720">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="ANY" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+    </filter_list>
+    <action>
+        <alert priority="medium" category="SecurityPolicyViolation">
+            <message>Suspecious Attempt To Communicate With Blocked Outdoor Machine,
+                Possible Unwanted Application
+            </message>
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+            </target>
+        </alert>
+        <prerequisite>
+            <predicate type="Hopping">
+                <param reference_type="source.ip"/>
+            </predicate>
+            <predicate type="Access-Host">
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Trojan-Host">
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="BotSpot-Host">
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="Infection-Malicious">
+                <param reference_type="target.ip"/>
+            </predicate>
+            <predicate type="CnC-Server">
+                <param reference_type="source.ip"/>
+            </predicate>
+        </prerequisite>
+        <consequence>
+            <predicate type="Infection-Malicious">
+                <param reference_type="target.ip"/>
+            </predicate>
+        </consequence>
+    </action>
+    <regulation>
+        <sequence>
+            <filter id="1"/>
+            <filter id="2"/>
+            <filter id="3"/>
+            <filter id="4"/>
+        </sequence>
+    </regulation>
+</rule>

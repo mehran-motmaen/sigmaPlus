@@ -1,0 +1,59 @@
+<rule id="19005" owner="system" kbid="19005_1" enable="t" ver="1" file_name="">
+        <filter_list>
+            <filter id="1" name="Connection from a Tor network exit node detected" weight="1">
+                <source>
+                    <ip location="ANY" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip>$HOME_NET</ip>
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="1" class_type="">
+                        <tag meaning="mechanism">BadIP Inbound Traffic</tag>
+                        <tag meaning="resource">Proxy</tag>
+                        <tag meaning="event_type">Suspicious Activity</tag>
+                    </event>
+                </event_list>
+            </filter>
+            <filter id="2" name="Login authentication detected" occurrence="1" weight="10" timeout="300">
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                    <port>0-65535</port>
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                    <port>0-65535</port>
+                </target>
+                <event_list>
+                    <event sensor_type="ANY" class_type="">
+                        <tag meaning="mechanism">Authentication</tag>
+                        <tag meaning="event_type">Standard Activity</tag>
+                        <tag meaning="mechanism_detail">Login</tag>
+                    </event>
+                </event_list>
+            </filter>
+        </filter_list>
+        <action>
+            <alert priority="medium" category="Botnet">
+                <message>Suspicious login attempt from Tor on SRC_IP</message>
+                <source>
+                    <ip reference_id="1" reference_type="source" />
+                </source>
+                <target>
+                    <ip reference_id="1" reference_type="target" />
+                </target>
+                <additional_data meaning="Username" reference_id="2" />
+            </alert>
+            <prerequisite />
+            <consequence />
+        </action>
+        <regulation>
+            <sequence>
+                <filter id="1" />
+                <filter id="2" />
+            </sequence>
+        </regulation>
+    </rule>
+    

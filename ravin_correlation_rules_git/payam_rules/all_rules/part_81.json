@@ -1,0 +1,77 @@
+{
+  "rule": {
+    "@id": "6109",
+    "@owner": "system",
+    "@kbid": "6109_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@name": "Abnormal Data Exchange",
+        "@weight": "10",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": [
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:43"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1025:37"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1:43"
+            },
+            {
+              "@sensor_type": "3",
+              "@event_type": "1:37"
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Abnormal data transfer detected",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+<rule id="11008" owner="system" kbid="11008_1" enable="t" ver="1" file_name="">
+    <filter_list>
+        <filter id="1" name="ModeSecurity Access Denied" weight="1">
+            <source>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip location="ANY"/>
+                <port>0-65535</port>
+            </target>
+            <event_list>
+                <event sensor_type="330" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="2" name="ModeSecurity Access Denied (more times)" occurrence="10" weight="1" timeout="300">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port>0-65535</port>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="330" class_type="">
+                    <tag meaning="mechanism">ACL Policy Violation</tag>
+                    <tag meaning="result">Denied</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="3" name="ParsGate alert Drop due to DOS" occurrence="1" weight="5" timeout="300">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port reference_id="1" reference_type="source"/>
+            </target>
+            <event_list>
+                <event sensor_type="312" class_type="">
+                    <tag meaning="mechanism">Overloading Saturation</tag>
+                    <tag meaning="event_type">Server Attack</tag>
+                </event>
+            </event_list>
+        </filter>
+        <filter id="4" name="ParsGate alert Drop due to DOS (more times)" occurrence="100" weight="10"
+                timeout="3600">
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+                <port>0-65535</port>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+                <port reference_id="1" reference_type="source"/>
+            </target>
+            <flag_list>
+                <flag>sticky</flag>
+            </flag_list>
+            <event_list>
+                <event sensor_type="312" class_type="">
+                    <tag meaning="mechanism">Overloading Saturation</tag>
+                    <tag meaning="event_type">Server Attack</tag>
+                </event>
+            </event_list>
+        </filter>
+    </filter_list>
+    <action>
+        <alert priority="high" category="AvailabilityViolation">
+            <message>DOS Attempt</message>
+            <source>
+                <ip reference_id="1" reference_type="source"/>
+            </source>
+            <target>
+                <ip reference_id="1" reference_type="target"/>
+            </target>
+            <additional_data meaning="URL" reference_id="3"/>
+            <additional_data meaning="URL" reference_id="4"/>
+            <additional_data meaning="Protocol" reference_id="3"/>
+            <additional_data meaning="Protocol" reference_id="4"/>
+            <additional_data meaning="Username" reference_id="3"/>
+            <additional_data meaning="Username" reference_id="4"/>
+        </alert>
+        <prerequisite>
+            <predicate type="Recon-Host">
+                <param reference_type="target.ip"/>
+                <param reference_type="source.ip"/>
+            </predicate>
+            <predicate type="Recon-Service">
+                <param reference_type="target.ip"/>
+                <param reference_type="source.ip"/>
+            </predicate>
+            <predicate type="Compromise-Host">
+                <param reference_type="source.ip"/>
+                <param reference_type="target.ip"/>
+            </predicate>
+        </prerequisite>
+        <consequence>
+            <predicate type="Degrade-Service">
+                <param reference_type="target.ip"/>
+                <param reference_type="target.port"/>
+            </predicate>
+        </consequence>
+    </action>
+    <regulation>
+        <sequence>
+            <filter id="1"/>
+            <group>
+                <filter id="2"/>
+                <filter id="3"/>
+            </group>
+            <filter id="4"/>
+        </sequence>
+    </regulation>
+</rule>

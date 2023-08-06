@@ -1,0 +1,174 @@
+{
+  "rule": {
+    "@kbid": "7004_1",
+    "@id": "7004",
+    "@owner": "system",
+    "@ver": "1",
+    "@enable": "t",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Traffic drop",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "464",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "466",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "488",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@weight": "5",
+          "@occurrence": "6000",
+          "@timeout": "60",
+          "@name": "Multiple traffic drop",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@sensor_type": "464",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "466",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              },
+              {
+                "@sensor_type": "488",
+                "tag": [
+                  {
+                    "@meaning": "event_type",
+                    "#text": "Suspicious Activity"
+                  },
+                  {
+                    "@meaning": "result",
+                    "#text": "Denied"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "WasteOfResource",
+        "message": "Massive traffic drop from a source",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": [
+            {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            {
+              "@reference_id": "2",
+              "@reference_type": "target"
+            }
+          ]
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}

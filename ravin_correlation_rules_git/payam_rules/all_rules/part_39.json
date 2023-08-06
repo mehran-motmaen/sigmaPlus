@@ -1,0 +1,184 @@
+{
+  "rule": {
+    "@id": "19002",
+    "@owner": "system",
+    "@kbid": "19002_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "too many HSRP state changes",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "HSRP-5-STATECHANGE",
+              "@sensor_type": "300",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "too many HSRP state changes(5)",
+          "@occurrence": "5",
+          "@weight": "10",
+          "@timeout": "10",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "HSRP-5-STATECHANGE",
+              "@sensor_type": "300",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "too many HSRP state changes(10)",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "30",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "HSRP-5-STATECHANGE",
+              "@sensor_type": "300",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "too many HSRP state changes(25)",
+          "@occurrence": "25",
+          "@weight": "10",
+          "@timeout": "60",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "HSRP-5-STATECHANGE",
+              "@sensor_type": "300",
+              "@class_type": ""
+            }
+          }
+        },
+        {
+          "@id": "5",
+          "@name": "too many HSRP state changes(50)",
+          "@occurrence": "50",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@event_type": "HSRP-5-STATECHANGE",
+              "@sensor_type": "300",
+              "@class_type": ""
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AbnormalActivity",
+        "message": "Possible network attack, too many HSRP state changes",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          },
+          {
+            "@id": "5"
+          }
+        ]
+      }
+    }
+  }
+}

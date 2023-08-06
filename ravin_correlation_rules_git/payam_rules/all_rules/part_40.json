@@ -1,0 +1,111 @@
+{
+  "rule": {
+    "@id": "19003",
+    "@owner": "system",
+    "@kbid": "19003_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "HSRP Bad authentication",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "HSRP-4-BADAUTH",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "HSRP-4-BADAUTH2",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "HSRP Bad authentication(4)",
+          "@occurrence": "4",
+          "@weight": "10",
+          "@timeout": "120",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": [
+              {
+                "@event_type": "HSRP-4-BADAUTH",
+                "@sensor_type": "300",
+                "@class_type": ""
+              },
+              {
+                "@event_type": "HSRP-4-BADAUTH2",
+                "@sensor_type": "300",
+                "@class_type": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "medium",
+        "@category": "AttemptUser",
+        "message": "Possible network attack, HSRP hijacking attempt on SRC_IP",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": null,
+      "consequence": null
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          }
+        ]
+      }
+    }
+  }
+}
