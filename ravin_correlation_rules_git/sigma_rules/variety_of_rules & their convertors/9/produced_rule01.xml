@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule kbid="120000_1" id="120000" owner="user" ver="1" enable="t" file_name="">
+	<filter_list>
+		<filter id="1" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="product" operator="EQ">windows</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="2" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="category" operator="EQ">registry_set</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="3" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="service" operator="EQ">service</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="5" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="EventType" operator="EQ">SetValue</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="6" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\SOFTWARE\Microsoft\Windows NT\CurrentVersion</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="7" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\VmApplet</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="8" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\Userinit</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="9" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\Taskman</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="10" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\Shell</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="11" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\GpExtensions</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="12" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\AppSetup</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="13" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\AlternateShells\AvailableShells</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="14" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Windows\IconServiceLib</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="15" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Windows\Appinit_Dlls</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="16" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Image File Execution Options</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="17" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Font Drivers</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="18" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Drivers32</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="19" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Windows\Run</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="20" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Windows\Load</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="21" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Details" operator="EQ">(Empty)</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="22" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Image File Execution Options\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="23" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="END">\DisableExceptionChainValidation</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="24" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="END">\MitigationOptions</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="25" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="STRT">C:\Program Files (x86)\Microsoft\Temp\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="26" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="END">\MicrosoftEdgeUpdate.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="27" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\ClickToRunStore\HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="28" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\ClickToRun\REGISTRY\MACHINE\Software\Microsoft\Windows NT\CurrentVersion\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="29" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="EQ">C:\Program Files\Microsoft Office\root\integration\integrator.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="30" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="EQ">C:\Program Files (x86)\Microsoft Office\root\integration\integrator.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="31" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="STRT">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="32" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="STRT">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\Updates\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="33" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="END">\OfficeClickToRun.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="34" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="EQ">C:\Windows\system32\svchost.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="35" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\GPExtensions\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\PreviousPolicyAreas</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="36" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="CONT">\Winlogon\GPExtensions\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\MaxNoGPOListChangesInterval</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="37" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Details" operator="EQ">DWORD (0x00000009)</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="38" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Details" operator="EQ">DWORD (0x000003c0)</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="39" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="STRT">C:\Windows\Microsoft.NET\Framework</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="40" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="END">\ngen.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="41" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Image" operator="END">\AppData\Local\Microsoft\OneDrive\StandaloneUpdater\OneDriveSetup.exe</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="42" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="TargetObject" operator="END">\Microsoft\Windows\CurrentVersion\RunOnce\Delete Cached Update Binary</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="43" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Details" operator="STRT">C:\Windows\system32\cmd.exe /q /c del /q "C:\Users\</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="44" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="Details" operator="END">\AppData\Local\Microsoft\OneDrive\Update\OneDriveSetup.exe"</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+		<filter id="4" weight="1" name="attack.persistence__attack.t1547.001">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+			</additional_data_list>
+		</filter>
+	</filter_list>
+	<action>
+		<alert priority="medium" category="CurrentVersion NT Autorun Keys Modification">
+			<message>Detects modification of autostart extensibility point (ASEP) in registry.</message>
+			<source>
+				<ip reference_type="source" reference_id="1"></ip>
+			</source>
+			<target>
+				<ip reference_type="target" reference_id="1"></ip>
+			</target>
+		</alert>
+		<prerequisite>
+			<predicate type="Hopping">
+				<param reference_type="source.ip"></param>
+			</predicate>
+		</prerequisite>
+		<consequence>
+			<predicate type="Hopping">
+				<param reference_type="source.ip"></param>
+			</predicate>
+		</consequence>
+	</action>
+	<regulation>
+		<sequence>
+			<filter id="1"></filter>
+		</sequence>
+	</regulation>
+	<description>
+		<id>cbf93e5d-ca6c-4722-8bea-e9119007c248</id>
+		<references>https://github.com/redcanaryco/atomic-red-team/blob/f339e7da7d05f6057fdfcdd3742bfcf365fee2a9/atomics/T1547.001/T1547.001.md</references>
+		<references>https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns</references>
+		<references>https://gist.github.com/GlebSukhodolskiy/0fc5fa5f482903064b448890db1eaf9d</references>
+		<author>Victor Sergeev, Daniil Yugoslavskiy, Gleb Sukhodolskiy, Timur Zinniatullin, oscd.community, Tim Shelton, frack113 (split)</author>
+		<date>2019/10/25</date>
+		<modified>2022/07/05</modified>
+		<fields>SecurityID</fields>
+		<fields>ObjectName</fields>
+		<fields>OldValueType</fields>
+		<fields>NewValueType</fields>
+		<falsepositives>Legitimate software automatically (mostly, during installation) sets up autorun keys for legitimate reason</falsepositives>
+		<falsepositives>Legitimate administrator sets up autorun keys for legitimate reason</falsepositives>
+	</description>
+</rule>

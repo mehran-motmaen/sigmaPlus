@@ -1,0 +1,33 @@
+{
+    "title": "Webshell Remote Command Execution",
+    "id": "c0d3734d-330f-4a03-aae2-65dacc6a8222",
+    "status": "test",
+    "description": "Detects possible command execution by web application/web shell",
+    "references": [
+        "Personal Experience of the Author"
+    ],
+    "author": "Ilyas Ochkov, Beyu Denis, oscd.community",
+    "date": "2019/10/12",
+    "modified": "2022/12/25",
+    "tags": [
+        "attack.persistence",
+        "attack.t1505.003"
+    ],
+    "logsource": {
+        "product": "linux",
+        "service": "auditd"
+    },
+    "detection": {
+        "selection": {
+            "type": "SYSCALL",
+            "syscall": "execve",
+            "key": "detect_execve_www"
+        },
+        "condition": "selection"
+    },
+    "falsepositives": [
+        "Admin activity",
+        "Crazy web applications"
+    ],
+    "level": "critical"
+}

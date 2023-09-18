@@ -1,0 +1,103 @@
+{
+  "rule": {
+    "@kbid": "50106_1",
+    "@id": "50106",
+    "@owner": "user",
+    "@ver": "1",
+    "@enable": "t",
+    "filter_list": {
+      "filter": {
+        "@id": "1",
+        "@weight": "1",
+        "@name": "command and crontrol Tid S0154",
+        "source": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "target": {
+          "ip": {
+            "@location": "ANY"
+          },
+          "port": "0-65535"
+        },
+        "event_list": {
+          "event": {
+            "@sensor_type": "347"
+          }
+        },
+        "additional_data_list": {
+          "group": [
+            {
+              "@not": "false",
+              "additional_data": [
+                {
+                  "@meaning": "certificate",
+                  "@operator": "EQ",
+                  "#text": "8BB00EE"
+                },
+                {
+                  "@meaning": "Service",
+                  "@operator": "EQ",
+                  "#text": "x509"
+                }
+              ]
+            },
+            {
+              "@not": "false",
+              "additional_data": {
+                "@meaning": "mechanism",
+                "@operator": "NEQ",
+                "#text": "dfgdfg"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "SecurityPolicyViolation",
+        "message": "Detect the presence of default cobalt strike certificate in the http traffic",
+        "source": {
+          "ip": {
+            "@reference_type": "source",
+            "@reference_id": "1"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_type": "target",
+            "@reference_id": "1"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": {
+          "@type": "Hopping",
+          "param": {
+            "@reference_type": "source.ip"
+          }
+        }
+      },
+      "consequence": {
+        "predicate": {
+          "@type": "Hopping",
+          "@timeout": "43200",
+          "param": {
+            "@reference_type": "target.ip"
+          }
+        }
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": {
+          "@id": "1"
+        }
+      }
+    }
+  }
+}

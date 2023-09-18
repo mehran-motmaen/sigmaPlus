@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <title type="str">Python SQL Exceptions</title>
+    <id type="str">19aefed0-ffd4-47dc-a7fc-f8b1425e84f9</id>
+    <status type="str">stable</status>
+    <description type="str">Generic rule for SQL exceptions in Python according to PEP 249</description>
+    <references type="list">
+        <item type="str">https://www.python.org/dev/peps/pep-0249/#exceptions</item>
+    </references>
+    <author type="str">Thomas Patzke</author>
+    <date type="str">2017/08/12</date>
+    <modified type="str">2020/09/01</modified>
+    <tags type="list">
+        <item type="str">attack.initial_access</item>
+        <item type="str">attack.t1190</item>
+    </tags>
+    <logsource type="dict">
+        <category type="str">application</category>
+        <product type="str">python</product>
+    </logsource>
+    <detection type="dict">
+        <keywords type="list">
+            <item type="str">DataError</item>
+            <item type="str">IntegrityError</item>
+            <item type="str">ProgrammingError</item>
+            <item type="str">OperationalError</item>
+        </keywords>
+        <condition type="str">keywords</condition>
+    </detection>
+    <falsepositives type="list">
+        <item type="str">Application bugs</item>
+    </falsepositives>
+    <level type="str">medium</level>
+</root>
