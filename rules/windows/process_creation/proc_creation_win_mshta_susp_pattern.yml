@@ -1,6 +1,6 @@
 title: Suspicious Mshta.EXE Execution Patterns
 id: e32f92d1-523e-49c3-9374-bdb13b46a3ba
-status: experimental
+status: test
 description: Detects suspicious mshta process execution patterns
 references:
     - https://en.wikipedia.org/wiki/HTML_Application
@@ -38,16 +38,16 @@ detection:
     filter_img:
         # Filter legit Locations
         - Image|startswith:
-            - 'C:\Windows\System32\'
-            - 'C:\Windows\SysWOW64\'
+              - 'C:\Windows\System32\'
+              - 'C:\Windows\SysWOW64\'
         # Suspicious extensions
         - CommandLine|contains:
-            - '.htm'
-            - '.hta'
+              - '.htm'
+              - '.hta'
         # Filter simple execution
         - CommandLine|endswith:
-            - 'mshta.exe'
-            - 'mshta'
+              - 'mshta.exe'
+              - 'mshta'
     condition: all of selection_* or (selection_img and not filter_img)
 falsepositives:
     - Unknown

@@ -1,6 +1,6 @@
 title: Suspicious Execution From GUID Like Folder Names
 id: 90b63c33-2b97-4631-a011-ceb0f47b77c3
-status: experimental
+status: test
 description: Detects potential suspicious execution of a GUID like folder name located in a suspicious location such as %TEMP% as seen being used in IcedID attacks
 references:
     - https://twitter.com/Kostastsale/status/1565257924204986369
@@ -15,9 +15,9 @@ logsource:
     product: windows
 detection:
     # Uncomment this section and remove the filter if you want the rule to be more specific to processes
-    #selection_img:
-    #    Image|endswith:
-    #        - '\rundll32.exe'
+    # selection_img:
+    #     Image|endswith:
+    #         - '\rundll32.exe'
     selection_folder:
         CommandLine|contains:
             # Add more suspicious or unexpected paths

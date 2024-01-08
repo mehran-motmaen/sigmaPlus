@@ -3,7 +3,7 @@ id: fa00b701-44c6-4679-994d-5a18afa8a707
 related:
     - id: d2b749ee-4225-417e-b20e-a8d2193cbb84
       type: similar
-status: experimental
+status: test
 description: Detects the execution of AdvancedRun utility in the context of the TrustedInstaller, SYSTEM, Local Service or Network Service accounts
 references:
     - https://twitter.com/splinter_code/status/1483815103279603714
@@ -13,6 +13,10 @@ references:
 author: Florian Roth (Nextron Systems)
 date: 2022/01/20
 modified: 2023/02/21
+tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1134.002
 logsource:
     product: windows
     category: process_creation
@@ -23,15 +27,15 @@ detection:
             - '/CommandLine'
     selection_runas:
         - CommandLine|contains:
-            - ' /RunAs 8 '
-            - ' /RunAs 4 '
-            - ' /RunAs 10 '
-            - ' /RunAs 11 '
+              - ' /RunAs 8 '
+              - ' /RunAs 4 '
+              - ' /RunAs 10 '
+              - ' /RunAs 11 '
         - CommandLine|endswith:
-            - '/RunAs 8'
-            - '/RunAs 4'
-            - '/RunAs 10'
-            - '/RunAs 11'
+              - '/RunAs 8'
+              - '/RunAs 4'
+              - '/RunAs 10'
+              - '/RunAs 11'
     condition: all of selection*
 falsepositives:
     - Unknown

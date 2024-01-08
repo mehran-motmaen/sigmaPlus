@@ -1,6 +1,6 @@
 title: Suspicious Group And Account Reconnaissance Activity Using Net.EXE
 id: d95de845-b83c-4a9a-8a6a-4fc802ebf6c0
-status: experimental
+status: test
 description: Detects suspicious reconnaissance command line activity on Windows systems using Net.EXE
 references:
     - https://redcanary.com/blog/how-one-hospital-thwarted-a-ryuk-ransomware-outbreak/
@@ -19,11 +19,11 @@ logsource:
 detection:
     selection_img:
         - Image|endswith:
-            - '\net.exe'
-            - '\net1.exe'
+              - '\net.exe'
+              - '\net1.exe'
         - OriginalFileName:
-            - 'net.exe'
-            - 'net1.exe'
+              - 'net.exe'
+              - 'net1.exe'
     # Covers group and localgroup flags
     selection_group_root:
         CommandLine|contains:

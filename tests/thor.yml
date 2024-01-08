@@ -225,11 +225,51 @@ logsources:
         rewrite:
             product: windows
             service: sysmon
-    file_block:
-        category: file_block
+    clipboard_change:
+        category: clipboard_change
+        product: windows
+        conditions:
+            EventID: 24
+        rewrite:
+            product: windows
+            service: sysmon
+    process_tampering:
+        category: process_tampering
+        product: windows
+        conditions:
+            EventID: 25
+        rewrite:
+            product: windows
+            service: sysmon
+    file_delete_detected:
+        category: file_delete_detected
+        product: windows
+        conditions:
+            EventID: 26
+        rewrite:
+            product: windows
+            service: sysmon
+    file_block_executable:
+        category: file_block_executable
         product: windows
         conditions:
             EventID: 27
+        rewrite:
+            product: windows
+            service: sysmon
+    file_block_shredding:
+        category: file_block_shredding
+        product: windows
+        conditions:
+            EventID: 28
+        rewrite:
+            product: windows
+            service: sysmon
+    file_executable_detected:
+        category: file_executable_detected
+        product: windows
+        conditions:
+            EventID: 29
         rewrite:
             product: windows
             service: sysmon
@@ -241,7 +281,7 @@ logsources:
         rewrite:
             product: windows
             service: sysmon
-    #PowerShell Operational
+    # PowerShell Operational
     ps_module:
         category: ps_module
         product: windows
@@ -258,7 +298,7 @@ logsources:
         rewrite:
             product: windows
             service: powershell
-    #Powershell "classic" channel
+    # Powershell "classic" channel
     ps_classic_start:
         category: ps_classic_start
         product: windows
@@ -486,6 +526,28 @@ logsources:
         service: certificateservicesclient-lifecycle-system
         sources:
             - 'WinEventLog:Microsoft-Windows-CertificateServicesClient-Lifecycle-System/Operational'
+    windows-kernel-shimengine:
+        product: windows
+        service: kernel-shimengine
+        sources:
+            - 'WinEventLog:Microsoft-Windows-Kernel-ShimEngine/Operational'
+            - 'WinEventLog:Microsoft-Windows-Kernel-ShimEngine/Diagnostic'
+    windows-application-experience:
+        product: windows
+        service: application-experience
+        sources:
+            - 'WinEventLog:Microsoft-Windows-Application-Experience/Program-Telemetry'
+            - 'WinEventLog:Microsoft-Windows-Application-Experience/Program-Compatibility-Assistant'
+    windows-ntfs:
+        product: windows
+        service: ntfs
+        sources:
+            - 'WinEventLog:Microsoft-Windows-Ntfs/Operational'
+    windows-hyper-v-worker:
+        product: windows
+        service: hyper-v-worker
+        sources:
+            - 'WinEventLog:Microsoft-Windows-Hyper-V-Worker'
     apache:
         category: webserver
         sources:

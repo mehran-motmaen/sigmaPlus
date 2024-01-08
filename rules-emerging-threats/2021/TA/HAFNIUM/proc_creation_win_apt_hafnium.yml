@@ -15,6 +15,7 @@ tags:
     - attack.persistence
     - attack.t1546
     - attack.t1053
+    - attack.g0125
     - detection.emerging_threats
 logsource:
     category: process_creation
@@ -30,8 +31,8 @@ detection:
     selection_vsperfmon:
         - Image|contains: '\ProgramData\VSPerfMon\'
         - CommandLine|contains|all:
-            - 'schtasks'
-            - 'VSPerfMon'
+              - 'schtasks'
+              - 'VSPerfMon'
     selection_opera_1:
         Image|endswith: 'Opera_browser.exe'
         ParentImage|endswith:

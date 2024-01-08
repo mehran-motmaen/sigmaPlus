@@ -7,6 +7,7 @@ references:
     - https://www.fireeye.com/blog/threat-research/2017/05/fin7-shim-databases-persistence.html
 author: Nasreddine Bencherchali (Nextron Systems)
 date: 2023/08/01
+modified: 2023/12/06
 tags:
     - attack.persistence
     - attack.t1546.011
@@ -15,17 +16,19 @@ logsource:
     product: windows
 detection:
     selection:
-        EventType: SetValue
         TargetObject|contains: '\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom\'
         TargetObject|endswith:
             # Note: add other application to increase coverage
             - '\csrss.exe'
             - '\dllhost.exe'
             - '\explorer.exe'
+            - '\RuntimeBroker.exe'
             - '\services.exe'
+            - '\sihost.exe'
             - '\svchost.exe'
             - '\taskhostw.exe'
             - '\winlogon.exe'
+            - '\WmiPrvSe.exe'
     condition: selection
 falsepositives:
     - Unknown
