@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule kbid="120000_1" id="120000" owner="user" ver="1" enable="t" file_name="">
+	<filter_list>
+		<filter id="1" weight="1" name="attack.command_and_control__attack.s0154">
+			<source>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</source>
+			<target>
+				<ip location="ANY"></ip>
+				<port>0-65535</port>
+			</target>
+			<event_list>
+				<event sensor_type="372" class_type=""></event>
+			</event_list>
+			<additional_data_list>
+				<group not="false">
+					<additional_data meaning="product" operator="EQ">zeek</additional_data>
+				</group>
+				<group not="false">
+					<additional_data meaning="service" operator="EQ">x509</additional_data>
+				</group>
+				<group not="false">
+					<additional_data meaning="certificate.serial" operator="EQ">8BB00EE</additional_data>
+				</group>
+			</additional_data_list>
+		</filter>
+	</filter_list>
+	<action>
+		<alert priority="high" category="Default Cobalt Strike Certificate">
+			<message>Detects the presence of default Cobalt Strike certificate in the HTTPS traffic</message>
+			<source>
+				<ip reference_type="source" reference_id="1"></ip>
+			</source>
+			<target>
+				<ip reference_type="target" reference_id="1"></ip>
+			</target>
+		</alert>
+		<prerequisite>
+			<predicate type="Hopping">
+				<param reference_type="source.ip"></param>
+			</predicate>
+		</prerequisite>
+		<consequence>
+			<predicate type="Hopping">
+				<param reference_type="source.ip"></param>
+			</predicate>
+		</consequence>
+	</action>
+	<regulation>
+		<sequence>
+			<filter id="1"></filter>
+		</sequence>
+	</regulation>
+	<description>
+		<id>7100f7e3-92ce-4584-b7b7-01b40d3d4118</id>
+		<references>https://sergiusechel.medium.com/improving-the-network-based-detection-of-cobalt-strike-c2-servers-in-the-wild-while-reducing-the-6964205f6468</references>
+		<author>Bhabesh Raj</author>
+		<date>2021/06/23</date>
+		<modified>2022/10/09</modified>
+		<fields>san.dns</fields>
+		<fields>certificate.subject</fields>
+		<fields>certificate.issuer</fields>
+		<falsepositives>Unknown</falsepositives>
+	</description>
+</rule>

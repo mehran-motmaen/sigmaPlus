@@ -1,0 +1,267 @@
+{
+  "rule": {
+    "@id": "10002",
+    "@owner": "system",
+    "@kbid": "10002_1",
+    "@enable": "t",
+    "@ver": "1",
+    "@file_name": "",
+    "filter_list": {
+      "filter": [
+        {
+          "@id": "1",
+          "@name": "Admin configuration failed attempt on Router",
+          "@weight": "1",
+          "source": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@location": "ANY"
+            },
+            "port": "0-65535"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "resource",
+                  "#text": "Switch/Router"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "2",
+          "@name": "Multiple Admin configuration failed attempt on Router (5 attempts)",
+          "@occurrence": "4",
+          "@weight": "5",
+          "@timeout": "900",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "resource",
+                  "#text": "Switch/Router"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "3",
+          "@name": "Multiple Admin configuration failed attempt on Router (15 attempts)",
+          "@occurrence": "10",
+          "@weight": "10",
+          "@timeout": "900",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "resource",
+                  "#text": "Switch/Router"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@id": "4",
+          "@name": "Multiple Admin configuration failed attempt on Router (115 attempts)",
+          "@occurrence": "100",
+          "@weight": "10",
+          "@timeout": "1800",
+          "source": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "source"
+            },
+            "port": "0-65535"
+          },
+          "target": {
+            "ip": {
+              "@reference_id": "1",
+              "@reference_type": "target"
+            },
+            "port": "0-65535"
+          },
+          "flag_list": {
+            "flag": "sticky"
+          },
+          "event_list": {
+            "event": {
+              "@sensor_type": "ANY",
+              "@class_type": "",
+              "tag": [
+                {
+                  "@meaning": "resource",
+                  "#text": "Switch/Router"
+                },
+                {
+                  "@meaning": "event_type",
+                  "#text": "Configuration Activity"
+                },
+                {
+                  "@meaning": "result",
+                  "#text": "Failed"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "alert": {
+        "@priority": "high",
+        "@category": "AbnormalActivity",
+        "message": "Multiple Failed Configuration Change Attempt on Router",
+        "source": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "source"
+          }
+        },
+        "target": {
+          "ip": {
+            "@reference_id": "1",
+            "@reference_type": "target"
+          }
+        }
+      },
+      "prerequisite": {
+        "predicate": [
+          {
+            "@type": "Recon-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Recon-Service",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          }
+        ]
+      },
+      "consequence": {
+        "predicate": [
+          {
+            "@type": "Access-Host",
+            "param": [
+              {
+                "@reference_type": "source.ip"
+              },
+              {
+                "@reference_type": "target.ip"
+              }
+            ]
+          },
+          {
+            "@type": "Access-Host",
+            "param": {
+              "@reference_type": "target.ip"
+            }
+          }
+        ]
+      }
+    },
+    "regulation": {
+      "sequence": {
+        "filter": [
+          {
+            "@id": "1"
+          },
+          {
+            "@id": "2"
+          },
+          {
+            "@id": "3"
+          },
+          {
+            "@id": "4"
+          }
+        ]
+      }
+    }
+  }
+}
